@@ -1,0 +1,34 @@
+# Post authors (Ghost's author objects). `key` is referenced from post
+# front matter (`authors: [key]`) and builds the /author/<slug>/ archive.
+- key: steven-newcomb
+  name: Steven Newcomb
+  slug: steven-newcomb
+  bio: "Shawnee (Lenape), co-founder of the Indigenous Law Institute, author of “Pagans in the Promised Land: Decoding the Doctrine of Christian Discovery” and co-producer of the documentary “The Doctrine of Discovery: Unmasking the Domination Code”. Primary author of this site."
+  location: Kumeyaay Territory, San Diego, CA
+  profile_image: ""
+  website: https://originalfreenations.com
+  bluesky: ""
+  x: ""
+  mastodon: ""
+
+- key: adam-brett
+  name: Adam DJ Brett
+  slug: adam-brett
+  bio: Scholar of religion and Indigenous studies; editor and technologist.
+  location: Syracuse, NY
+  profile_image: ""
+  website: https://adamdjbrett.com
+  bluesky: https://bsky.app/profile/adamdjbrett.com
+  x: ""
+  mastodon: ""
+
+- key: david-ratcliffe
+  name: David Ratcliffe
+  slug: david-ratcliffe
+  bio: Archivist and publisher at ratical.org.
+  location: ""
+  profile_image: ""
+  website: https://ratical.org
+  bluesky: ""
+  x: ""
+  mastodon: ""

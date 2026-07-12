@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Porting the Headline Ghost Theme to Eleventy — Explained</title>
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --bg: #ffffff;
+    --surface: #f8fafc;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --code-bg: #f1f5f9;
+    --callout-bg: #fff7ed;
+    --callout-border: #f97316;
+    --correct: #16a34a;
+    --wrong: #dc2626;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    padding: 0;
+  }
+  .container { max-width: 800px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.5em; color: #0f172a; }
+  h2 { font-size: 1.5rem; margin-top: 2.5em; margin-bottom: 0.6em; padding-bottom: 0.3em; border-bottom: 2px solid var(--accent); color: #0f172a; }
+  h3 { font-size: 1.2rem; margin-top: 1.8em; margin-bottom: 0.4em; color: #0f172a; }
+  p, li { margin-bottom: 0.8em; }
+  ul, ol { padding-left: 1.5em; margin-bottom: 1em; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  pre {
+    background: var(--code-bg);
+    border-radius: 8px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 1em 0;
+    white-space: pre;
+  }
+  code {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+    font-size: 0.9em;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  pre code { background: none; padding: 0; border-radius: 0; }
+  .callout {
+    background: var(--callout-bg);
+    border-left: 4px solid var(--callout-border);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 1.5em 0;
+  }
+  .callout strong { color: #9a3412; }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 2em; }
+  .toc ol { margin-bottom: 0; }
+  .toc a { display: block; padding: 4px 0; }
+  .diagram-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 1.5em 0;
+    overflow-x: auto;
+  }
+  .diagram-box .label { font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+  .grid-demo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .grid-demo .card {
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9rem;
+    background: white;
+  }
+  .grid-demo .card.large { grid-column: 1 / 3; background: var(--accent-light); border-color: var(--accent); }
+  .grid-demo .card img { display: none; }
+  .grid-demo .card-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+  .grid-demo .card-meta { font-size: 0.7rem; color: var(--text-secondary); }
+  .layout-demo { display: flex; flex-direction: column; gap: 2px; margin: 12px 0; }
+  .layout-demo > div { padding: 10px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; text-align: center; }
+  .layout-demo .header { background: #e0e7ff; color: #3730a3; }
+  .layout-demo .nav { background: #dbeafe; color: #1e40af; }
+  .layout-demo .actions { background: #ede9fe; color: #5b21b6; }
+  .layout-demo .main { background: #f0fdf4; color: #166534; }
+  .layout-demo .subscribe { background: #fef2f2; color: #991b1b; }
+  .layout-demo .foot-menu { background: #fff7ed; color: #9a3412; }
+  .layout-demo .social { background: #f0f9ff; color: #075985; }
+  .layout-demo .copyright { background: #f8fafc; color: #475569; }
+  .file-tree { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.8; margin: 1em 0; padding: 16px 20px; background: var(--surface); border-radius: 8px; }
+  .file-tree .dir { color: var(--accent); }
+  .file-tree .file { color: var(--text); }
+  .file-tree .new::after { content: " NEW"; font-size: 0.7rem; font-weight: 700; color: var(--correct); margin-left: 6px; }
+  .file-tree .modified::after { content: " MODIFIED"; font-size: 0.7rem; font-weight: 700; color: var(--callout-border); margin-left: 6px; }
+  .quiz { margin: 2em 0; }
+  .quiz-question { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .quiz-question p { font-weight: 600; margin-bottom: 12px; }
+  .quiz-option { display: block; width: 100%; text-align: left; padding: 10px 16px; margin-bottom: 6px; border: 2px solid var(--border); border-radius: 8px; background: white; font-size: 0.95rem; cursor: pointer; transition: all 0.15s; }
+  .quiz-option:hover { border-color: var(--accent); background: var(--accent-light); }
+  .quiz-option.selected { border-color: var(--accent); background: var(--accent-light); }
+  .quiz-option.correct { border-color: var(--correct) !important; background: #dcfce7 !important; }
+  .quiz-option.wrong { border-color: var(--wrong) !important; background: #fef2f2 !important; }
+  .quiz-feedback { display: none; margin-top: 12px; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: #dcfce7; color: #166534; }
+  .quiz-feedback.wrong { background: #fef2f2; color: #991b1b; }
+  .quiz-result { display: none; text-align: center; font-size: 1.2rem; font-weight: 700; padding: 20px; background: var(--accent-light); border-radius: 12px; margin-top: 20px; }
+  .quiz-result.show { display: block; }
+  .file-header { font-family: monospace; font-size: 0.8rem; color: var(--text-secondary); margin-top: 1em; margin-bottom: -0.5em; }
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px 60px; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.3rem; }
+    pre { font-size: 12px; padding: 12px 14px; }
+    .grid-demo { grid-template-columns: 1fr; }
+    .grid-demo .card.large { grid-column: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Porting the Headline Ghost Theme to Eleventy</h1>
+<p style="font-size:1.1rem; color: var(--text-secondary); margin-bottom: 2em;">A faithful HTML/CSS port of the Headline theme from Ghost to a static Eleventy site, migrating from WordPress.</p>
+
+<div class="toc">
+<h3 style="margin-top: 0; border: none; font-size: 1rem;">Table of Contents</h3>
+<ol>
+  <li><a href="#background">Background</a></li>
+  <li><a href="#intuition">Intuition</a></li>
+  <li><a href="#code">Code Changes</a></li>
+  <li><a href="#quiz">Quiz</a></li>
+</ol>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="background">1. Background</h2>
+
+<h3>1.1 The Big Picture</h3>
+
+<p>
+  Original Nations is a site publishing research on indigenous peoples' liberation, the Doctrine of Christian Discovery, and Federal Indian Law. It originally ran on WordPress with the "Coup-2" theme. The task was to migrate to a static site builder (Eleventy v3) while adopting the visual design of the <strong>Headline</strong> theme from the Ghost publishing platform — a modern, clean, card-based layout optimized for content discovery.
+</p>
+
+<p>
+  The Headline theme features a "stacked" header (logo centered above a horizontal nav bar), a home page organized as a series of "topic grids" (Latest posts, then category/tag sections), and a dark-background footer with subscribe call-to-action, navigation links, social icons, and copyright. Every section uses a specific class hierarchy from Ghost's CSS conventions.
+</p>
+
+<h3>1.2 The Existing System</h3>
+
+<p>
+  Before this change, there was a static Eleventy site with:
+</p>
+<ul>
+  <li><strong>57 posts</strong> converted from WordPress XML via <code>wordpress-export-to-markdown</code>, stored as <code>src/content/posts/{slug}/index.md</code> with YAML frontmatter.</li>
+  <li><strong>5 pages</strong> (About, Contact, News, Support Our Work, home-2) in <code>src/content/pages/</code>.</li>
+  <li><strong>Per-post images</strong> in <code>src/content/posts/{slug}/images/</code>, passthrough-copied to <code>_site/{slug}/images/</code>.</li>
+  <li><strong>Baseline plugin</strong> (<code>@apleasantview/eleventy-plugin-baseline v0.1.0-next.44</code>) providing SEO graph, virtual directories, head injection, and asset pipeline.</li>
+  <li><strong>screen.css</strong> — the compiled, postcss-processed CSS from the Headline theme's gulp build pipeline. ~25KB minified.</li>
+  <li><strong>Templates</strong> using Nunjucks (<code>.njk</code>) with <code>markdownTemplateEngine: "njk"</code> so Markdown content is rendered inside Nunjucks layouts.</li>
+</ul>
+
+<h3>1.3 The Target: Headline Ghost Theme</h3>
+
+<p>The Headline theme's architecture centers on a few key patterns:</p>
+
+<div class="callout">
+  <strong>Class Hierarchy Convention.</strong> Every section uses a <code>gh-</code> prefixed naming system: <code>gh-head</code>, <code>gh-foot</code>, <code>gh-card</code>, <code>gh-topic</code>, <code>gh-article</code>. These are not just cosmetic — the CSS grid layout depends on this specific nesting to create the two-column card grid with the first card spanning full width.
+</div>
+
+<p>The home page has this structure:</p>
+
+<div class="diagram-box">
+  <div class="label">Headline Home Page Layout</div>
+  <div class="layout-demo">
+    <div class="header">gh-head (logo + nav + actions)</div>
+    <div class="main">gh-topic gh-topic-grid: "Latest" (first card .large, then 6 regular cards, "Show more" link)</div>
+    <div class="main">gh-topic gh-topic-grid: "Environment" (same pattern)</div>
+    <div class="main">gh-topic gh-topic-grid: "Culture" (same pattern)</div>
+    <div class="main">gh-topic gh-topic-grid: "Sports" (same pattern)</div>
+    <div class="subscribe">gh-foot: subscribe section (mail icon, title, description, button)</div>
+    <div class="foot-menu">gh-foot-menu: dynamic page links</div>
+    <div class="social">gh-social-links: X, Facebook icons</div>
+    <div class="copyright">gh-copyright: site name + "Powered by"</div>
+  </div>
+</div>
+
+<h3>1.4 A Note for Beginners</h3>
+
+<p>
+  If you're new to static site generators: Eleventy (11ty) takes templated content files (Markdown with YAML frontmatter) and renders them through template engines (Nunjucks, Liquid, etc.) into plain HTML. No database, no server-side runtime — just files. The <code>.eleventy.js</code> config file defines collections (groups of content), filters (transformations for templates), and passthrough copies (files like images that should be copied verbatim to the output directory).
+</p>
+<p>
+  Nunjucks is a JavaScript templating language similar to Jinja2 (Python) or Liquid (Ruby). It uses <code>{% %}</code> for logic tags and <code>{{ }}</code> for variable output. Filters like <code>| default([]) | join(", ")</code> let you transform data inline.
+</p>
+
+<!-- ============================================================ -->
+<h2 id="intuition">2. Intuition</h2>
+
+<h3>2.1 The Core Idea</h3>
+
+<p>
+  The Headline theme's visual identity is built on a <strong>grid of cards</strong> organized by topic. Each topic section has exactly the same structure: a heading, a two-column card grid where the first card spans the full width, and a "Show more" link. Recreating this in Eleventy means mapping the Ghost theme's Handlebars partials to Nunjucks templates while preserving every class name and wrapper, so the existing CSS works without modification.
+</p>
+
+<h3>2.2 How the Card Grid Works</h3>
+
+<p>Here's the key CSS grid pattern. The container is a two-column grid. The first card gets <code>class="large"</code>, which sets <code>grid-column: 1/3</code>, making it span both columns. The remaining cards flow naturally into the two columns.</p>
+
+<div class="diagram-box">
+  <div class="label">Visual: Grid Layout for 7 Cards</div>
+  <div class="grid-demo">
+    <div class="card large"><div class="card-title">First Post (spans full width)</div><div class="card-meta">.gh-card.large → grid-column: 1/3</div></div>
+    <div class="card"><div class="card-title">Post 2</div></div>
+    <div class="card"><div class="card-title">Post 3</div></div>
+    <div class="card"><div class="card-title">Post 4</div></div>
+    <div class="card"><div class="card-title">Post 5</div></div>
+    <div class="card"><div class="card-title">Post 6</div></div>
+    <div class="card"><div class="card-title">Post 7</div></div>
+  </div>
+</div>
+
+<p>The CSS driving this:</p>
+<pre>.gh-topic-grid .gh-topic-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 40px;
+}
+.gh-topic-grid .gh-card.large {
+  grid-column: 1 / 3;  /* spans both columns */
+}</pre>
+
+<h3>2.3 Three Changes that Fixed Visual Bugs</h3>
+
+<p><strong>Bug 1: Nav text invisible.</strong> The CSS contained <code>body:not(.is-dropdown-loaded) .gh-head-menu .nav>li{opacity:0}</code> — a rule intended for Ghost's JavaScript dropdown animation. Since Ghost JS never runs on a static site, the nav was permanently invisible. Fix: change <code>opacity:0</code> → <code>opacity:1</code>.</p>
+
+<p><strong>Bug 2: Broken accent color.</strong> The CSS used <code>var(--ghost-accent-color)</code> in dozens of places (links, buttons, tag labels, article borders) but never defined the variable. Fix: add <code>--ghost-accent-color: #2563eb</code> to <code>:root</code>.</p>
+
+<p><strong>Bug 3: Cover images in wrong path.</strong> The WordPress export placed cover images inside per-post <code>images/</code> subdirectories. The template needed to reference <code>images/{filename}</code> relative to the post URL, which resolves correctly because the passthrough copy puts the entire <code>images/</code> folder at <code>_site/{slug}/images/</code>.</p>
+
+<h3>2.4 Composing Tag Sections Dynamically</h3>
+
+<p>Posts in the WordPress export don't use categories — only tags (100 unique tags across 57 posts). The top 3 tags by count were: <strong>united-states</strong> (10 posts), <strong>supreme-court</strong> (9), <strong>christian-europeans</strong> (7). A custom Nunjucks filter <code>filterByTag</code> was added to Eleventy so the home page can iterate over a list of tag names and render a grid section for each:</p>
+
+<pre>{% for tag in topTags %}
+{% set taggedPosts = collections.posts | filterByTag(tag) %}
+&lt;section class="gh-topic gh-topic-grid"&gt;
+  &lt;h2 class="gh-topic-name"&gt;
+    &lt;a href="/tag/{{ tag }}/"&gt;{{ tag | split("-") | join(" ") | title }}&lt;/a&gt;
+  &lt;/h2&gt;
+  ...
+&lt;/section&gt;
+{% endfor %}</pre>
+
+<p>The <code>split("-") | join(" ") | title</code> filter chain converts "united-states" into "United States" for display.</p>
+
+<!-- ============================================================ -->
+<h2 id="code">3. Code Changes</h2>
+
+<p>All changes were made to files under <code>src/</code> and <code>.eleventy.js</code>. Here they are, grouped by concern.</p>
+
+<h3>3.1 CSS Fixes</h3>
+
+<p class="file-header">File: <code>src/assets/css/screen.css</code> (minified, single-line)</p>
+<p><strong>Change 1:</strong> Added <code>--ghost-accent-color: #2563eb</code> to the <code>:root</code> block.</p>
+<pre>/* Before */
+:root{
+  --color-primary-text:#333;
+  ...
+  --header-spacing:80px
+}
+/* After */
+:root{
+  ...
+  --header-spacing:80px;
+  --ghost-accent-color:#2563eb
+}</pre>
+
+<p><strong>Change 2:</strong> Overrode the nav opacity that assumed Ghost JS would add <code>.is-dropdown-loaded</code>.</p>
+<pre>/* Before */  body:not(.is-dropdown-loaded) .gh-head-menu .nav>li{opacity:0}
+/* After */   body:not(.is-dropdown-loaded) .gh-head-menu .nav>li{opacity:1}</pre>
+
+<h3>3.2 Home Page Structure</h3>
+
+<p class="file-header">File: <code>src/index.njk</code></p>
+<p>The home page was rewritten to produce the Headline topic-grid structure. Two key patterns:</p>
+
+<p><strong>Latest section</strong> — all posts in reverse chronological order, first card gets <code>.large</code>:</p>
+<pre>&lt;section class="gh-topic gh-topic-grid"&gt;
+  &lt;h2 class="gh-topic-name"&gt;&lt;a href="/"&gt;Latest&lt;/a&gt;&lt;/h2&gt;
+  &lt;div class="gh-topic-content gh-feed"&gt;
+    {% for post in collections.posts %}
+    &lt;article class="gh-card{% if loop.first %} large{% endif %}"&gt;
+      &lt;a class="gh-card-link" href="{{ post.url }}"&gt;
+        {% if post.data.coverImage %}
+        &lt;figure class="gh-card-image"&gt;
+          &lt;img src="{{ post.url }}images/{{ post.data.coverImage }}"
+               alt="{{ post.data.title }}"&gt;
+        &lt;/figure&gt;
+        {% endif %}
+        &lt;div class="gh-card-wrapper"&gt;
+          &lt;header class="gh-card-header"&gt;
+            &lt;h3 class="gh-card-title"&gt;{{ post.data.title }}&lt;/h3&gt;
+          &lt;/header&gt;
+          &lt;footer class="gh-card-footer"&gt;
+            &lt;span class="gh-card-author"&gt;
+              {{ post.data.tags | default([]) | join(", ") }}
+            &lt;/span&gt;
+            &lt;time class="gh-card-date" datetime="..."&gt;...&lt;/time&gt;
+          &lt;/footer&gt;
+        &lt;/div&gt;
+      &lt;/a&gt;
+    &lt;/article&gt;
+    {% endfor %}
+  &lt;/div&gt;
+  &lt;footer class="gh-topic-footer"&gt;
+    &lt;a class="gh-topic-link" href="/"&gt;
+      Show more {% include "icons/arrow.njk" %}
+    &lt;/a&gt;
+  &lt;/footer&gt;
+&lt;/section&gt;</pre>
+
+<div class="callout">
+  <strong>Edge case: posts without tags.</strong> The <code>tags</code> property may be undefined for some posts. The <code>default([])</code> filter ensures <code>join</code> always receives an array. Without it, Nunjucks throws <code>Cannot read properties of undefined (reading 'join')</code>.
+</div>
+
+<p><strong>Tag sections</strong> — iterating over the top 3 tags with a custom filter:</p>
+<pre>{% set topTags = ["united-states", "supreme-court", "christian-europeans"] %}
+{% for tag in topTags %}
+{% set taggedPosts = collections.posts | filterByTag(tag) %}
+{% if taggedPosts.length %}
+&lt;section class="gh-topic gh-topic-grid"&gt;
+  &lt;h2 class="gh-topic-name"&gt;
+    &lt;a href="/tag/{{ tag }}/"&gt;
+      {{ tag | split("-") | join(" ") | title }}
+    &lt;/a&gt;
+  &lt;/h2&gt;
+  &lt;div class="gh-topic-content"&gt;
+    {% for post in taggedPosts %}
+    &lt;article class="gh-card{% if loop.first %} large{% endif %}"&gt;
+      ...same card structure...
+    &lt;/article&gt;
+    {% endfor %}
+  &lt;/div&gt;
+  &lt;footer class="gh-topic-footer"&gt;
+    &lt;a class="gh-topic-link" href="/tag/{{ tag }}/"&gt;
+      Show more {% include "icons/arrow.njk" %}
+    &lt;/a&gt;
+  &lt;/footer&gt;
+&lt;/section&gt;
+{% endif %}
+{% endfor %}</pre>
+
+<h3>3.3 Footer: Subscribe + Social + Copyright</h3>
+
+<p class="file-header">File: <code>src/_includes/default.njk</code> and <code>src/_includes/post.njk</code></p>
+<p>Both templates received the same footer rewrite. The Headline footer has four zones in a centered column layout:</p>
+
+<div class="diagram-box">
+  <div class="label">Footer Layout</div>
+  <pre style="margin:0; border: none;">gh-foot gh-outer
+  └── gh-foot-inner gh-inner
+      ├── gh-subscribe
+      │   ├── h3.gh-subscribe-title
+      │   ├── .gh-subscribe-description
+      │   └── button.gh-subscribe-btn.gh-btn (mail icon + "Subscribe now")
+      ├── nav.gh-foot-menu → ul.nav (dynamic pages)
+      ├── .gh-social-links
+      │   ├── a[aria-label="X"] → x.njk SVG
+      │   └── a[aria-label="Facebook"] → facebook.njk SVG
+      └── .gh-copyright
+          "Original Nations © 2026. Powered by ..."</pre>
+</div>
+
+<p>The subscribe button uses the mail envelope SVG from Ghost's original <code>partials/icons/mail.hbs</code>. Social link SVGs (X/Twitter and Facebook) match Ghost's icon set exactly — the X icon uses the newer X-shaped path, not the old Twitter bird.</p>
+
+<h3>3.4 New Custom Filters</h3>
+
+<p class="file-header">File: <code>.eleventy.js</code></p>
+<p>Two filters were added to enable dynamic tag sections:</p>
+
+<pre>eleventyConfig.addFilter("filterByTag", (posts, tag) =>
+  (posts || []).filter(p =>
+    p.data && p.data.tags && p.data.tags.includes(tag)
+  )
+);
+eleventyConfig.addFilter("split", (str, sep) =>
+  (str || "").split(sep)
+);</pre>
+
+<div class="callout">
+  <strong>Why filterByTag instead of a collection?</strong> Tag collections would need to be defined at build time in <code>.eleventy.js</code>. Using a filter is more flexible — it works with any tag name at render time, doesn't require config changes when tags change, and keeps the logic in the template where it's easy to understand.
+</div>
+
+<h3>3.5 Icon Partials (New Files)</h3>
+
+<p class="file-header">Directory: <code>src/_includes/icons/</code></p>
+<p>Six SVG partials were created, all matching Ghost's original icon set:</p>
+
+<table style="width:100%; border-collapse: collapse; margin: 1em 0;">
+  <tr style="border-bottom: 2px solid var(--border);">
+    <th style="text-align:left; padding: 8px 12px;">File</th>
+    <th style="text-align:left; padding: 8px 12px;">Purpose</th>
+  </tr>
+  <tr style="border-bottom: 1px solid var(--border);">
+    <td style="padding: 8px 12px;"><code>search.njk</code></td>
+    <td style="padding: 8px 12px;">Magnifying glass for header search buttons (2 instances: brand + actions)</td>
+  </tr>
+  <tr style="border-bottom: 1px solid var(--border);">
+    <td style="padding: 8px 12px;"><code>mail.njk</code></td>
+    <td style="padding: 8px 12px;">Envelope for footer subscribe button</td>
+  </tr>
+  <tr style="border-bottom: 1px solid var(--border);">
+    <td style="padding: 8px 12px;"><code>arrow.njk</code></td>
+    <td style="padding: 8px 12px;">Chevron for "Show more" links in topic footers</td>
+  </tr>
+  <tr style="border-bottom: 1px solid var(--border);">
+    <td style="padding: 8px 12px;"><code>x.njk</code></td>
+    <td style="padding: 8px 12px;">X/Twitter logo for social links footer</td>
+  </tr>
+  <tr style="border-bottom: 1px solid var(--border);">
+    <td style="padding: 8px 12px;"><code>facebook.njk</code></td>
+    <td style="padding: 8px 12px;">Facebook logo for social links footer</td>
+  </tr>
+  <tr>
+    <td style="padding: 8px 12px;"><code>globe.njk</code></td>
+    <td style="padding: 8px 12px;">(Unused) Globe icon for potential future use</td>
+  </tr>
+</table>
+
+<h3>3.6 File Summary</h3>
+
+<div class="file-tree">
+<span class="dir">src/</span><br>
+<span class="dir">  _includes/</span><br>
+<span class="file modified">    default.njk</span> — Footer rewrite, head-actions added<br>
+<span class="file modified">    post.njk</span> — Same footer rewrite, tag/cover display<br>
+<span class="dir">    icons/</span><br>
+<span class="file new">      search.njk</span><br>
+<span class="file new">      mail.njk</span><br>
+<span class="file new">      arrow.njk</span><br>
+<span class="file new">      x.njk</span><br>
+<span class="file new">      facebook.njk</span><br>
+<span class="file new">      globe.njk</span><br>
+<span class="file modified">  index.njk</span> — Topic grid sections for Latest + top 3 tags<br>
+<span class="dir">  assets/css/</span><br>
+<span class="file modified">    screen.css</span> — Added accent-color, fixed nav opacity<br>
+<span class="file modified">.eleventy.js</span> — Added filterByTag, split filters
+</div>
+
+<h3>3.7 Build Output</h3>
+<p>Running <code>npx @11ty/eleventy</code> produces:</p>
+<pre>Wrote 63 files in 1.58 seconds
+- 57 post pages (slug/index.html + images/)
+- 5 page pages (about, contact, news, support-our-work, home-2)
+- 1 index page (home)
+- 198 assets (CSS, images)</pre>
+
+<!-- ============================================================ -->
+<h2 id="quiz">4. Quiz</h2>
+
+<p>Test your understanding of this change. Each question has one correct answer.</p>
+
+<div class="quiz" id="quiz">
+
+<div class="quiz-question" data-q="0">
+  <p>1. Why was <code>--ghost-accent-color</code> missing from the CSS, and what broke as a result?</p>
+  <div class="quiz-options">
+    <button class="quiz-option" data-correct="true">The Headline CSS uses <code>var(--ghost-accent-color)</code> throughout for links, buttons, tag labels, and borders, but Ghost defines it via theme settings at runtime — not in the static CSS file. Without it, linked text, primary buttons, and article tag labels rendered in the browser's default link color (or black) instead of the intended blue accent.</button>
+    <button class="quiz-option" data-correct="false">The variable was accidentally deleted during minification. It caused the entire stylesheet to fail to parse, leaving the site unstyled.</button>
+    <button class="quiz-option" data-correct="false">The <code>--ghost-accent-color</code> variable is only used for hover effects, so its absence was purely cosmetic and didn't affect core layout.</button>
+  </div>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="quiz-question" data-q="1">
+  <p>2. The CSS rule <code>body:not(.is-dropdown-loaded) .gh-head-menu .nav>li{opacity:0}</code> caused the entire navigation to be invisible. What is the intended purpose of this rule in the original Ghost theme, and why doesn't it work on a static Eleventy site?</p>
+  <div class="quiz-options">
+    <button class="quiz-option" data-correct="false">It's a print stylesheet override that hides nav during printing. It doesn't work because Eleventy's build process strips print media queries.</button>
+    <button class="quiz-option" data-correct="true">Ghost's JavaScript adds <code>.is-dropdown-loaded</code> to <code>&lt;body&gt;</code> after its dropdown navigation component finishes initializing. The opacity:0 rule prevents a flash-of-unstyled-content while JS loads. On a static site with no Ghost JS, the class is never added, so the nav stays permanently hidden.</button>
+    <button class="quiz-option" data-correct="false">It's a progressive enhancement for screen readers that hides visual nav while keeping it accessible. The static site doesn't need it because there's no JS to progressively enhance.</button>
+  </div>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="quiz-question" data-q="2">
+  <p>3. In the home page template, the Latest section uses <code>class="gh-topic-content gh-feed"</code> while the tag sections use only <code>class="gh-topic-content"</code>. Why does the <code>gh-feed</code> class only appear on the Latest section?</p>
+  <div class="quiz-options">
+    <button class="quiz-option" data-correct="false">It's a mistake — <code>gh-feed</code> should be on all sections for consistency. The CSS doesn't actually do anything with it.</button>
+    <button class="quiz-option" data-correct="true">The Headline theme uses <code>gh-feed</code> to mark the primary chronological feed. Ghost's JavaScript attaches infinite-scroll or pagination behavior to elements with this class. Since the tag sections are secondary content groupings, they don't get the feed treatment. It's a semantic distinction from the original theme, preserved for fidelity.</button>
+    <button class="quiz-option" data-correct="false"><code>gh-feed</code> triggers a different CSS grid layout (3 columns instead of 2) that's designed for chronological streams. The tag sections use the standard 2-column grid.</button>
+  </div>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="quiz-question" data-q="3">
+  <p>4. Why does <code>post.data.tags | default([]) | join(", ")</code> use <code>default([])</code> instead of just <code>post.data.tags | join(", ")</code>?</p>
+  <div class="quiz-options">
+    <button class="quiz-option" data-correct="false">It's a performance optimization — <code>default([])</code> prevents Nunjucks from allocating memory for the join operation when tags is empty.</button>
+    <button class="quiz-option" data-correct="false">The <code>default</code> filter provides a fallback string if tags is null, but <code>[]</code> is the wrong fallback — it should be <code>default("")</code> to display nothing instead of empty tags.</button>
+    <button class="quiz-option" data-correct="true">Nunjucks throws <code>TypeError: Cannot read properties of undefined (reading 'join')</code> if <code>tags</code> is <code>undefined</code>. Some posts in the export don't have a <code>tags</code> field in their frontmatter. <code>default([])</code> converts <code>undefined</code> to an empty array so <code>join</code> always has a valid receiver.</button>
+  </div>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="quiz-question" data-q="4">
+  <p>5. The <code>filterByTag</code> filter was implemented as a template filter rather than as named Eleventy collections (e.g., <code>collections["tag-united-states"]</code>). What's the tradeoff?</p>
+  <div class="quiz-options">
+    <button class="quiz-option" data-correct="true">Filters are evaluated at render time and filter an already-loaded collection array in memory, which is O(n) per tag section but simple to maintain. Named collections are built once at startup and cached, which is more efficient for large sites, but require knowing all tag names ahead of time in the config file. The filter approach was chosen for flexibility (0 config changes needed) since the tag list is small.</button>
+    <button class="quiz-option" data-correct="false">Filters are faster because they run during the rendering phase rather than the collection-building phase. Named collections would be slower because they force Eleventy to rebuild the collection graph on every change.</button>
+    <button class="quiz-option" data-correct="false">There's no practical difference — both approaches compile to the same internal representation in Eleventy's template map. The filter syntax is just preferred for readability.</button>
+  </div>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="quiz-result" id="quizResult"></div>
+
+</div>
+
+<p style="margin-top: 2em; color: var(--text-secondary); font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 1.5em;">
+  Generated 2026-07-07. Built from the diff between the initial Eleventy site and the final Headline-matched templates.
+</p>
+
+</div>
+
+<script>
+(function() {
+  const questions = document.querySelectorAll('.quiz-question');
+  let results = new Array(questions.length).fill(null);
+
+  questions.forEach((q, qi) => {
+    const options = q.querySelectorAll('.quiz-option');
+    const feedback = q.querySelector('.quiz-feedback');
+
+    options.forEach(opt => {
+      opt.addEventListener('click', function() {
+        // Reset all options in this question
+        options.forEach(o => {
+          o.classList.remove('selected', 'correct', 'wrong');
+        });
+        this.classList.add('selected');
+
+        const isCorrect = this.dataset.correct === 'true';
+        results[qi] = isCorrect;
+
+        // Disable all options
+        options.forEach(o => o.disabled = true);
+
+        if (isCorrect) {
+          this.classList.add('correct');
+          feedback.className = 'quiz-feedback show correct';
+          feedback.textContent = 'Correct! ' + getExplanation(qi);
+        } else {
+          this.classList.add('wrong');
+          // Highlight the correct answer
+          options.forEach(o => {
+            if (o.dataset.correct === 'true') o.classList.add('correct');
+          });
+          feedback.className = 'quiz-feedback show wrong';
+          feedback.textContent = 'Incorrect. ' + getExplanation(qi);
+        }
+
+        updateResult();
+      });
+    });
+  });
+
+  function getExplanation(qi) {
+    const exps = [
+      'The accent color controls primary interactive elements across the entire theme — links, call-to-action buttons, tag labels, blockquote borders, and code highlights. Without it, these elements fell back to default browser styling or disappeared entirely.',
+      'The static site equivalent would be to add the class unconditionally via a small inline script or by hardcoding it in the body element. Changing opacity to 1 is the laziest correct fix.',
+      'The gh-feed distinction comes from Ghost\'s JavaScript architecture, not CSS. In a static site it has no behavioral effect, but keeping it preserves the exact class structure of the reference theme.',
+      'This is a classic Nunjucks pitfall. The error message directly points to "Cannot read properties of undefined (reading \'join\')" at <code>filters.js:158</code> — the join filter calls <code>arr.join(sep)</code> without checking if <code>arr</code> is undefined.',
+      'For 57 posts and 3 tag sections, the O(n) scan per section (3 × 57 = 171 iterations) is negligible. Named collections would be the right choice at thousands of posts with dozens of tag sections.'
+    ];
+    return exps[qi] || '';
+  }
+
+  function updateResult() {
+    const total = questions.length;
+    const answered = results.filter(r => r !== null).length;
+    const correct = results.filter(r => r === true).length;
+    const resultDiv = document.getElementById('quizResult');
+
+    if (answered === total) {
+      resultDiv.className = 'quiz-result show';
+      if (correct === total) {
+        resultDiv.textContent = '🎉 Perfect score! ' + correct + '/' + total + ' — you have a thorough understanding of this migration.';
+      } else if (correct >= 3) {
+        resultDiv.textContent = '✅ ' + correct + '/' + total + ' correct. Solid understanding — review the explanations for the ones you missed.';
+      } else {
+        resultDiv.textContent = '📖 ' + correct + '/' + total + ' correct. Consider re-reading the Background and Intuition sections above.';
+      }
+    } else {
+      resultDiv.className = 'quiz-result';
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

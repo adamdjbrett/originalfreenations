@@ -1,0 +1,25 @@
+# Ghost's {{navigation}} (primary) and {{navigation type="secondary"}}.
+primary:
+  - label: Home
+    url: /
+  - label: About
+    url: /about/
+  - label: Watch Domination Code
+    url: https://vimeo.com/ondemand/dominationcode
+  - label: Anthem
+    url: /original-nations-anthem/
+  - label: Water is Life
+    url: /home/
+  - label: Contact
+    url: /contact/
+  - label: Support Our Work
+    url: /support-our-work/
+secondary:
+  - label: About
+    url: /about/
+  - label: Contact
+    url: /contact/
+  - label: Support Our Work
+    url: /support-our-work/
+  - label: RSS
+    url: /feed.xml

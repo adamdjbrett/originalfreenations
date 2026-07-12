@@ -1,0 +1,99 @@
+---
+layout: layouts/default.njk
+bodyClass: post-template
+---
+{#- Post layout (was post.hbs / custom-full-feature-image.hbs /
+    custom-wide-feature-image.hbs). Branches on the `template` front
+    matter field. Shared partials receive a uniform `post` object. -#}
+{% set post = {
+	url: page.url,
+	date: page.date,
+	content: content,
+	data: {
+		title: title,
+		custom_excerpt: custom_excerpt,
+		feature_image: feature_image,
+		feature_image_alt: feature_image_alt,
+		feature_image_caption: feature_image_caption,
+		authors: authors,
+		tags: tags,
+		template: template
+	}
+} %}
+{% set primaryTag = (tags | publicTags)[0] %}
+
+{% if template == "full-feature-image" %}
+{#- custom-full-feature-image.hbs: full-bleed cover, then article -#}
+{% if feature_image %}
+	<section class="gh-cover loading gh-outer">
+		<img
+			class="gh-cover-image"
+			src="{{ feature_image }}"
+			alt="{{ feature_image_alt or title }}"
+			sizes="100vw"
+			loading="eager"
+			fetchpriority="high"
+			decoding="async"
+		>
+
+		<div class="gh-cover-content">
+			{% if primaryTag %}
+				<a class="gh-article-tag" href="/tag/{{ primaryTag | slug }}/">{{ primaryTag }}</a>
+			{% endif %}
+
+			<h1 class="gh-cover-title p-name" itemprop="headline name">{{ title }}</h1>
+		</div>
+	</section>
+{% endif %}
+
+<main class="gh-main">
+	<article class="gh-article post h-entry" data-pagefind-body itemscope itemtype="https://schema.org/BlogPosting">
+		<header class="gh-article-header gh-canvas">
+			{% include "partials/post-meta.njk" %}
+
+			{% if custom_excerpt %}
+				<p class="gh-article-excerpt">{{ custom_excerpt }}</p>
+			{% endif %}
+		</header>
+
+		<section class="gh-content gh-canvas e-content" itemprop="articleBody">
+			{{ content | safe }}
+		</section>
+	</article>
+
+	{% include "partials/related-posts.njk" %}
+
+	{% include "partials/comments.njk" %}
+</main>
+{% else %}
+{#- post.hbs (default, also used for "wide-feature-image") -#}
+<main class="gh-main">
+	<article class="gh-article post h-entry" data-pagefind-body itemscope itemtype="https://schema.org/BlogPosting">
+
+		<header class="gh-article-header gh-canvas">
+			{% if primaryTag %}
+				<a class="gh-article-tag" href="/tag/{{ primaryTag | slug }}/">{{ primaryTag }}</a>
+			{% endif %}
+
+			<h1 class="gh-article-title p-name" itemprop="headline name">{{ title }}</h1>
+
+			{% if custom_excerpt %}
+				<p class="gh-article-excerpt">{{ custom_excerpt }}</p>
+			{% endif %}
+
+			{% include "partials/post-meta.njk" %}
+
+			{% include "partials/feature-image.njk" %}
+		</header>
+
+		<section class="gh-content gh-canvas e-content" itemprop="articleBody">
+			{{ content | safe }}
+		</section>
+
+	</article>
+
+	{% include "partials/related-posts.njk" %}
+
+	{% include "partials/comments.njk" %}
+</main>
+{% endif %}

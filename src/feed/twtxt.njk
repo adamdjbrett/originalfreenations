@@ -1,0 +1,9 @@
+---
+permalink: /feed/twtxt.txt
+eleventyExcludeFromCollections: true
+---
+# nick = {{ metadata.title }}
+# url = {{ metadata.url }}/feed/twtxt.txt
+# description = {{ metadata.description }}
+{% for post in collections.posts %}{{ post.date | rfc3339 }}	{{ post.data.title }} {{ metadata.url }}{{ post.url }}
+{% endfor %}

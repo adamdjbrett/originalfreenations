@@ -1,0 +1,16 @@
+<section class="gh-topic gh-topic-grid">
+    <h2 class="gh-topic-name">
+        <a href="/tag/{{ topic.name | slug }}/">{{ topic.name }}</a>
+    </h2>
+
+    <div class="gh-topic-content">
+        {% for post in (collections.posts | byTag(topic.name) | head(7)) %}
+            {% set large = loop.first %}
+            {% include "partials/loop-grid.njk" %}
+        {% endfor %}
+    </div>
+
+    <footer class="gh-topic-footer">
+        <a class="gh-topic-link" href="/tag/{{ topic.name | slug }}/">{{ "Show more" | t }}<span class="gh-sr-only"> {{ topic.name }}</span> {% include "partials/icons/arrow.njk" %}</a>
+    </footer>
+</section>

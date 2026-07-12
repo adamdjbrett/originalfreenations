@@ -1,0 +1,31 @@
+# Site-wide metadata (Ghost's @site.* equivalent)
+title: Original Free Nations
+description: Cutting-edge research for Indigenous Peoples' liberation
+url: https://originalfreenations.com
+language: en
+locale: en_US
+# IANA timezone used to render post dates/times (e.g. America/New_York,
+# America/Chicago, Europe/London). Front-matter dates are treated as wall-clock
+# time in this zone, so a `date: 2026-06-12` always shows as 12 Jun 2026 —
+# no UTC drift/off-by-one.
+timezone: America/Los_Angeles
+# Logo image (leave blank to render the title as text)
+logo: ""
+icon: ""
+cover_image: ""
+# Where the red "Subscribe" button in the header points. A newsletter/signup
+# URL, a page like /subscribe/, or an on-page anchor like #subscribe.
+subscribe_url: "/support-our-work/"
+# Social accounts rendered in the footer. `type` must match an icon partial
+# in _includes/partials/icons/ (x, facebook, instagram, linkedin, bluesky,
+# mastodon, threads, tiktok, youtube, website, email).
+social_accounts:
+  - type: facebook
+    name: Facebook
+    href: https://www.facebook.com/steventnewcomb
+  - type: x
+    name: X
+    href: https://twitter.com/originally_free
+  - type: website
+    name: The Domination Code
+    href: https://vimeo.com/ondemand/dominationcode

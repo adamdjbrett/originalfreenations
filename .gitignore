@@ -1,0 +1,14 @@
+node_modules/
+_site/
+dist/
+.cache/
+.DS_Store
+.env
+.env.*
+!.env.example
+.claude
+
+# SiteSucker crawl of the old WordPress site (51MB, 903 files).
+# Kept locally as a reference for the redirect map; not versioned.
+_raw_archive/
+originalfreenations.WordPress.2026-07-08.xml

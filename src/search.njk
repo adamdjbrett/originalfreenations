@@ -1,0 +1,63 @@
+---
+layout: layouts/default.njk
+bodyClass: search-template
+permalink: /search/
+title: Search
+eleventyExcludeFromCollections: true
+---
+<main class="gh-main gh-outer">
+	<div class="gh-inner">
+		<section class="gh-pagehead">
+			<h1 class="gh-pagehead-title">{{ "Search" | t }}</h1>
+		</section>
+
+		<div id="search" class="gh-search-page"></div>
+	</div>
+</main>
+
+{#- Full inline Pagefind UI, loaded only on this page (the rest of the
+    site uses the lazy-loaded modal from pagefind-loader.js). -#}
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+<script src="/pagefind/pagefind-ui.js"></script>
+
+<style>
+	.gh-search-page {
+		max-width: 680px;
+		margin: 3.2rem auto 6.4rem;
+	}
+
+	.gh-search-page {
+		--pagefind-ui-scale: 1;
+		--pagefind-ui-primary: #15171a;
+		--pagefind-ui-text: #15171a;
+		--pagefind-ui-background: #ffffff;
+		--pagefind-ui-border: #dddddd;
+		--pagefind-ui-tag: #f2f2f2;
+	}
+
+	:root[data-theme="dark"] .gh-search-page {
+		--pagefind-ui-primary: #ffffff;
+		--pagefind-ui-text: rgba(255, 255, 255, 0.9);
+		--pagefind-ui-background: #15171a;
+		--pagefind-ui-border: rgba(255, 255, 255, 0.2);
+		--pagefind-ui-tag: rgba(255, 255, 255, 0.1);
+	}
+</style>
+
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		if (window.PagefindUI) {
+			new PagefindUI({ element: "#search", showSubResults: true, showImages: true, resetStyles: false });
+
+			// Prefill from ?q= and trigger a search.
+			const q = new URLSearchParams(location.search).get('q');
+			if (q) {
+				const input = document.querySelector('#search input[type="text"], #search input[type="search"]');
+				if (input) {
+					input.value = q;
+					input.dispatchEvent(new Event('input', { bubbles: true }));
+				}
+			}
+		}
+	});
+</script>

@@ -1,0 +1,189 @@
+// _redirects.json — redirect map for originalfreenations.com
+//
+// Format: JSON5 (https://json5.org) — comments, trailing commas, unquoted keys.
+// `from` is a REGEX anchored against the request path; `to` may use $1..$n capture
+// groups. `permanent: true` => 301 (default is 302).
+//
+// This file is the SINGLE SOURCE OF TRUTH. eleventy.config.js parses it at build
+// time (so a syntax error fails the build rather than silently shipping no
+// redirects), copies it to _site/, and generates _site/xmit.toml from it.
+//
+// RULES ARE EVALUATED IN ORDER — most specific first.
+//
+// Derived from the WordPress export (originalfreenations.WordPress.2026-07-08.xml)
+// and the SiteSucker crawl of the live site (_raw_archive/originalfreenations.com).
+//
+// NOT redirected, deliberately:
+//   * All 60 post/page slugs — the old site used /%postname%/ and every slug
+//     carries over 1:1. Redirecting them would be a no-op at best.
+//   * All 100 tag archives — /tag/<slug>/ exists on the new site with the same slugs.
+//   * /wp-admin/, /wp-login.php, /xmlrpc.php, /wp-json/* — bot-magnet URLs. Let them
+//     404. Redirecting them to / would launder crawl signal onto the homepage.
+//   * 77 orphaned WordPress attachment pages (no parent post). A redirect would be a
+//     soft-404; an honest 404 is better.
+//   * 10 of the 222 old /wp-content/uploads/ URLs — 7 Eventbrite CDN thumbnails and
+//     3 favicon variants, all pruned as unused. The other 212 are mapped below.
+//
+// KNOWN GAP — query-string shortlinks:
+//   WordPress always honored /?p=<ID> and /?page_id=<ID>, and 62 such IDs exist
+//   (range 23..13174; see the WXR). Those URLs are common in old emails and
+//   external links. They are NOT handled here because `from` is matched against the
+//   request PATH — a static host has no query string to match on, so no rule in this
+//   file can catch them. Fixing it needs either a host-level rule or a small JS
+//   shim on the 404 page that reads location.search and forwards. Flagged, not solved.
+
+{
+  redirects: [
+
+    // -- Renamed slug ------------------------------------------------------
+    // The only _wp_old_slug in the entire export. WordPress served this as a
+    // redirect, so it is a live URL in the wild.
+    { from: '^/1358-2/?$', to: '/tecumsehs-speech/', permanent: true },
+
+    // -- Feeds -------------------------------------------------------------
+    // The old site had 117 feed URLs (root + per category/tag/author). The new
+    // site has one. /feed/ is the single highest-value redirect here: every RSS
+    // subscriber and aggregator points at it.
+    { from: '^/feed/?$', to: '/feed/feed.rss', permanent: true },
+    { from: '^/(?:category|tag|author)/[^/]+/feed/?$', to: '/feed/feed.rss', permanent: true },
+
+    // -- Categories --> tags ------------------------------------------------
+    // WordPress categories are folded into tags by src/content/posts/posts.11tydata.js
+    // (an eleventyComputed that merges `categories` into `tags`), so /tag/<x>/ is
+    // built for each of these 12 and the redirect lands on a real archive with the
+    // same posts. Counts match the export exactly: doctrine-of-discovery 9,
+    // religion 7, biblical 6, politics 6, news 5, culture 5, legal 4, history 2,
+    // archive 2, american-dream 1, corona-virus 1, tecumseh-shawnee-leader 1.
+    //
+    // TWO categories are deliberately NOT mapped to a tag archive:
+    //
+    //   uncategorized — the big one. WordPress's default term was RENAMED to
+    //     "federal Indian law" but KEPT the slug `uncategorized`, and it carries 42
+    //     of 57 posts. The converter never wrote it into front matter, so no tag
+    //     archive exists (nor should one — it is not a real topic). Goes to /news/.
+    //
+    //   featured — the theme treats `featured` as an INTERNAL tag and excludes it
+    //     from archives, so /tag/featured/ is never built. Falls through to /news/
+    //     via the catch-all below. Do not add it to the alternation above; the
+    //     redirect would 404.
+    { from: '^/category/uncategorized(?:/page/\\d+)?/?$', to: '/news/', permanent: true },
+    { from: '^/category/(american-dream|archive|biblical|corona-virus|culture|doctrine-of-discovery|history|legal|news|politics|religion|tecumseh-shawnee-leader)/?$', to: '/tag/$1/', permanent: true },
+    // Any category we did not enumerate (or its pagination) — fall back to the list.
+    { from: '^/category/[^/]+(?:/page/\\d+)?/?$', to: '/news/', permanent: true },
+
+    // -- Authors -------------------------------------------------------------
+    // WordPress used the login in the URL; the new site uses a real slug.
+    // /author/haleiwa/ is Steven Newcomb and is the one that matters (55 posts).
+    // /author/dave/ never had published content but still resolved with a 200.
+    // New author pages do not paginate, so /page/N/ collapses to the archive.
+    { from: '^/author/haleiwa(?:/page/\\d+)?/?$', to: '/author/steven-newcomb/', permanent: true },
+    { from: '^/author/adamdjbrett(?:/page/\\d+)?/?$', to: '/author/adam-brett/', permanent: true },
+    { from: '^/author/dave(?:/page/\\d+)?/?$', to: '/author/david-ratcliffe/', permanent: true },
+
+    // -- Root pagination -----------------------------------------------------
+    // Old /page/2..5/ were the homepage archive. The new site paginates at
+    // /latest/page/N/, so the shape is preserved and deep links stay meaningful.
+    { from: '^/page/(\\d+)/?$', to: '/latest/page/$1/', permanent: true },
+
+    // -- Attachment pages ----------------------------------------------------
+    // WordPress published a page per uploaded file. These 82 had a parent post,
+    // so they redirect to the post the image belonged to — which is what someone
+    // following such a link actually wanted. (The 77 orphans are left to 404.)
+    { from: '^/home/img_3821/?$', to: '/home/', permanent: true },
+    { from: '^/oak-flat-and-pope-alexander-vis-papal-decree-of-domination-in-u-s-law/apache-ceremony-3/?$', to: '/oak-flat-and-pope-alexander-vis-papal-decree-of-domination-in-u-s-law/', permanent: true },
+    { from: '^/free-online-film-screening-of-the-doctrine-of-discovery-unmasking-the-domination-code/doctrine-of-discovery-domination-film-screening-jan-2024/?$', to: '/free-online-film-screening-of-the-doctrine-of-discovery-unmasking-the-domination-code/', permanent: true },
+    { from: '^/ojai-valley-film-screening/ojai-event-flyer-may/?$', to: '/ojai-valley-film-screening/', permanent: true },
+    { from: '^/ojai-valley-film-screening/https___cdn-evbuc-com_images_1022283993_29644103259_1_original/?$', to: '/ojai-valley-film-screening/', permanent: true },
+    { from: '^/home/img_3695/?$', to: '/home/', permanent: true },
+    { from: '^/steven-newcombs-research-of-the-doctrine-of-christian-discovery/img_3765-x1000/?$', to: '/steven-newcombs-research-of-the-doctrine-of-christian-discovery/', permanent: true },
+    { from: '^/home/parliament-pic-dad/?$', to: '/home/', permanent: true },
+    { from: '^/home/dad-and-pope/?$', to: '/home/', permanent: true },
+    { from: '^/home/fullsizerender-5-1/?$', to: '/home/', permanent: true },
+    { from: '^/home/pope_and_steve_newcomb_at_the_vatican_-_courtesy_william_b-_laronal_jr-_kanaka_maoli/?$', to: '/home/', permanent: true },
+    { from: '^/home/doctrine-of-discovery-domination-code-film/?$', to: '/home/', permanent: true },
+    { from: '^/home/clearcutting-1/?$', to: '/home/', permanent: true },
+    { from: '^/home/clearcutting-2/?$', to: '/home/', permanent: true },
+    { from: '^/home/img_1715/?$', to: '/home/', permanent: true },
+    { from: '^/home/img_3229/?$', to: '/home/', permanent: true },
+    { from: '^/home/sylvias-father/?$', to: '/home/', permanent: true },
+    { from: '^/home/stv-pic-new/?$', to: '/home/', permanent: true },
+    { from: '^/face-to-face-with-pope-francis-to-get-the-inter-caetera-papal-bull-revoked/pope_and_steve_newcomb_at_the_vatican/?$', to: '/face-to-face-with-pope-francis-to-get-the-inter-caetera-papal-bull-revoked/', permanent: true },
+    { from: '^/the-biblical-basis-of-federal-indian-law-policy/priest-statue/?$', to: '/the-biblical-basis-of-federal-indian-law-policy/', permanent: true },
+    { from: '^/the-biblical-basis-of-federal-indian-law-policy/swordbible2/?$', to: '/the-biblical-basis-of-federal-indian-law-policy/', permanent: true },
+    { from: '^/when-our-native-nations-were-living-free-and-independent-of-the-ideas-of-christendom/tecumseh_color/?$', to: '/when-our-native-nations-were-living-free-and-independent-of-the-ideas-of-christendom/', permanent: true },
+    { from: '^/when-our-native-nations-were-living-free-and-independent-of-the-ideas-of-christendom/img_1754/?$', to: '/when-our-native-nations-were-living-free-and-independent-of-the-ideas-of-christendom/', permanent: true },
+    { from: '^/steven-newcombs-research-of-the-doctrine-of-christian-discovery/a-long-time-ago/?$', to: '/steven-newcombs-research-of-the-doctrine-of-christian-discovery/', permanent: true },
+    { from: '^/steven-newcombs-research-of-the-doctrine-of-christian-discovery/a-long-time-ago-2/?$', to: '/steven-newcombs-research-of-the-doctrine-of-christian-discovery/', permanent: true },
+    { from: '^/steven-newcombs-research-of-the-doctrine-of-christian-discovery/god-is-red/?$', to: '/steven-newcombs-research-of-the-doctrine-of-christian-discovery/', permanent: true },
+    { from: '^/steven-newcombs-research-of-the-doctrine-of-christian-discovery/god-is-red-2/?$', to: '/steven-newcombs-research-of-the-doctrine-of-christian-discovery/', permanent: true },
+    { from: '^/steven-newcombs-research-of-the-doctrine-of-christian-discovery/kuxe%cc%88na/?$', to: '/steven-newcombs-research-of-the-doctrine-of-christian-discovery/', permanent: true },
+    { from: '^/steven-newcombs-research-of-the-doctrine-of-christian-discovery/milinen/?$', to: '/steven-newcombs-research-of-the-doctrine-of-christian-discovery/', permanent: true },
+    { from: '^/tecumseh-speech-as-recounted-by-simon-pokagon/tecumseh02/?$', to: '/tecumseh-speech-as-recounted-by-simon-pokagon/', permanent: true },
+    { from: '^/home-2/buffalo-1436182_1920/?$', to: '/home-2/', permanent: true },
+    { from: '^/home-2/bald-18979_1920/?$', to: '/home-2/', permanent: true },
+    { from: '^/home-2/cayetano-gil-532119-unsplash/?$', to: '/home-2/', permanent: true },
+    { from: '^/home-2/doctrine-of-discovery-film/?$', to: '/home-2/', permanent: true },
+    { from: '^/home-2/img_1733/?$', to: '/home-2/', permanent: true },
+    { from: '^/home-2/steven-newcomb-photo-credit-william-laronal-jr-1/?$', to: '/home-2/', permanent: true },
+    { from: '^/home-2/sam-bark-422820-unsplash/?$', to: '/home-2/', permanent: true },
+    { from: '^/radial-category-of-domination/s-newcomb-sevillefinal-2-2/?$', to: '/radial-category-of-domination/', permanent: true },
+    { from: '^/debunking-federal-indian-law/marshalls-laptop/?$', to: '/debunking-federal-indian-law/', permanent: true },
+    { from: '^/debunking-federal-indian-law/marshalls-laptop-1/?$', to: '/debunking-federal-indian-law/', permanent: true },
+    { from: '^/debunking-federal-indian-law/marshalls-laptop-2/?$', to: '/debunking-federal-indian-law/', permanent: true },
+    { from: '^/arithmetic-in-federal-indian-law/back-to-school-concept-school-days-notice-on-message-board/?$', to: '/arithmetic-in-federal-indian-law/', permanent: true },
+    { from: '^/the-crown-corona-virus-and-the-business-of-america/7f7da522-fd69-4e0e-add3-b734240c1de7_1_201_a/?$', to: '/the-crown-corona-virus-and-the-business-of-america/', permanent: true },
+    { from: '^/a-view-of-slavery-and-white-domination/slave-ship/?$', to: '/a-view-of-slavery-and-white-domination/', permanent: true },
+    { from: '^/a-view-of-slavery-and-white-domination/rome25/?$', to: '/a-view-of-slavery-and-white-domination/', permanent: true },
+    { from: '^/a-view-of-slavery-and-white-domination/old-city-of-rome-2/?$', to: '/a-view-of-slavery-and-white-domination/', permanent: true },
+    { from: '^/a-view-of-slavery-and-white-domination/roman-scourge-1/?$', to: '/a-view-of-slavery-and-white-domination/', permanent: true },
+    { from: '^/a-view-of-slavery-and-white-domination/roman-scourge-1-1/?$', to: '/a-view-of-slavery-and-white-domination/', permanent: true },
+    { from: '^/a-view-of-slavery-and-white-domination/roman-scourge-1-2/?$', to: '/a-view-of-slavery-and-white-domination/', permanent: true },
+    { from: '^/visiting-the-john-carter-brown-library-at-brown-university-in-1989/brown_university_john_carter_brown_lib/?$', to: '/visiting-the-john-carter-brown-library-at-brown-university-in-1989/', permanent: true },
+    { from: '^/the-principle-of-prescription/h-wheaton/?$', to: '/the-principle-of-prescription/', permanent: true },
+    { from: '^/the-principle-of-prescription/h-wheaton-1/?$', to: '/the-principle-of-prescription/', permanent: true },
+    { from: '^/the-principle-of-prescription/h-wheaton-2/?$', to: '/the-principle-of-prescription/', permanent: true },
+    { from: '^/the-principle-of-prescription/h-wheaton-3/?$', to: '/the-principle-of-prescription/', permanent: true },
+    { from: '^/was-the-united-states-founded-as-a-democracy/2048px-james_madison/?$', to: '/was-the-united-states-founded-as-a-democracy/', permanent: true },
+    { from: '^/are-we-as-native-people-living-inside-and-subject-to-the-mental-world-of-the-white-man/images/?$', to: '/are-we-as-native-people-living-inside-and-subject-to-the-mental-world-of-the-white-man/', permanent: true },
+    { from: '^/are-we-as-native-people-living-inside-and-subject-to-the-mental-world-of-the-white-man/images-1/?$', to: '/are-we-as-native-people-living-inside-and-subject-to-the-mental-world-of-the-white-man/', permanent: true },
+    { from: '^/are-we-as-native-people-living-inside-and-subject-to-the-mental-world-of-the-white-man/washburn/?$', to: '/are-we-as-native-people-living-inside-and-subject-to-the-mental-world-of-the-white-man/', permanent: true },
+    { from: '^/how-their-domination-began/screen-shot/?$', to: '/how-their-domination-began/', permanent: true },
+    { from: '^/how-their-domination-began/cover-sheet/?$', to: '/how-their-domination-began/', permanent: true },
+    { from: '^/how-their-domination-began/contents_1/?$', to: '/how-their-domination-began/', permanent: true },
+    { from: '^/how-their-domination-began/boys-and-girls/?$', to: '/how-their-domination-began/', permanent: true },
+    { from: '^/how-their-domination-began/boysandgirlsbest/?$', to: '/how-their-domination-began/', permanent: true },
+    { from: '^/how-their-domination-began/boys-and-girls-_4/?$', to: '/how-their-domination-began/', permanent: true },
+    { from: '^/how-their-domination-began/contents_1-1/?$', to: '/how-their-domination-began/', permanent: true },
+    { from: '^/trumps-speech-at-mt-rushmore-the-bully-at-the-bully-pulpit/mt-rushmore/?$', to: '/trumps-speech-at-mt-rushmore-the-bully-at-the-bully-pulpit/', permanent: true },
+    { from: '^/sept-27th-screening-of-our-doctrine-of-discovery-documentary/sept-27-film-screening-1/?$', to: '/sept-27th-screening-of-our-doctrine-of-discovery-documentary/', permanent: true },
+    { from: '^/divine-land-grants/best-gilk/?$', to: '/divine-land-grants/', permanent: true },
+    { from: '^/an-exorcism-junipero-serra-and-the-papal-bulls/serra-stamp/?$', to: '/an-exorcism-junipero-serra-and-the-papal-bulls/', permanent: true },
+    { from: '^/an-exorcism-junipero-serra-and-the-papal-bulls/serra-stamp-best/?$', to: '/an-exorcism-junipero-serra-and-the-papal-bulls/', permanent: true },
+    { from: '^/the-1977-un-conference-on-indigenous-populations/un-conference-1977-1/?$', to: '/the-1977-un-conference-on-indigenous-populations/', permanent: true },
+    { from: '^/the-1977-un-conference-on-indigenous-populations/un-conference-1977/?$', to: '/the-1977-un-conference-on-indigenous-populations/', permanent: true },
+    { from: '^/the-doctrine-of-christian-domination-the-apache-people-and-oak-flat/apache-puberty-ceremony/?$', to: '/the-doctrine-of-christian-domination-the-apache-people-and-oak-flat/', permanent: true },
+    { from: '^/the-doctrine-of-discovery-unmasking-the-domination-code-2/dod-cover1/?$', to: '/the-doctrine-of-discovery-unmasking-the-domination-code-2/', permanent: true },
+    { from: '^/pagans-in-the-promised-land-book-by-steven-t-newcomb/piplcover/?$', to: '/pagans-in-the-promised-land-book-by-steven-t-newcomb/', permanent: true },
+    { from: '^/the-doctrine-of-discovery-unmasking-the-domination-code-2/dod-shiponoceanblue2/?$', to: '/the-doctrine-of-discovery-unmasking-the-domination-code-2/', permanent: true },
+    { from: '^/pagans-in-the-promised-land-book-by-steven-t-newcomb/stevennewcombpopefrancis-2016/?$', to: '/pagans-in-the-promised-land-book-by-steven-t-newcomb/', permanent: true },
+    { from: '^/an-original-nations-examination-of-freedom-human-and-human-rights/1893indian/?$', to: '/an-original-nations-examination-of-freedom-human-and-human-rights/', permanent: true },
+    { from: '^/an-original-nations-examination-of-freedom-human-and-human-rights/woundedknee1891/?$', to: '/an-original-nations-examination-of-freedom-human-and-human-rights/', permanent: true },
+    { from: '^/an-original-nations-examination-of-freedom-human-and-human-rights/vaticanstmt-033023/?$', to: '/an-original-nations-examination-of-freedom-human-and-human-rights/', permanent: true },
+    { from: '^/an-original-nations-examination-of-freedom-human-and-human-rights/radialcategoryofdomination/?$', to: '/an-original-nations-examination-of-freedom-human-and-human-rights/', permanent: true },
+    { from: '^/an-original-nations-examination-of-freedom-human-and-human-rights/gaspardeportolaandjuniperioserra/?$', to: '/an-original-nations-examination-of-freedom-human-and-human-rights/', permanent: true },
+
+    // -- Media: /wp-content/uploads/ -----------------------------------------
+    // NOT REDIRECTED — deliberately. All 222 original upload files are SERVED
+    // VERBATIM from src/public/wp-content/uploads/, so every old image URL
+    // returns 200 with byte-identical content.
+    //
+    // Redirecting them to /assets/images/*.webp was the alternative, and it is
+    // worse on three counts: it changes the content-type under hotlinkers and
+    // image-search crawlers; 172 of the 222 are WordPress -WxH size variants
+    // whose mapping to the new flat files is not mechanical (the new site often
+    // kept a DIFFERENT variant than the one being requested); and ~10 of the
+    // originals were pruned as unused, so no redirect target exists for them at
+    // all. Serving the originals costs ~28MB and loses nothing.
+
+  ],
+}
