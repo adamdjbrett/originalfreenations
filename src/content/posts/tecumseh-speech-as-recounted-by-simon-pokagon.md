@@ -1,5 +1,6 @@
 ---
 title: "Tecumseh Speech As Recounted by Simon Pokagon"
+description: ""
 date: 2018-09-30
 categories: 
   - "biblical"
@@ -14,7 +15,7 @@ tags:
   - "chief-simon-pokagon"
   - "fort-harmar"
   - "great-lakes"
-coverImage: "Tecumseh02.webp"
+image: "Tecumseh02.webp"
 ---
 
 Tecumseh’s Speech:![](/assets/images/Tecumseh02.webp)

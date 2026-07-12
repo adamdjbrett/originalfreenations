@@ -88,18 +88,32 @@ export default function (eleventyConfig) {
 	eleventyConfig.addFilter("head", (arr, n) => (Array.isArray(arr) ? arr.slice(0, n) : arr));
 	eleventyConfig.addFilter("skip", (arr, n) => (Array.isArray(arr) ? arr.slice(n) : arr));
 
-	// Resolve author keys on a post to full author objects from _data/authors.
-	eleventyConfig.addFilter("resolveAuthors", (keys, authors) => {
-		if (!keys || !authors) return [];
-		const list = Array.isArray(keys) ? keys : String(keys).split(",").map((k) => k.trim());
+	// Resolve a post's author KEYS to full author objects from the global
+	// _data/siteAuthors.yaml list. `keys` may be a single key ("adam-brett"), a
+	// comma-separated string, or an array of keys — all normalize to an array.
+	// The global list is passed in explicitly by the templates:
+	//   post.data.authors | resolveAuthors(siteAuthors)
+	eleventyConfig.addFilter("resolveAuthors", (keys, siteAuthors) => {
+		if (!keys || !Array.isArray(siteAuthors)) return [];
+		const list = (Array.isArray(keys) ? keys : String(keys).split(","))
+			.filter((k) => typeof k === "string")
+			.map((k) => k.trim())
+			.filter(Boolean);
 		return list
-			.map((key) => authors.find((a) => a.key === key))
+			.map((key) => siteAuthors.find((a) => a && a.key === key))
 			.filter(Boolean);
 	});
 
-	// Posts that carry a given tag.
-	eleventyConfig.addFilter("byTag", (posts, tag) =>
-		(posts || []).filter((p) => (p.data.tags || []).includes(tag)),
+	// Pick named terms out of a taxonomy collection, in the order given.
+	// Used by home.njk to turn theme.primary_section_tags (a list of NAMES) into
+	// the real term objects — which already carry their own `posts` array, so the
+	// topic partials never re-scan collections.posts. Unknown names drop out.
+	// (This replaced the old `byTag` filter, whose per-render rescan was the
+	// O(terms x posts) cost the taxonomy collections now pay exactly once.)
+	eleventyConfig.addFilter("pickTopics", (topics, names) =>
+		(names || [])
+			.map((name) => (topics || []).find((t) => t.name === name))
+			.filter(Boolean),
 	);
 
 	// Up to `n` other posts that share a public tag with the current post.
@@ -144,7 +158,7 @@ export default function (eleventyConfig) {
 		ld.author = (o.authors || []).map((a) => ({
 			"@type": "Person",
 			name: a.name,
-			url: o.siteUrl + "/author/" + a.slug + "/",
+			url: o.siteUrl + "/author/" + a.key + "/",
 		}));
 		return ld;
 	});

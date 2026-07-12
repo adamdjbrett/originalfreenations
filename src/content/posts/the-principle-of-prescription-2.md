@@ -1,5 +1,6 @@
 ---
 title: "The Principle of Prescription"
+description: ""
 date: 2020-05-20
 tags: 
   - "behind-hinsdale"

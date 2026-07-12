@@ -1,5 +1,6 @@
 ---
 title: "Colonization and the Human Construction of a Reality System of Domination"
+description: ""
 date: 2020-05-19
 tags: 
   - "hernando-de-soto"

@@ -22,7 +22,7 @@ eleventyExcludeFromCollections: true
 		<link href="{{ metadata.url }}{{ post.url }}"/>
 		<id>{{ metadata.url }}{{ post.url }}</id>
 		<updated>{{ post.date | htmlDateString }}T00:00:00Z</updated>
-		{%- for a in (post.data.authors | resolveAuthors(authors)) %}
+		{%- for a in (post.data.authors | resolveAuthors(siteAuthors)) %}
 		<author><name>{{ a.name }}</name></author>
 		{%- endfor %}
 		{%- if post.data.custom_excerpt %}

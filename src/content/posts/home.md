@@ -1,10 +1,12 @@
 ---
 title: "Water is Life for Everyone!"
+description: ""
 date: 2016-11-25
 tags: 
   - "australia"
   - "original-free-nations"
   - "original-nations"
+toc: true
 ---
 
 ## ![stv-pic-new](/assets/images/stv-pic-new.webp)                     Steven T. Newcomb, (Shawneee/Lenape) overlooking Kumeyaay Nation territory

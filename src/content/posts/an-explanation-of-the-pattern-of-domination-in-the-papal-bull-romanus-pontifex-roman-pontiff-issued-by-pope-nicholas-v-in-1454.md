@@ -1,5 +1,6 @@
 ---
 title: "An explanation of the pattern of domination in the Papal Bull “Romanus Pontifex” (Roman Pontiff) issued by Pope Nicholas V in 1454"
+description: ""
 date: 2020-05-18
 tags: 
   - "asia"

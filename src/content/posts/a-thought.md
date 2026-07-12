@@ -1,5 +1,6 @@
 ---
 title: "A Thought"
+description: ""
 date: 2020-05-21
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "The Doctrine of Christian Domination, the Apache People, and Oak Flat"
+description: ""
 date: 2021-04-07
 categories: 
   - "doctrine-of-discovery"

@@ -1,5 +1,6 @@
 ---
 title: "Revoke the Papal Bulls"
+description: ""
 date: 2023-05-03
 categories: 
   - "featured"
@@ -9,7 +10,7 @@ tags:
   - "portugal"
   - "spain"
   - "united-states"
-coverImage: "vatican-steve-newcomb-med.webp"
+image: "vatican-steve-newcomb-med.webp"
 ---
 
 In response to the Papal Bulls issued

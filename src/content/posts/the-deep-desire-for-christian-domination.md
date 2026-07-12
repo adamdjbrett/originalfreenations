@@ -1,5 +1,6 @@
 ---
 title: "The Deep Desire for Christian Domination"
+description: ""
 date: 2019-07-20
 tags: 
   - "william-blackstone"

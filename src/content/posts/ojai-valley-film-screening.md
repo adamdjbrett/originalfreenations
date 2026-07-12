@@ -1,7 +1,9 @@
 ---
 title: "Ojai Valley Film Screening"
+description: ""
 date: 2025-05-03
-authors: ["adam-brett"]
+image: doctrine-of-discovery-unmasking-domination-code.jpg
+authors: adam-brett
 ---
 
 Join us for a screening of _The Doctrine of Discovery: Unmasking the Domination Code_ in Ojai, Wednesday May 21, at 6:00PM.

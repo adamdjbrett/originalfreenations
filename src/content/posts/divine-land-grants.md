@@ -1,5 +1,6 @@
 ---
 title: "Divine Land Grants"
+description: ""
 date: 2020-10-22
 tags: 
   - "old-testament-yahweh"

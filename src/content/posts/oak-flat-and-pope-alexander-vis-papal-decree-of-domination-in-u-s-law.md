@@ -1,12 +1,13 @@
 ---
 title: "Oak Flat and Pope Alexander VI’s Papal Decree of Domination in U.S. Law"
+description: ""
 date: 2021-02-03
 tags: 
   - "oak-flat"
   - "supreme-court"
   - "united-states"
   - "western-christendom"
-coverImage: "Apache-Ceremony-2.webp"
+image: "Apache-Ceremony-2.webp"
 ---
 
 \[caption id="attachment\_1886" align="alignnone" width="300"\]![](/assets/images/Apache-Ceremony-2-300x200.webp) Traditional Apache Religious 'Changing Woman' Sunrise Dance Ceremony at Chi'Chil Bildagoteel ("Oak Flat"). (Photograph with family permission. (c) Robin Silver Photography).\[/caption\]

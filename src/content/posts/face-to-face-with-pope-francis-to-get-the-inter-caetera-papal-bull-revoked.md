@@ -1,5 +1,6 @@
 ---
 title: "Face to Face with Pope Francis to Get the Inter Caetera Papal Bull Revoked"
+description: ""
 date: 2018-02-01
 categories: 
   - "culture"
@@ -9,7 +10,7 @@ tags:
   - "inter-caetera"
   - "original-nations"
   - "rome"
-coverImage: "pope_and_steve_newcomb_at_the_vatican.webp"
+image: "pope_and_steve_newcomb_at_the_vatican.webp"
 ---
 
 On May 4, 1493 Pope Alexander VI issued the [_Inter Caetera_ papal bull](https://ratical.org/many_worlds/StevenNewcomb/index.html#IC05041493) which called for non-Christian nations to be reduced and subjugated (“barbare nationes deprimantur”). On May 4, 2013, 200 years after our great Shawnee leader Tecumseh fell in battle on October 5, 1813, Dr. Debra Harry (Paiute Nation), Sharon Venne (Cree Nation, Treaty Six) and I saw two velum parchment originals of the papal bull at the General Archives of the Indies in Seville, Spain.

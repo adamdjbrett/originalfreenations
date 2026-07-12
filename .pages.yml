@@ -46,17 +46,15 @@ content:
       - { name: date, label: Publish date, type: date, options: { format: yyyy-MM-dd }, required: true }
       - { name: tags, label: Tags, type: string, list: true }
       - { name: categories, label: Categories, type: string, list: true }
-      # !! PAGES CMS LIMITATION — coverImage !!
-      # coverImage is a BARE FILENAME (e.g. "Tecumseh02.jpg") naming a file in
-      # THIS POST'S OWN bundle: src/content/posts/<slug>/images/<coverImage>.
-      # posts.11tydata.js maps it to feature_image: /<slug>/images/<coverImage>.
+      - { name: description, label: Meta description (optional), type: text }
+      # !! PAGES CMS LIMITATION — image !!
+      # `image` is a BARE FILENAME (e.g. "Tecumseh02.webp") naming a file in
+      # src/assets/images/. posts.11tydata.js maps it to
+      # feature_image: /assets/images/<image>.
       # It is therefore a `string`, not an `image`: the media library above is
       # rooted at src/assets/images and would write a rooted "/assets/images/…"
-      # path, which is both the wrong directory and a double-prefix. Pages CMS
-      # cannot scope a media picker to the entry's own bundle directory, so the
-      # file name must be typed by hand and the image uploaded to the post's
-      # images/ folder via git.
-      - { name: coverImage, label: Cover image (file name only, from this post's images/ folder), type: string }
+      # path, which the computed value would double-prefix.
+      - { name: image, label: Cover image (file name only, from src/assets/images/), type: string }
       # --- Optional Headline theme fields ---------------------------------
       # Not present in the migrated WordPress content, but the theme templates
       # still read them (post.njk, page.njk, feature-image.njk, loop-grid.njk),
@@ -94,9 +92,10 @@ content:
       - { name: date, label: Publish date, type: date, options: { format: yyyy-MM-dd } }
       - { name: tags, label: Tags, type: string, list: true }
       - { name: categories, label: Categories, type: string, list: true }
-      # Bare filename from this entry's own images/ folder — see the note on the
-      # Posts collection's coverImage field.
-      - { name: coverImage, label: Cover image (file name only, from this entry's images/ folder), type: string }
+      - { name: description, label: Meta description (optional), type: text }
+      # Bare filename from src/assets/images/ — see the note on the Posts
+      # collection's `image` field.
+      - { name: image, label: Cover image (file name only, from src/assets/images/), type: string }
       - { name: custom_excerpt, label: Excerpt (optional — otherwise auto), type: text }
       - { name: feature_image_alt, label: Cover image alt text, type: string }
       - { name: feature_image_caption, label: Cover image caption, type: string }
@@ -125,24 +124,24 @@ content:
     fields:
       - { name: title, label: Title, type: string, required: true }
       - { name: date, label: Date, type: date, options: { format: yyyy-MM-dd } }
-      # Bare filename from this entry's own images/ folder — see the note on the
-      # Posts collection's coverImage field.
-      - { name: coverImage, label: Cover image (file name only, from this entry's images/ folder), type: string }
+      - { name: description, label: Meta description (optional), type: text }
+      # Bare filename from src/assets/images/ — see the note on the Posts
+      # collection's `image` field.
+      - { name: image, label: Cover image (file name only, from src/assets/images/), type: string }
       - { name: custom_excerpt, label: Excerpt, type: text }
       - { name: show_title_and_feature_image, label: Show title & cover image, type: boolean, default: true }
       - { name: eleventyNavigation, label: Nav (advanced), type: object, fields: [ { name: key, type: string }, { name: order, type: number } ] }
       - { name: body, label: Body, type: rich-text }
 
   # --- Authors ----------------------------------------------------------------
-  - name: authors
+  - name: siteAuthors
     label: Authors
     type: file
-    path: src/_data/authors.yaml
+    path: src/_data/siteAuthors.yaml
     list: true
     fields:
-      - { name: key, label: Key (slug id), type: string, required: true }
+      - { name: key, label: Key (URL slug), type: string, required: true }
       - { name: name, label: Name, type: string, required: true }
-      - { name: slug, label: Slug, type: string, required: true }
       - { name: bio, label: Bio, type: text }
       - { name: location, label: Location, type: string }
       - { name: profile_image, label: Profile image, type: image }

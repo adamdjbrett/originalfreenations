@@ -1,5 +1,6 @@
 ---
 title: "The U.S. Government’s Christian Nations Argument in Tee-Hit-Ton Indians v. United States (1955)"
+description: ""
 date: 2020-08-28
 tags: 
   - "europe"

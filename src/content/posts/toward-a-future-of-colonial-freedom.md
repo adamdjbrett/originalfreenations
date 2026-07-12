@@ -1,5 +1,6 @@
 ---
 title: "Toward a Future of Colonial Freedom"
+description: ""
 date: 2016-11-14
 categories: 
   - "archive"
@@ -8,7 +9,7 @@ tags:
   - "colonial-charter"
   - "colonial-freedom"
   - "laura-thompson"
-coverImage: "Priest-Statue-e1519675938244.webp"
+image: "Priest-Statue-e1519675938244.webp"
 ---
 
 When people these days discuss the United Nations (UN) Declaration on the Rights of Indigenous Peoples, they have no idea that seventy years ago, just before the end of World War II, such a document was already being envisioned. What was being focused on back then, however, was the “colonial problem,” which was a subject of discussion for the U.S. government and for the United Nations at that time. One scholar envisioned a “Charter of Colonial Freedom” as a proposed solution regarding “colonial” or “indigenous” peoples.

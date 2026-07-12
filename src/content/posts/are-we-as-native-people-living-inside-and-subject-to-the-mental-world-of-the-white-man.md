@@ -1,5 +1,6 @@
 ---
 title: "Are We As Native People Living Inside and Subject to the Mental World of the White Man?"
+description: ""
 date: 2020-05-18
 tags: 
   - "christian-europeans"

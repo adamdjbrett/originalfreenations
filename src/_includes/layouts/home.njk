@@ -19,6 +19,9 @@ bodyClass: home-template
 			<div class="gh-topic-content">
 				{% set isHome = true %}
 				{% for post in collections.posts | head(7) %}
+					{#- The newest post is called out as a wide card above the
+					    six-card grid, matching the topic sections below. -#}
+					{% set large = loop.first %}
 					{% set isLCP = loop.first %}
 					{% include "partials/loop-grid.njk" %}
 				{% endfor %}
@@ -31,37 +34,33 @@ bodyClass: home-template
 			</footer>
 		</section>
 
+		{#- Topic sections. `collections.topics` is the TAG taxonomy — terms that
+		    already carry their own newest-first `posts` array, so the partials
+		    below just iterate it. The configured theme lists hold tag NAMES, so
+		    `pickTopics` resolves them to those same term objects. -#}
+
 		{#- Primary topic sections: configured tags, else top 3 topics -#}
 		{% if theme.primary_section_tags and theme.primary_section_tags.length %}
-			{% for tagName in theme.primary_section_tags %}
-				{% set topic = { name: tagName } %}
-				{% include "partials/topic-grid.njk" %}
-			{% endfor %}
+			{% set primaryTopics = collections.topics | pickTopics(theme.primary_section_tags) %}
 		{% elif collections.posts.length > 1 %}
-			{% for t in collections.topics | head(3) %}
-				{% set topic = { name: t.name, count: t.count } %}
-				{% include "partials/topic-grid.njk" %}
-			{% endfor %}
+			{% set primaryTopics = collections.topics | head(3) %}
 		{% endif %}
+		{% for topic in primaryTopics %}
+			{% include "partials/topic-grid.njk" %}
+		{% endfor %}
 
 		{#- Secondary topic list: configured tags, else topics 4-6 -#}
 		{% if theme.secondary_section_tags and theme.secondary_section_tags.length %}
+			{% set secondaryTopics = collections.topics | pickTopics(theme.secondary_section_tags) %}
+		{% elif collections.posts.length > 1 %}
+			{% set secondaryTopics = collections.topics | skip(3) | head(3) %}
+		{% endif %}
+		{% if secondaryTopics and secondaryTopics.length %}
 			<div class="gh-topic-list">
-				{% for tagName in theme.secondary_section_tags %}
-					{% set topic = { name: tagName } %}
+				{% for topic in secondaryTopics %}
 					{% include "partials/topic-minimal.njk" %}
 				{% endfor %}
 			</div>
-		{% elif collections.posts.length > 1 %}
-			{% set secondaryTopics = collections.topics | skip(3) | head(3) %}
-			{% if secondaryTopics.length %}
-				<div class="gh-topic-list">
-					{% for t in secondaryTopics %}
-						{% set topic = { name: t.name, count: t.count } %}
-						{% include "partials/topic-minimal.njk" %}
-					{% endfor %}
-				</div>
-			{% endif %}
 		{% endif %}
 	</div>
 </main>

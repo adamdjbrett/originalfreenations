@@ -73,31 +73,37 @@ resolves off the filename.
 ```yaml
 ---
 title: "An Exorcism, Junipero Serra, and the Papal Bulls"
+description: ""        # meta description; blank falls back to the site default
 date: 2020-10-22
 tags:
   - "inter-caetera"
   - "kumeyaay-nation"
 categories:            # optional
   - "Domination Code"
-coverImage: "Tecumseh02.webp"   # optional — BARE FILENAME, not a path
+image: "Tecumseh02.webp"   # optional — BARE FILENAME, not a path
+authors: adam-brett        # optional — defaults to steven-newcomb
 ---
 ```
 
 - **`tags`** drive the topic archives (`/tag/<slug>/`) and the homepage topic
   sections (`src/_data/theme.yaml` picks which tags are featured).
 - **`categories`** is optional and carried over from WordPress.
-- **`coverImage` is a bare filename, not a path.** It names a file in
+- **`description`** is the meta description. It is present but **empty** on every
+  post and page; a blank value falls back to `custom_excerpt`, then an excerpt,
+  then the site description in `src/_data/metadata.yaml`.
+- **`image` is a bare filename, not a path.** It names a file in
   `src/assets/images/`. `src/content/posts/posts.11tydata.js` (and
   `pages.11tydata.js`) maps it to the Headline `feature_image` URL the templates
   expect:
 
   ```
-  coverImage: "Tecumseh02.webp"  →  feature_image: /assets/images/Tecumseh02.webp
+  image: "Tecumseh02.webp"  →  feature_image: /assets/images/Tecumseh02.webp
   ```
 
-  Never write a leading `/` or a directory into `coverImage` — it would
-  double-prefix. An explicit `feature_image` in front matter overrides the
-  computed value.
+  Never write a leading `/` or a directory into `image` — it would double-prefix.
+  An explicit `feature_image` in front matter overrides the computed value.
+- **`authors`** takes an author `key` from `src/_data/siteAuthors.yaml`, as a
+  scalar (`authors: adam-brett`) or a list. It defaults to `steven-newcomb`.
 
 Headline's own optional fields (`custom_excerpt`, `feature_image_alt`,
 `feature_image_caption`, `authors`, `template`) are still read by the templates

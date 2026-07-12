@@ -1,5 +1,6 @@
 ---
 title: "Was the United States Founded As a Democracy?"
+description: ""
 date: 2020-05-18
 tags: 
   - "united-states"

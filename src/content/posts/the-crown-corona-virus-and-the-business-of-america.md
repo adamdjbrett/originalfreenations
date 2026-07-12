@@ -1,5 +1,6 @@
 ---
-title: "The Crown (\"Corona\") Virus and the Business of America"
+title: "The Crown (“Corona”) Virus and the Business of America"
+description: ""
 date: 2020-04-30
 categories: 
   - "american-dream"

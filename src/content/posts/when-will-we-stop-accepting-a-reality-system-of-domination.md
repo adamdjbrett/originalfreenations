@@ -1,5 +1,6 @@
 ---
 title: "When Will We Stop Accepting a Reality-System of Domination?"
+description: ""
 date: 2020-05-23
 tags: 
   - "steven-newcomb"

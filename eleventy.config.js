@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import JSON5 from "json5";
 import yaml from "js-yaml";
 import pluginFilters from "./_config/filters.js";
+import pluginMarkdown from "./_config/markdown.js";
 
 /**
  * Emit the redirect map into the built site.
@@ -91,28 +92,88 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPlugin(pluginFilters);
 
 	// ---------------------------------------------------------------------------
-	// Collections
+	// Markdown pipeline — footnotes, opt-in TOC (`toc: true`), [caption] shortcode
 	// ---------------------------------------------------------------------------
-	// All published posts, newest first.
-	eleventyConfig.addCollection("posts", (api) =>
-		api.getFilteredByTag("posts").sort((a, b) => b.date - a.date),
-	);
+	eleventyConfig.addPlugin(pluginMarkdown);
 
-	// Unique post tags (excluding internal tags) with their post counts,
-	// ordered by count desc — used for the homepage topic sections.
-	eleventyConfig.addCollection("topics", (api) => {
-		const excluded = new Set(["posts", "all", "featured", "page"]);
-		const counts = new Map();
-		for (const item of api.getFilteredByTag("posts")) {
-			for (const tag of item.data.tags || []) {
-				if (excluded.has(tag)) continue;
-				counts.set(tag, (counts.get(tag) || 0) + 1);
-			}
-		}
-		return [...counts.entries()]
-			.map(([name, count]) => ({ name, count }))
-			.sort((a, b) => b.count - a.count);
+	// ---------------------------------------------------------------------------
+	// Collections — TWO INDEPENDENT TAXONOMIES, BUILT IN ONE PASS
+	// ---------------------------------------------------------------------------
+	// `tags` and `categories` are separate archives (/tag/<slug>/ and
+	// /category/<slug>/). Both, plus the sorted `posts` list they are derived from,
+	// come out of a SINGLE iteration over the posts, memoized for the run:
+	//
+	//   * posts are sorted newest-first ONCE, before the loop, so every term's
+	//     `posts` array is already newest-first — no per-term sort.
+	//   * each term is slugged ONCE here, not on every template render.
+	//   * each term CARRIES ITS OWN POSTS, so an archive template just iterates
+	//     `term.posts`. Nothing re-scans the post list per page (the old
+	//     `collections.posts | byTag(name)` inside tags.njk was O(terms x posts)).
+	//
+	// Term shape: { name, slug, count, posts }.
+	//
+	// `featured` is an internal editorial flag, not a public archive term; `posts`,
+	// `all` and `page` are Eleventy/theme plumbing. None of them get an archive.
+	const INTERNAL_TERMS = new Set(["posts", "all", "featured", "page"]);
+
+	let taxonomyCache = null;
+	eleventyConfig.on("eleventy.before", () => {
+		taxonomyCache = null; // content changed (or --watch re-ran) — recompute
 	});
+
+	function taxonomies(api) {
+		if (taxonomyCache) return taxonomyCache;
+
+		const slugify = eleventyConfig.getFilter("slugify");
+		const posts = api.getFilteredByTag("posts").sort((a, b) => b.date - a.date);
+		const categories = new Map();
+		const tags = new Map();
+
+		const collect = (map, names, post) => {
+			for (const name of names || []) {
+				if (INTERNAL_TERMS.has(name)) continue;
+				let term = map.get(name);
+				if (!term) {
+					term = { name, slug: slugify(name), count: 0, posts: [] };
+					map.set(name, term);
+				}
+				term.posts.push(post); // `posts` is pre-sorted -> so is this
+				term.count = term.posts.length;
+			}
+		};
+
+		for (const post of posts) {
+			collect(categories, post.data.categories, post);
+			collect(tags, post.data.tags, post);
+		}
+
+		// Busiest term first, ties broken alphabetically for a stable build.
+		const byCount = (map) =>
+			[...map.values()].sort(
+				(a, b) => b.count - a.count || a.name.localeCompare(b.name),
+			);
+
+		taxonomyCache = {
+			posts,
+			categories: byCount(categories),
+			tags: byCount(tags),
+		};
+		return taxonomyCache;
+	}
+
+	// All published posts, newest first.
+	eleventyConfig.addCollection("posts", (api) => taxonomies(api).posts);
+
+	// /category/<slug>/ — src/categories.njk paginates this.
+	eleventyConfig.addCollection("categories", (api) => taxonomies(api).categories);
+
+	// /tag/<slug>/ — src/tags.njk paginates this.
+	eleventyConfig.addCollection("tags", (api) => taxonomies(api).tags);
+
+	// `topics` = the TAG taxonomy under its theme-facing name (home.njk's topic
+	// sections). Same array, same objects as `collections.tags` — the single pass
+	// above is not repeated.
+	eleventyConfig.addCollection("topics", (api) => taxonomies(api).tags);
 
 	// ---------------------------------------------------------------------------
 	// Redirects — emitted on EVERY run (build and --serve), so a broken

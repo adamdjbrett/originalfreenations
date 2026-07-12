@@ -4,6 +4,12 @@
 <meta name="generator" content="{{ eleventy.generator }}">
 
 {%- set pageTitle = title or metadata.title %}
+{#- Meta description, in falling-back order: the page's own `description` front
+    matter (posts and pages carry the key; it is usually blank, and an empty
+    string is falsy in Nunjucks, so it simply falls through), then
+    `custom_excerpt`, then an `excerpt`, then the site description in
+    _data/metadata.yaml. Feeds <meta name="description">, og:description,
+    twitter:description and the JSON-LD below. -#}
 {%- set pageDesc = description or custom_excerpt or excerpt or metadata.description %}
 {%- set pageImage = feature_image or cover_image or metadata.cover_image %}
 <title>{% if title %}{{ title }} — {{ metadata.title }}{% else %}{{ metadata.title }}{% endif %}</title>
@@ -15,6 +21,7 @@
 <meta property="og:type" content="{% if layout == 'layouts/post.njk' %}article{% else %}website{% endif %}">
 <meta property="og:title" content="{{ pageTitle }}">
 <meta property="og:description" content="{{ pageDesc }}">
+<meta name="twitter:description" content="{{ pageDesc }}">
 {%- if pageImage %}
 <meta property="og:image" content="{% if pageImage.startsWith('http') %}{{ pageImage }}{% else %}{{ metadata.url }}{{ pageImage }}{% endif %}">
 <meta name="twitter:card" content="summary_large_image">
@@ -43,7 +50,7 @@
 <script type="application/ld+json">{{ schema.blog | dump | safe }}</script>
 {%- endif %}
 {%- if layout == 'layouts/post.njk' %}
-{%- set ldAuthors = authors | resolveAuthors(authors) %}
+{%- set ldAuthors = authors | resolveAuthors(siteAuthors) %}
 {%- set imageAbs = "" %}
 {%- if feature_image %}{% set imageAbs = feature_image if feature_image.startsWith('http') else metadata.url + feature_image %}{% endif %}
 {%- set postLd = { title: title, description: pageDesc, url: metadata.url + page.url, date: (page.date | htmlDateString), lang: schema.language, image: imageAbs, authors: ldAuthors, siteUrl: metadata.url, siteName: metadata.title, publisher: schema.publisher } | postingLd %}
@@ -174,4 +181,25 @@ body,.gh-head,.gh-foot,.gh-card,.gh-article,.gh-content{transition:var(--gh-tran
    button's vertical centre lines up with the "Headline" logo. */
 .gh-subscribe-btn{background-color:#e12026;border-radius:100px;align-self:center;margin:0}
 .gh-subscribe-btn:hover{background-color:#c01319;opacity:1}
+/* --- Post sidebar taxonomy (categories + tags) + prev/next post nav ---
+   Theme-token driven, so light/dark follow the :root[data-theme="dark"] remap
+   above with no per-theme rules of their own. */
+.gh-article-taxonomy{display:flex;flex-direction:column;gap:20px;margin-top:32px}
+.gh-article-terms-title{margin:0 0 8px;font-size:1.2rem;font-weight:600;line-height:1.4;letter-spacing:.01em;text-transform:uppercase;color:var(--color-secondary-text)}
+.gh-article-terms-list{display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:0;list-style:none}
+.gh-article-term{display:inline-block;padding:4px 10px;font-size:1.3rem;line-height:1.4;color:var(--color-primary-text);background-color:var(--color-lighter-gray);border:1px solid var(--color-light-gray);border-radius:100px}
+.gh-article-term:hover{border-color:var(--color-mid-gray);opacity:1}
+/* Below 1200px the theme flips .gh-article-sidebar from a left rail to a
+   3-column meta row; span the taxonomy so it drops onto its own line. */
+@media (max-width:1199px){.gh-article-sidebar .gh-article-taxonomy{grid-column:1/-1;gap:12px;margin-top:16px}}
+.gh-post-nav{display:flex;flex-wrap:wrap;gap:16px;margin-top:64px;padding-top:32px;border-top:1px solid var(--color-light-gray)}
+.gh-post-nav-link{display:flex;flex:1 1 260px;align-items:center;gap:12px;padding:16px;color:var(--color-primary-text);border:1px solid var(--color-light-gray);border-radius:6px}
+.gh-post-nav-link:hover{border-color:var(--color-mid-gray);opacity:1}
+.gh-post-nav-next{justify-content:flex-end;text-align:right}
+.gh-post-nav-text{min-width:0}
+.gh-post-nav-arrow{display:flex;flex:0 0 auto;color:var(--color-secondary-text)}
+.gh-post-nav-arrow svg{display:block;width:20px;height:20px}
+.gh-post-nav-label{display:block;font-size:1.2rem;font-weight:600;letter-spacing:.01em;text-transform:uppercase;color:var(--color-secondary-text)}
+.gh-post-nav-title{display:block;font-size:1.7rem;font-weight:600;line-height:1.35;color:var(--color-darker-gray)}
+@media (max-width:767px){.gh-post-nav{margin-top:48px}}
 </style>

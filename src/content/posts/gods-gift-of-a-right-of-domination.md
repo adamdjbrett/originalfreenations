@@ -1,5 +1,6 @@
 ---
-title: "\"God's\" Gift of a Right of Domination"
+title: "“God's” Gift of a Right of Domination"
+description: ""
 date: 2020-08-22
 tags: 
   - "old-testament"

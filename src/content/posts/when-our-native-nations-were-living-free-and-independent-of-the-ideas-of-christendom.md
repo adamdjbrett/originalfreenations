@@ -1,5 +1,6 @@
 ---
 title: "When Our Native Nations Were Living Free and Independent of the Ideas of Christendom"
+description: ""
 date: 2018-02-26
 categories: 
   - "biblical"
@@ -10,7 +11,7 @@ tags:
   - "mother-earth"
   - "spain"
   - "western-christendom"
-coverImage: "IMG_1754.webp"
+image: "IMG_1754.webp"
 ---
 
 Prior to Columbus’s invasive arrival to our part of Mother Earth, our nations of Great Turtle Island (“North America”) were living in a physical location that was entirely free and independent of the Western Christendom’s system of domination. At that time, our nations were still free and independent of all the ideas and mental activities of Christendom. This means that the Christian Europeans could come up with whatever ideas and arguments they wanted, but thousands of miles away, in the physical location of our ancestors, the ideas and arguments of the Christian world had zero effect on our nations.

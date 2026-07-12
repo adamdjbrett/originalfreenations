@@ -1,5 +1,6 @@
 ---
 title: "Examples of Domination and Racism in an Excerpt from the book America Moves West (Third Edition), Robert E. Riegel, New York: Henry Holt and Company (1957)."
+description: ""
 date: 2020-05-20
 tags: 
   - "killing-indians"

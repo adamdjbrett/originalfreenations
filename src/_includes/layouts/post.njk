@@ -17,6 +17,7 @@ bodyClass: post-template
 		feature_image_caption: feature_image_caption,
 		authors: authors,
 		tags: tags,
+		categories: categories,
 		template: template
 	}
 } %}
@@ -61,6 +62,8 @@ bodyClass: post-template
 		</section>
 	</article>
 
+	{% include "partials/post-nav.njk" %}
+
 	{% include "partials/related-posts.njk" %}
 
 	{% include "partials/comments.njk" %}
@@ -91,6 +94,8 @@ bodyClass: post-template
 		</section>
 
 	</article>
+
+	{% include "partials/post-nav.njk" %}
 
 	{% include "partials/related-posts.njk" %}
 

@@ -1,10 +1,12 @@
 ---
-title: "The 1977 UN Conference On \"Indigenous Populations\""
+title: "The 1977 UN Conference On “Indigenous Populations”"
+description: ""
 date: 2020-11-15
 tags: 
   - "iitc"
   - "max-weber"
   - "un"
+toc: true
 ---
 
 ## **The International Indian Treaty Council's Intervention**

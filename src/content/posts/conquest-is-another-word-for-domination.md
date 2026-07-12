@@ -1,5 +1,6 @@
 ---
-title: "\"Conquest\" is Another Word for Domination"
+title: "“Conquest” is Another Word for Domination"
+description: ""
 date: 2020-12-01
 tags: 
   - "andrea-smith"

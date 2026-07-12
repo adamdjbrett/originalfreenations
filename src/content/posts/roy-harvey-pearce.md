@@ -1,5 +1,6 @@
 ---
 title: "Roy Harvey Pearce"
+description: ""
 date: 2020-05-22
 tags: 
   - "roy-harvey-pearce"

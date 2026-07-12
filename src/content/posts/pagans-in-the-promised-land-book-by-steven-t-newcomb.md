@@ -1,12 +1,13 @@
 ---
 title: "Pagans in the Promised Land Book"
+description: ""
 date: 2023-04-10
 categories: 
   - "doctrine-of-discovery"
   - "featured"
 tags: 
   - "featured"
-coverImage: "StevenNewcombPopeFrancis-2016.webp"
+image: "StevenNewcombPopeFrancis-2016.webp"
 ---
 
 [_Pagans in the Promised Land: Decoding the Doctrine of Christian Discovery_](https://aila.ngo/pagans-in-the-promised-land-a-primer-on-religious-freedom/) decodes the hidden Old Testament basis of the Doctrine of Discovery and domination in U.S. Federal Indian Law and policy. The book traces the origin of the 1823 U.S. Supreme Court ruling Johnson v. M’Intosh to Vatican papal decrees of domination issued by various Catholic popes in the fifteenth century. Those documents claimed the right to locate and dominate non-Christian heathen lands, and Indigenous peoples throughout the planet. [_Pagans in the Promised Land_](https://ictnews.org/archive/newcomb-a-new-book-for-2008-pagans-in-the-promised-land-2) is an expose which explains how the mentality of the Christian Empire gave birth to federal Indian law and policy in the United States, and continues on to this day.

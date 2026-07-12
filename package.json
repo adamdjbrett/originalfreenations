@@ -43,5 +43,10 @@
     "json5": "2.2.3",
     "luxon": "^3.7.2",
     "pagefind": "^1.4.0"
+  },
+  "dependencies": {
+    "markdown-it-anchor": "9.2.1",
+    "markdown-it-footnote": "4.0.0",
+    "markdown-it-table-of-contents": "1.2.0"
   }
 }

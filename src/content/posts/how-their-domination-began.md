@@ -1,5 +1,6 @@
 ---
 title: "How Their Domination Began"
+description: ""
 date: 2020-06-11
 tags: 
   - "rapid-city"

@@ -1,11 +1,15 @@
-# Post authors (Ghost's author objects). `key` is referenced from post
-# front matter (`authors: [key]`) and builds the /author/<slug>/ archive.
+# The site's author objects (Ghost's author model), exposed as the global data
+# variable `siteAuthors`. `key` is what a post's front matter references
+# (`authors: adam-brett`), and `slug` builds the /author/<slug>/ archive.
+#
+# The variable is deliberately NOT called `authors`: that is the front-matter
+# key, and Eleventy concatenates same-named arrays across cascade layers, which
+# used to hand every post a mixed array of objects + keys.
 - key: steven-newcomb
   name: Steven Newcomb
-  slug: steven-newcomb
   bio: "Shawnee (Lenape), co-founder of the Indigenous Law Institute, author of “Pagans in the Promised Land: Decoding the Doctrine of Christian Discovery” and co-producer of the documentary “The Doctrine of Discovery: Unmasking the Domination Code”. Primary author of this site."
   location: Kumeyaay Territory, San Diego, CA
-  profile_image: ""
+  profile_image: "/assets/images/steven-newcomb.webp"
   website: https://originalfreenations.com
   bluesky: ""
   x: ""
@@ -13,7 +17,6 @@
 
 - key: adam-brett
   name: Adam DJ Brett
-  slug: adam-brett
   bio: Scholar of religion and Indigenous studies; editor and technologist.
   location: Syracuse, NY
   profile_image: ""
@@ -24,7 +27,6 @@
 
 - key: david-ratcliffe
   name: David Ratcliffe
-  slug: david-ratcliffe
   bio: Archivist and publisher at ratical.org.
   location: ""
   profile_image: ""

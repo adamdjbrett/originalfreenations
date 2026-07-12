@@ -1,5 +1,6 @@
 ---
 title: "A View of Slavery and White Domination"
+description: ""
 date: 2020-05-01
 tags: 
   - "during-roman"

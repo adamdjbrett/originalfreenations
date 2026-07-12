@@ -1,5 +1,6 @@
 ---
 title: "Trump's Speech at Mt. Rushmore: The Bully at the Bully Pulpit"
+description: ""
 date: 2020-07-06
 tags: 
   - "president-trump"

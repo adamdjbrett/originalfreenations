@@ -1,5 +1,6 @@
 ---
 title: "The Domination Translator Applied to Some Passages of Pope Alexander VI’s Inter Caetera Papal Decree of May 4, 1493"
+description: ""
 date: 2020-05-07
 tags: 
   - "almighty-god"

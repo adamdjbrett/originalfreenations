@@ -1,5 +1,6 @@
 ---
 title: "Tecumseh’s Speech"
+description: ""
 date: 2020-05-20
 tags: 
   - "chief-harmar"

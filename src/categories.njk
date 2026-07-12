@@ -2,16 +2,17 @@
 layout: layouts/default.njk
 bodyClass: tag-template
 pagination:
-  data: collections.tags
+  data: collections.categories
   size: 1
   alias: topic
-permalink: "/tag/{{ topic.slug }}/"
+permalink: "/category/{{ topic.slug }}/"
 eleventyComputed:
   title: "{{ topic.name }}"
 ---
-{#- One page per TAG. `topic` carries its own newest-first `posts` array
-    (built in the single taxonomy pass in eleventy.config.js), so this
-    template never filters collections.posts. -#}
+{#- One page per CATEGORY — the taxonomy migrated from WordPress, kept separate
+    from tags. `topic` carries its own newest-first `posts` array (built in the
+    single taxonomy pass in eleventy.config.js), so this template never filters
+    collections.posts. Markup mirrors tags.njk on purpose: same theme classes. -#}
 <main class="gh-main gh-outer">
 	<div class="gh-inner">
 		<section class="gh-pagehead">

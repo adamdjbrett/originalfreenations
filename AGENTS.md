@@ -51,31 +51,58 @@ src/_drafts/<slug>.md            # a draft  (same shape as a post)
 ```yaml
 ---
 title: "An Exorcism, Junipero Serra, and the Papal Bulls"
+description: ""                      # meta description; blank = fall back (see below)
 date: 2020-10-22
 tags: ["inter-caetera", "kumeyaay-nation"]
 categories: ["Domination Code"]      # optional, carried over from WordPress
-coverImage: "Tecumseh02.webp"        # optional — BARE FILENAME, never a path
+image: "Tecumseh02.webp"             # optional — BARE FILENAME, never a path
+authors: adam-brett                  # optional — defaults to steven-newcomb
 ---
 ```
 
-### coverImage → feature_image mapping
+Front-matter string values use **curly quotes** (`“ ”`) for any interior quote:
+
+```yaml
+title: "The 1977 UN Conference On “Indigenous Populations”"   # not \"…\"
+```
+
+Backslash-escaped straight quotes parse, but they are error-prone and leak into
+titles; none remain in the repo. Do not reintroduce them.
+
+### `description` — the meta description
+
+Every post and page carries a `description` key, and **almost all of them are
+empty (`description: ""`)** — an intentional placeholder, filled in over time.
+
+`partials/head.njk` computes one `pageDesc` and feeds it to `<meta
+name="description">`, `og:description`, `twitter:description` and the JSON-LD:
+
+```
+description  →  custom_excerpt  →  excerpt  →  metadata.description
+```
+
+An empty string is **falsy in Nunjucks**, so a blank `description` simply falls
+through to the next value — which is why adding the key to all 66 files changed
+no output. Fill it in to override.
+
+### `image` → `feature_image` mapping
 
 The theme templates (`_includes/layouts/post.njk`, `partials/feature-image.njk`,
 `partials/loop-grid.njk`) all read Ghost's **`feature_image`**, and they expect a
-**resolvable URL**. This site's content instead carries **`coverImage`, a bare
+**resolvable URL**. This site's content instead carries **`image`, a bare
 filename** naming a file in `src/assets/images/`. The bridge lives in
 `src/content/posts/posts.11tydata.js` (and `pages.11tydata.js`) as an
 `eleventyComputed`:
 
 ```
-coverImage: "Tecumseh02.webp"   →   feature_image: "/assets/images/Tecumseh02.webp"
+image: "Tecumseh02.webp"   →   feature_image: "/assets/images/Tecumseh02.webp"
 ```
 
-i.e. `feature_image = "/assets/images/" + coverImage`. Rules:
+i.e. `feature_image = "/assets/images/" + image`. Rules:
 
-- Never put a leading `/` or a directory into `coverImage` — the prefix is added
-  for you, so a path would double-prefix.
-- A `coverImage` value must name a file that actually exists in
+- Never put a leading `/` or a directory into `image` — the prefix is added for
+  you, so a path would double-prefix.
+- An `image` value must name a file that actually exists in
   `src/assets/images/`, extension included (almost always `.webp`).
 - An explicit `feature_image` in front matter **wins** over the computed value, so
   a new post can just use the Headline convention directly.
@@ -123,6 +150,83 @@ conversion step. What is on disk is what ships.
 - Removing the image pipeline took `npm run build` from **~55s to ~1s**. Do not
   reintroduce a build-time image plugin without a deliberate reason.
 
+## Markdown pipeline
+
+Configured in **`_config/markdown.js`**, registered as a plugin from
+`eleventy.config.js`. It uses **`amendLibrary("md", …)`**, not `setLibrary` — so
+Eleventy's own markdown-it instance and *all its defaults* (notably `html: true`,
+which the migrated WordPress content relies on) are preserved. The file only adds
+to them. Three plugins, in this order:
+
+| plugin | what it does |
+| --- | --- |
+| `markdown-it-footnote` | `[^1]` refs → numbered `<sup>`; `[^1]: …` defs → `<section class="footnotes">` at the end of the post, with `↩︎` back-links |
+| `markdown-it-anchor` | ids on `h2`/`h3` — **default markdown-it emits none**, so without this the TOC would have nothing to link to |
+| `markdown-it-table-of-contents` | renders the TOC where a `[[toc]]` marker appears |
+
+`_config/markdown.js` also defines **one** `slugify()` and hands the *same*
+function to markdown-it-anchor and markdown-it-table-of-contents. If those two
+ever disagree, every TOC link silently 404s inside the page.
+
+### Footnotes
+
+Use standard markdown-it syntax: `[^7]` in the text, `[^7]: citation` as its own
+paragraph at the bottom. A footnote that runs to a second paragraph indents the
+continuation **4 spaces**.
+
+The WordPress export had written footnotes as anchor-link pairs —
+`[\[7\]](#_ftn7)` in the body, `[\[7\]](#_ftnref7) citation` at the bottom under a
+manual `**Notes**` heading — which markdown-it renders as ordinary links to
+anchors that do not exist. All of them were converted. Four posts carry footnotes
+(51 + 80 + 2 + 2 = 135). **Do not reintroduce the `#_ftn` form.**
+
+### Table of contents — opt-in with `toc: true`
+
+```yaml
+---
+title: "…"
+toc: true      # ← renders a <div class="post-toc"> of the post's h2/h3
+---
+```
+
+markdown-it-table-of-contents keys off a `[[toc]]` marker in the markdown and
+cannot see the data cascade. An Eleventy **preprocessor** (`toc`, in
+`_config/markdown.js`) bridges the gap: preprocessors run on the file body after
+front matter is parsed and **before** any template or markdown rendering, so it
+injects `[[toc]]` immediately before the post's **first `## ` heading** when
+`toc: true`. Consequences:
+
+- **Never hand-write `[[toc]]` into a `.md` file** — the front-matter flag is the
+  switch, and no layout change is needed (the marker is injected, not templated).
+- A post with **no `## ` heading gets no TOC and no stray marker** (the
+  preprocessor bails out).
+- Only `h2`/`h3` are listed. `h1` is the post title, rendered by the layout.
+- The long essays' section titles used to be **bold paragraphs** (`[↑](#ToC)
+  **Title**`) with a hand-written "Contents" list of dead `#S1`…`#Sn` links. They
+  are now real `##` headings and the manual list is gone.
+
+### WordPress `[caption]` shortcode
+
+The export left 8 `[caption id="attachment_1234" align="…" width="…"]…[/caption]`
+shortcodes across 4 posts. A **markdown-it core rule** (`wp_caption`, running
+before the `inline` rule) rewrites them to:
+
+```html
+<figure class="post-figure aligncenter">
+  <img src="/assets/images/…webp" alt=""><figcaption>…</figcaption>
+</figure>
+```
+
+It is a markdown-it rule rather than a Nunjucks filter or an HTML transform
+because the image *and* the caption text are still markdown at that point, so
+links, bold and curly punctuation inside the caption are parsed normally and need
+no template change. `id="attachment_…"` and `width` are **dropped** (dead database
+ids; hard-coded pixel widths would fight the theme's responsive CSS); `align` is
+kept as a class on the `<figure>` (`alignnone` is dropped — it is the default).
+
+`.post-figure`, `.post-toc` and `.footnotes` are **not styled yet** — they inherit
+the theme's defaults.
+
 ## Conventions
 
 - Templating is **Nunjucks** (`@11ty/nunjucks` 4). The Eleventy `input` dir is
@@ -140,11 +244,12 @@ conversion step. What is on disk is what ships.
   Set it before including in a non-loop context — `post.njk` builds one by hand.
 - Custom filters live in `_config/filters.js`: `t` (i18n echo via
   `locales/en.json`), `readableDate`, `htmlDateString`, `rfc3339`, `year`,
-  `readingTime`, `excerpt`, `limit`/`head`/`skip`, `resolveAuthors`, `byTag`,
+  `readingTime`, `excerpt`, `limit`/`head`/`skip`, `resolveAuthors`, `pickTopics`,
   `relatedPosts`, `publicTags`, `postingLd` (JSON-LD), and `slug` (re-added —
   removed in v4). **No image filter** — nothing in the build touches images.
-- Collections (in `eleventy.config.js`): `posts` (newest-first) and `topics`
-  (`[{name, count}]` public tags by count).
+- Collections (in `eleventy.config.js`): `posts` (newest-first), `categories`,
+  `tags`, and `topics` (an alias of `tags`, the name the theme's home layout uses).
+  See [Taxonomies](#taxonomies-categories-and-tags-are-separate).
 
 ## Gotchas
 
@@ -158,47 +263,88 @@ conversion step. What is on disk is what ships.
 - Config `.js` must live outside `src/` (see Conventions) — inside the input dir
   Eleventy would render it as a template.
 
-### `authors` is an overloaded key — keep the objects in the array
+### Authors: `siteAuthors` (objects) vs `authors` (keys)
 
-`src/_data/authors.yaml` puts author **objects** on the `authors` key globally,
-while a post's front matter puts author **keys** (strings) on it. Eleventy
-**concatenates arrays across data-cascade layers**, so the raw value a post sees is:
+**Two different names, on purpose.** The two halves of the byline no longer share
+a key:
 
-```
-[...author objects from authors.yaml, ...string keys from front matter]
-```
+| where | name | shape |
+| --- | --- | --- |
+| `src/_data/siteAuthors.yaml` | global `siteAuthors` | the author **objects** (`key`, `name`, `bio`, …). `key` IS the URL slug |
+| a post's front matter | `authors` | the post's own author **keys** (strings) |
 
-`resolveAuthors` (in `_config/filters.js`) depends on exactly that mixed shape —
-it matches the key strings against the objects sitting in the same array. So any
-change to `authors` must **preserve the objects**.
+Front matter takes a **scalar or a list**; both work:
 
-`posts.11tydata.js` supplies the default byline in `eleventyComputed`, keeping the
-objects and adding `"steven-newcomb"` only when the post named no author of its own:
-
-```js
-authors: (data) => {
-  const merged = Array.isArray(data.authors) ? data.authors : [];
-  const objects = merged.filter((a) => a && typeof a === "object");
-  const keys = merged.filter((a) => typeof a === "string" && a.trim());
-  return [...objects, ...(keys.length ? keys : ["steven-newcomb"])];
-},
+```yaml
+authors: adam-brett            # the common case
+authors: [adam-brett, david-ratcliffe]
 ```
 
-Two ways to break this, both **silent** — no error, no build failure:
+`resolveAuthors` (in `_config/filters.js`) normalizes either form to an array of
+keys and looks each one up in the global list, which the template passes in
+explicitly:
 
-- **Declaring** `authors: ["steven-newcomb"]` as plain directory data instead. It
-  concatenates with the front matter, so every post by Adam or David gets a
-  **double byline** (Steven *and* the real author).
-- **Computing** it without spreading the objects back in. The object list vanishes,
-  `resolveAuthors` matches nothing, and **every byline on the site blanks out**.
+```njk
+{{ post.data.authors | resolveAuthors(siteAuthors) }}
+```
 
-55 posts are Steven's (default); 2 are Adam's and carry an explicit
-`authors: ["adam-brett"]`. David Ratcliffe wrote none — he only uploaded images —
-so `/author/david-ratcliffe/` builds but is empty.
+`posts.11tydata.js` computes `authors` down to an array of key strings and
+supplies the default byline — `"steven-newcomb"` — only when the post named no
+author of its own.
 
-The same concatenate-don't-replace trap applies to the `tags` computed value right
-below it, which folds WordPress `categories` into `tags`: it spreads `data.tags`
-back in, because dropping it would unhook every post from the `posts` collection.
+**Why the global is not called `authors`:** Eleventy **concatenates arrays across
+data-cascade layers**. When the global data file was `authors.yaml`, its objects
+and the post's key strings landed on the *same* key, and every post saw a mixed
+`[...objects, ...keys]` array that `resolveAuthors` had to pick apart. That also
+made a bare `authors: adam-brett` (a scalar, which **replaces** rather than
+concatenates) wipe out the object list and blank every byline. The rename removes
+the collision. **Do not name a global data file `authors.yaml` again.**
+
+Still true, and still **silent** — no error, no build failure:
+
+- Do **not** declare `authors: ["steven-newcomb"]` as plain directory data instead
+  of computing it. It would concatenate with the front matter, so every post by
+  Adam or David would get a **double byline** (Steven *and* the real author). Keep
+  the default in `eleventyComputed`, which replaces.
+
+55 posts are Steven's (the default); 2 are Adam's and carry `authors: adam-brett`.
+David Ratcliffe wrote none — he only uploaded images — so `/author/david-ratcliffe/`
+builds but is empty.
+
+The concatenate-don't-replace behaviour still shapes the `tags` computed value
+right below `authors`, which only dedupes: it spreads `data.tags` back in, because
+dropping it would unhook every post from the `posts` collection.
+
+### Taxonomies: `categories` and `tags` are separate
+
+Two independent archives, `/category/<slug>/` (`src/categories.njk`) and
+`/tag/<slug>/` (`src/tags.njk`). 12 public categories, 99 public tags.
+
+`categories` used to be **folded into `tags`** by `posts.11tydata.js`, so a
+category's archive was really a tag archive and `/category/<x>/` was a redirect.
+That is gone. Do not reintroduce the fold — it would collide the two namespaces
+(`american-dream` and `featured` are the only names that exist in both).
+
+Both taxonomies, and the newest-first `posts` list, are built in **one pass** over
+the posts in `eleventy.config.js` (`taxonomies()`, memoized per run and cleared on
+`eleventy.before`). Each term is `{ name, slug, count, posts }`:
+
+- posts are sorted **once**, before the loop, so every `term.posts` is already
+  newest-first;
+- each term is slugged **once**, at collection-build time, not per render;
+- **templates never re-filter.** They iterate `term.posts`. The old
+  `collections.posts | byTag(term.name)` inside the archive template was
+  O(terms × posts) per build — that is why `byTag` no longer exists.
+
+`collections.topics` is the **same array as `collections.tags`** (the theme's home
+layout calls tags "topics"). `theme.primary_section_tags` / `secondary_section_tags`
+hold tag NAMES; `home.njk` resolves them to term objects with the `pickTopics`
+filter, so `topic-grid.njk` / `topic-minimal.njk` always get a term that carries its
+own posts.
+
+`featured`, `posts`, `all` and `page` are **internal terms** (`INTERNAL_TERMS` in
+`eleventy.config.js`): excluded from both taxonomies, so neither `/tag/featured/`
+nor `/category/featured/` is ever built. `_redirects.json` must never point at one.
 
 ### darkmode.css is inlined into head.njk
 

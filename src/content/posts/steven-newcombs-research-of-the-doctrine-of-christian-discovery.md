@@ -1,5 +1,6 @@
 ---
 title: "Research of the Doctrine of Christian Discovery"
+description: ""
 date: 2018-09-30
 categories: 
   - "archive"
@@ -12,7 +13,7 @@ categories:
   - "religion"
 tags: 
   - "vine-deloria"
-coverImage: "IMG_3765-x1000.webp"
+image: "IMG_3765-x1000.webp"
 ---
 
 \[caption id="attachment\_1331" align="alignleft" width="193"\]![](/assets/images/A-Long-Time-Ago-1-e1538267927352.webp) Early days; notice the word processor.\[/caption\]

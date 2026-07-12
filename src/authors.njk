@@ -2,10 +2,10 @@
 layout: layouts/default.njk
 bodyClass: author-template
 pagination:
-  data: authors
+  data: siteAuthors
   size: 1
   alias: author
-permalink: "/author/{{ author.slug }}/"
+permalink: "/author/{{ author.key }}/"
 eleventyComputed:
   title: "{{ author.name }}"
 ---

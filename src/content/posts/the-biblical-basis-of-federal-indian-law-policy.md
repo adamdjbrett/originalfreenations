@@ -1,5 +1,6 @@
 ---
 title: "The Biblical Basis of federal Indian law & policy"
+description: ""
 date: 2018-02-23
 categories: 
   - "biblical"
@@ -10,7 +11,7 @@ tags:
   - "old-testament"
   - "united-states"
   - "western-shoshone"
-coverImage: "swordbible2-e1519670963886.webp"
+image: "swordbible2-e1519670963886.webp"
 ---
 
 I have often wondered why federal Indian law attorneys dare not mention the crusading tradition of the United States against “heathens” and “infidels,” namely, American Indian nations. The Western Shoshone Nation is directly challenging this tradition in court and in the U.S. Congress. Their challenge brings to light the strange and startling fact that U.S. federal Indian law is based on religious prejudice.

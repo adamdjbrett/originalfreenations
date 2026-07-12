@@ -1,5 +1,6 @@
 ---
 title: "Sept. 27th Screening of our Doctrine of Discovery Documentary"
+description: ""
 date: 2020-09-13
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "The Claim of a Right of Christian Domination"
+description: ""
 date: 2019-05-30
 categories: 
   - "biblical"

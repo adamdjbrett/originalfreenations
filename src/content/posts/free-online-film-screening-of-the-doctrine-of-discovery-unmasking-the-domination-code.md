@@ -1,7 +1,8 @@
 ---
 title: "Free Online Film Screening Of The Doctrine of Discovery Unmasking the Domination Code"
+description: ""
 date: 2024-01-25
-authors: ["adam-brett"]
+authors: adam-brett
 categories: 
   - "news"
 tags: 

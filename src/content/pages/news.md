@@ -1,5 +1,6 @@
 ---
 title: "News"
+description: ""
 date: 2016-09-04
 custom_excerpt: "Every post from Original Free Nations, newest first."
 templateEngineOverride: njk

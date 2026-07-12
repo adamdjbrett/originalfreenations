@@ -16,7 +16,10 @@
 // NOT redirected, deliberately:
 //   * All 60 post/page slugs — the old site used /%postname%/ and every slug
 //     carries over 1:1. Redirecting them would be a no-op at best.
-//   * All 100 tag archives — /tag/<slug>/ exists on the new site with the same slugs.
+//   * The tag archives — /tag/<slug>/ exists on the new site with the same slugs.
+//     The 11 EXCEPTIONS are slugs that were only ever CATEGORIES (they had a tag
+//     archive on the new site only while categories were folded into tags); they
+//     are redirected to /category/<slug>/ below.
 //   * /wp-admin/, /wp-login.php, /xmlrpc.php, /wp-json/* — bot-magnet URLs. Let them
 //     404. Redirecting them to / would launder crawl signal onto the homepage.
 //   * 77 orphaned WordPress attachment pages (no parent post). A redirect would be a
@@ -48,29 +51,59 @@
     { from: '^/feed/?$', to: '/feed/feed.rss', permanent: true },
     { from: '^/(?:category|tag|author)/[^/]+/feed/?$', to: '/feed/feed.rss', permanent: true },
 
-    // -- Categories --> tags ------------------------------------------------
-    // WordPress categories are folded into tags by src/content/posts/posts.11tydata.js
-    // (an eleventyComputed that merges `categories` into `tags`), so /tag/<x>/ is
-    // built for each of these 12 and the redirect lands on a real archive with the
-    // same posts. Counts match the export exactly: doctrine-of-discovery 9,
-    // religion 7, biblical 6, politics 6, news 5, culture 5, legal 4, history 2,
-    // archive 2, american-dream 1, corona-virus 1, tecumseh-shawnee-leader 1.
+    // -- Categories ----------------------------------------------------------
+    // /category/<x>/ IS A REAL PAGE NOW. `categories` and `tags` are two separate
+    // taxonomies (built in one pass in eleventy.config.js); src/categories.njk
+    // writes an archive for each of the 12 public categories. Counts match the
+    // export exactly: doctrine-of-discovery 9, religion 7, biblical 6, politics 6,
+    // news 5, culture 5, legal 4, history 2, archive 2, american-dream 1,
+    // corona-virus 1, tecumseh-shawnee-leader 1.
     //
-    // TWO categories are deliberately NOT mapped to a tag archive:
+    // So there is NO rule mapping those 12 slugs anywhere, and there is NO
+    // catch-all on /category/. Both used to exist and both are gone on purpose:
     //
-    //   uncategorized — the big one. WordPress's default term was RENAMED to
-    //     "federal Indian law" but KEPT the slug `uncategorized`, and it carries 42
-    //     of 57 posts. The converter never wrote it into front matter, so no tag
-    //     archive exists (nor should one — it is not a real topic). Goes to /news/.
+    //   * `/category/(american-dream|…)/ -> /tag/$1/` — it pointed at the tag
+    //     archives the old category-folding produced. Those are gone; the category
+    //     archive is the destination now, and it is served directly.
     //
-    //   featured — the theme treats `featured` as an INTERNAL tag and excludes it
-    //     from archives, so /tag/featured/ is never built. Falls through to /news/
-    //     via the catch-all below. Do not add it to the alternation above; the
-    //     redirect would 404.
+    //   * `^/category/[^/]+(?:/page/\d+)?/?$ -> /news/` — a catch-all that would
+    //     also match all 12 REAL category URLs. Whether a redirect can shadow an
+    //     existing file is host behavior we cannot verify from here (xmit documents
+    //     the TOML format, not the precedence), so the rule is not left in place on
+    //     the hope that "static file wins". A negative lookahead excluding the 12
+    //     slugs would also be a gamble: several regex engines (Go/RE2 among them)
+    //     have no lookahead at all. Enumerating instead is safe under EVERY
+    //     precedence rule and EVERY engine.
+    //
+    // Only the categories with NO archive are redirected, plus pagination:
+    //
+    //   uncategorized — WordPress's default term was RENAMED to "federal Indian
+    //     law" but KEPT the slug `uncategorized`, and it carries 42 of 57 posts.
+    //     The converter never wrote it into front matter, so it is not a category
+    //     here (nor should it be — it is not a real topic). Goes to /news/.
+    //
+    //   featured — an INTERNAL term, excluded from BOTH taxonomies, so neither
+    //     /category/featured/ nor /tag/featured/ is ever built. Goes to /news/.
+    //
+    // WordPress had exactly these 14 category slugs, so nothing else is reachable;
+    // an unknown /category/<junk>/ now 404s honestly, like every other junk URL.
     { from: '^/category/uncategorized(?:/page/\\d+)?/?$', to: '/news/', permanent: true },
-    { from: '^/category/(american-dream|archive|biblical|corona-virus|culture|doctrine-of-discovery|history|legal|news|politics|religion|tecumseh-shawnee-leader)/?$', to: '/tag/$1/', permanent: true },
-    // Any category we did not enumerate (or its pagination) — fall back to the list.
-    { from: '^/category/[^/]+(?:/page/\\d+)?/?$', to: '/news/', permanent: true },
+    { from: '^/category/featured(?:/page/\\d+)?/?$', to: '/news/', permanent: true },
+    // Old WordPress category pagination. The new archives are single-page, so
+    // /page/N/ collapses onto the archive itself.
+    { from: '^/category/(american-dream|archive|biblical|corona-virus|culture|doctrine-of-discovery|history|legal|news|politics|religion|tecumseh-shawnee-leader)/page/\\d+/?$', to: '/category/$1/', permanent: true },
+
+    // -- Unfolded tags --> categories ----------------------------------------
+    // These 11 slugs used to have a /tag/<x>/ archive ONLY because categories were
+    // folded into tags. They are categories, not tags: no post carries them as a
+    // tag, so /tag/<x>/ is no longer built and would 404. Send each to its category
+    // archive, which holds exactly the same posts.
+    //
+    // `american-dream` is the ONE name that is BOTH a category and a real tag, so
+    // /tag/american-dream/ IS still built (1 post) and MUST NOT be redirected.
+    // `featured` is internal and never had a /tag/ page. Everything else below the
+    // /feed/ rule above, so /tag/<x>/feed/ still goes to the feed.
+    { from: '^/tag/(archive|biblical|corona-virus|culture|doctrine-of-discovery|history|legal|news|politics|religion|tecumseh-shawnee-leader)/?$', to: '/category/$1/', permanent: true },
 
     // -- Authors -------------------------------------------------------------
     // WordPress used the login in the URL; the new site uses a real slug.

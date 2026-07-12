@@ -1,5 +1,6 @@
 ---
 title: "To Civilize and Christianize"
+description: ""
 date: 2019-05-25
 tags: 
   - "christianize-native"

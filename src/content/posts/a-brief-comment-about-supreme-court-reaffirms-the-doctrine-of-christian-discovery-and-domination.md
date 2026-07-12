@@ -1,5 +1,6 @@
 ---
 title: "A Brief Comment About Supreme Court Reaffirms the Doctrine of Christian Discovery and Domination"
+description: ""
 date: 2020-05-20
 tags: 
   - "creek-nation"

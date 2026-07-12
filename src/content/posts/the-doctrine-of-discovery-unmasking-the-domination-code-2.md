@@ -1,12 +1,13 @@
 ---
 title: "The Doctrine Of Discovery: Unmasking The Domination Code"
+description: ""
 date: 2023-04-30
 categories: 
   - "doctrine-of-discovery"
   - "featured"
 tags: 
   - "featured"
-coverImage: "DoD-ShipOnOceanBlue2.webp"
+image: "DoD-ShipOnOceanBlue2.webp"
 ---
 
 [![](/assets/images/Doctrine-of-Discovery-film-238x300.webp)](https://vimeo.com/ondemand/dominationcode)

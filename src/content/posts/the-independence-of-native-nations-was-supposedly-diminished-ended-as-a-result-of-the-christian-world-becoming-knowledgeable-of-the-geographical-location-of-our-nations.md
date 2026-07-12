@@ -1,5 +1,6 @@
 ---
-title: "The Independence of Native Nations Was Supposedly Ended (\"Diminished\")As A Result of the Christian World Becoming Knowledgeable of the Geographical Location of our Nations"
+title: "The Independence of Native Nations Was Supposedly Ended (“Diminished”)As A Result of the Christian World Becoming Knowledgeable of the Geographical Location of our Nations"
+description: ""
 date: 2020-05-06
 tags: 
   - "christian-european"

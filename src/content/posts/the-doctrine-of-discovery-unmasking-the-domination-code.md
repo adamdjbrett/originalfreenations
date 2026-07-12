@@ -1,5 +1,6 @@
 ---
 title: "The Doctrine of Discovery: Unmasking the Domination Code"
+description: ""
 date: 2020-05-20
 categories: 
   - "featured"

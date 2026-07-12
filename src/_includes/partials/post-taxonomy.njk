@@ -1,0 +1,40 @@
+{#- Categories + tags for the post sidebar.
+    Both taxonomies are separate archives (/category/<slug>/ and /tag/<slug>/);
+    the terms are slugged here with the `slug` filter, which is a thin alias over
+    the built-in `slugify` — the SAME function eleventy.config.js uses to build
+    the archive permalinks, so these links cannot drift out of sync.
+
+    `publicTags` strips the internal terms (posts, all, featured, page) — a post's
+    `tags` always carries "posts" (that is how the collection is built), and
+    "featured" can appear in either taxonomy, so BOTH lists are filtered through it.
+
+    Each block renders only when it has terms left after filtering: no empty
+    headings, no stray separators on the 40 posts that have no categories. -#}
+{%- set postCategories = post.data.categories | publicTags %}
+{%- set postTags = post.data.tags | publicTags %}
+
+{%- if postCategories.length or postTags.length %}
+<div class="gh-article-taxonomy">
+	{%- if postCategories.length %}
+	<div class="gh-article-terms">
+		<h2 class="gh-article-terms-title">{{ "Categories" | t }}</h2>
+		<ul class="gh-article-terms-list">
+			{%- for term in postCategories %}
+			<li><a class="gh-article-term" href="/category/{{ term | slug }}/">{{ term }}</a></li>
+			{%- endfor %}
+		</ul>
+	</div>
+	{%- endif %}
+
+	{%- if postTags.length %}
+	<div class="gh-article-terms">
+		<h2 class="gh-article-terms-title">{{ "Tags" | t }}</h2>
+		<ul class="gh-article-terms-list">
+			{%- for term in postTags %}
+			<li><a class="gh-article-term" href="/tag/{{ term | slug }}/">{{ term }}</a></li>
+			{%- endfor %}
+		</ul>
+	</div>
+	{%- endif %}
+</div>
+{%- endif %}
