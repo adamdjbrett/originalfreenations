@@ -21,8 +21,9 @@
 //     404. Redirecting them to / would launder crawl signal onto the homepage.
 //   * 77 orphaned WordPress attachment pages (no parent post). A redirect would be a
 //     soft-404; an honest 404 is better.
-//   * 10 of the 222 old /wp-content/uploads/ URLs — 7 Eventbrite CDN thumbnails and
-//     3 favicon variants, all pruned as unused. The other 212 are mapped below.
+//   * The 56 surviving /wp-content/uploads/ originals — they are served verbatim,
+//     so they return 200 and need no rule. Their 166 deleted WordPress size
+//     variants ARE mapped below, one explicit rule each.
 //
 // KNOWN GAP — query-string shortlinks:
 //   WordPress always honored /?p=<ID> and /?page_id=<ID>, and 62 such IDs exist
@@ -172,18 +173,233 @@
     { from: '^/an-original-nations-examination-of-freedom-human-and-human-rights/radialcategoryofdomination/?$', to: '/an-original-nations-examination-of-freedom-human-and-human-rights/', permanent: true },
     { from: '^/an-original-nations-examination-of-freedom-human-and-human-rights/gaspardeportolaandjuniperioserra/?$', to: '/an-original-nations-examination-of-freedom-human-and-human-rights/', permanent: true },
 
-    // -- Media: /wp-content/uploads/ -----------------------------------------
-    // NOT REDIRECTED — deliberately. All 222 original upload files are SERVED
-    // VERBATIM from src/public/wp-content/uploads/, so every old image URL
-    // returns 200 with byte-identical content.
+    // -- Media: /wp-content/uploads/ size variants ---------------------------
+    // WordPress generated a -WIDTHxHEIGHT (and -scaled) derivative for every
+    // upload. Those 166 derivatives were DELETED — they were pure duplicates of
+    // an original that is still served — and each old URL is 301'd here to the
+    // full-resolution file that survives. 56 originals remain, served VERBATIM
+    // from src/public/wp-content/uploads/, so they still return 200 with
+    // byte-identical content. That took uploads/ from 28MB to ~13MB.
     //
-    // Redirecting them to /assets/images/*.webp was the alternative, and it is
-    // worse on three counts: it changes the content-type under hotlinkers and
-    // image-search crawlers; 172 of the 222 are WordPress -WxH size variants
-    // whose mapping to the new flat files is not mechanical (the new site often
-    // kept a DIFFERENT variant than the one being requested); and ~10 of the
-    // originals were pruned as unused, so no redirect target exists for them at
-    // all. Serving the originals costs ~28MB and loses nothing.
+    // The site's own pages do NOT use these files at all — they serve
+    // /assets/images/*.webp. This tree exists purely for legacy inbound links.
+    //
+    // Rules are EXPLICIT AND LITERAL, one per deleted file, on purpose. A
+    // generic "strip -WxH" regex is WRONG here: 9 of the SURVIVING originals
+    // themselves end in -WxH or -scaled (no un-suffixed original was ever
+    // exported), so a generic rule would redirect a live file to a 404, and
+    // 33 of the deleted files map to a -scaled keeper rather than a bare name.
+    //
+    // Two deliberate exceptions to "redirect to the largest file":
+    //   * Marshalls-laptop-1: the 5312x2988 original is stored ROTATED with no
+    //     EXIF orientation tag, so it renders sideways. Its variants point at
+    //     -1024x576.jpg (upright) instead, which is kept for that reason.
+    //   * The Eventbrite thumbnail: its only full-size original is .avif, so the
+    //     .jpg variants point at -900x450.jpg (kept) to preserve content-type.
+
+    // 2016/10
+    { from: '^/wp-content/uploads/2016/10/IMG_3765-x1000-300x225\\.jpg$', to: '/wp-content/uploads/2016/10/IMG_3765-x1000.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2016/10/IMG_3765-x1000-768x576\\.jpg$', to: '/wp-content/uploads/2016/10/IMG_3765-x1000.jpg', permanent: true },
+
+    // 2016/11
+    { from: '^/wp-content/uploads/2016/11/Doctrine-of-Discovery-Domination-Code-film-214x300\\.jpg$', to: '/wp-content/uploads/2016/11/Doctrine-of-Discovery-Domination-Code-film.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2016/11/FullSizeRender-5-1-150x150\\.jpeg$', to: '/wp-content/uploads/2016/11/FullSizeRender-5-1.jpeg', permanent: true },
+    { from: '^/wp-content/uploads/2016/11/FullSizeRender-5-1-300x300\\.jpeg$', to: '/wp-content/uploads/2016/11/FullSizeRender-5-1.jpeg', permanent: true },
+    { from: '^/wp-content/uploads/2016/11/dad-and-pope-300x200\\.jpg$', to: '/wp-content/uploads/2016/11/dad-and-pope.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2016/11/stv-pic-new-300x158\\.png$', to: '/wp-content/uploads/2016/11/stv-pic-new.png', permanent: true },
+    { from: '^/wp-content/uploads/2016/11/stv-pic-new-768x404\\.png$', to: '/wp-content/uploads/2016/11/stv-pic-new.png', permanent: true },
+
+    // 2018/02
+    { from: '^/wp-content/uploads/2018/02/IMG_1754-259x300\\.jpg$', to: '/wp-content/uploads/2018/02/IMG_1754.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2018/02/pope_and_steve_newcomb_at_the_vatican-300x169\\.jpeg$', to: '/wp-content/uploads/2018/02/pope_and_steve_newcomb_at_the_vatican.jpeg', permanent: true },
+
+    // 2018/09
+    { from: '^/wp-content/uploads/2018/09/Doctrine-of-Discovery-film-238x300\\.png$', to: '/wp-content/uploads/2018/09/Doctrine-of-Discovery-film.png', permanent: true },
+    { from: '^/wp-content/uploads/2018/09/Tecumseh02-226x300\\.jpg$', to: '/wp-content/uploads/2018/09/Tecumseh02.jpg', permanent: true },
+
+    // 2019/06
+    { from: '^/wp-content/uploads/2019/06/Marshalls-laptop-1-300x169\\.jpg$', to: '/wp-content/uploads/2019/06/Marshalls-laptop-1-1024x576.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2019/06/Marshalls-laptop-1-768x432\\.jpg$', to: '/wp-content/uploads/2019/06/Marshalls-laptop-1-1024x576.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2019/06/S-Newcomb-SevilleFinal-2-225x300\\.jpg$', to: '/wp-content/uploads/2019/06/S-Newcomb-SevilleFinal-2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2019/06/S-Newcomb-SevilleFinal-2-768x1024\\.jpg$', to: '/wp-content/uploads/2019/06/S-Newcomb-SevilleFinal-2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2019/06/School-Days-300x198\\.jpeg$', to: '/wp-content/uploads/2019/06/School-Days.jpeg', permanent: true },
+
+    // 2020/04
+    { from: '^/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-1287x2048\\.jpeg$', to: '/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-scaled.jpeg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-188x300\\.jpeg$', to: '/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-scaled.jpeg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-643x1024\\.jpeg$', to: '/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-scaled.jpeg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-768x1223\\.jpeg$', to: '/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-scaled.jpeg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-965x1536\\.jpeg$', to: '/wp-content/uploads/2020/04/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-scaled.jpeg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Old-City-of-Rome-1024x674\\.jpg$', to: '/wp-content/uploads/2020/04/Old-City-of-Rome-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Old-City-of-Rome-1536x1011\\.jpg$', to: '/wp-content/uploads/2020/04/Old-City-of-Rome-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Old-City-of-Rome-2048x1348\\.jpg$', to: '/wp-content/uploads/2020/04/Old-City-of-Rome-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Old-City-of-Rome-300x197\\.jpg$', to: '/wp-content/uploads/2020/04/Old-City-of-Rome-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Old-City-of-Rome-768x505\\.jpg$', to: '/wp-content/uploads/2020/04/Old-City-of-Rome-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Slave-Ship-1151x2048\\.jpg$', to: '/wp-content/uploads/2020/04/Slave-Ship-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Slave-Ship-169x300\\.jpg$', to: '/wp-content/uploads/2020/04/Slave-Ship-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Slave-Ship-576x1024\\.jpg$', to: '/wp-content/uploads/2020/04/Slave-Ship-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Slave-Ship-768x1366\\.jpg$', to: '/wp-content/uploads/2020/04/Slave-Ship-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/Slave-Ship-863x1536\\.jpg$', to: '/wp-content/uploads/2020/04/Slave-Ship-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/04/roman-scourge-1-2-246x300\\.jpg$', to: '/wp-content/uploads/2020/04/roman-scourge-1-2.jpg', permanent: true },
+
+    // 2020/05
+    { from: '^/wp-content/uploads/2020/05/2048px-James_Madison-1262x1536\\.jpg$', to: '/wp-content/uploads/2020/05/2048px-James_Madison.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/2048px-James_Madison-1683x2048\\.jpg$', to: '/wp-content/uploads/2020/05/2048px-James_Madison.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/2048px-James_Madison-247x300\\.jpg$', to: '/wp-content/uploads/2020/05/2048px-James_Madison.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/2048px-James_Madison-768x935\\.jpg$', to: '/wp-content/uploads/2020/05/2048px-James_Madison.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/2048px-James_Madison-842x1024\\.jpg$', to: '/wp-content/uploads/2020/05/2048px-James_Madison.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-1024x680\\.jpg$', to: '/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-1536x1020\\.jpg$', to: '/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-2048x1360\\.jpg$', to: '/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-300x199\\.jpg$', to: '/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-768x510\\.jpg$', to: '/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-787x524\\.jpg$', to: '/wp-content/uploads/2020/05/Brown_university_john_carter_brown_lib-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/05/washburn-207x300\\.jpg$', to: '/wp-content/uploads/2020/05/washburn.jpg', permanent: true },
+
+    // 2020/06
+    { from: '^/wp-content/uploads/2020/06/Boys-and-Girls-_4-211x300\\.jpg$', to: '/wp-content/uploads/2020/06/Boys-and-Girls-_4.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/Boys-and-Girls-_4-721x1024\\.jpg$', to: '/wp-content/uploads/2020/06/Boys-and-Girls-_4.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/Boys-and-Girls-_4-768x1091\\.jpg$', to: '/wp-content/uploads/2020/06/Boys-and-Girls-_4.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/Contents_1-1-224x300\\.jpg$', to: '/wp-content/uploads/2020/06/Contents_1-1.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/Contents_1-1-764x1024\\.jpg$', to: '/wp-content/uploads/2020/06/Contents_1-1.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/Contents_1-1-768x1030\\.jpg$', to: '/wp-content/uploads/2020/06/Contents_1-1.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/Cover-sheet-220x300\\.jpg$', to: '/wp-content/uploads/2020/06/Cover-sheet.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/Cover-sheet-752x1024\\.jpg$', to: '/wp-content/uploads/2020/06/Cover-sheet.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/Cover-sheet-768x1046\\.jpg$', to: '/wp-content/uploads/2020/06/Cover-sheet.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/screen-shot-242x300\\.jpg$', to: '/wp-content/uploads/2020/06/screen-shot.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/screen-shot-768x953\\.jpg$', to: '/wp-content/uploads/2020/06/screen-shot.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/06/screen-shot-825x1024\\.jpg$', to: '/wp-content/uploads/2020/06/screen-shot.jpg', permanent: true },
+
+    // 2020/07
+    { from: '^/wp-content/uploads/2020/07/Mt\\.-Rushmore-1024x768\\.jpg$', to: '/wp-content/uploads/2020/07/Mt.-Rushmore.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/07/Mt\\.-Rushmore-300x225\\.jpg$', to: '/wp-content/uploads/2020/07/Mt.-Rushmore.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/07/Mt\\.-Rushmore-768x576\\.jpg$', to: '/wp-content/uploads/2020/07/Mt.-Rushmore.jpg', permanent: true },
+
+    // 2020/09
+    { from: '^/wp-content/uploads/2020/09/Best-Gilk-1152x1536\\.jpg$', to: '/wp-content/uploads/2020/09/Best-Gilk-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/09/Best-Gilk-1536x2048\\.jpg$', to: '/wp-content/uploads/2020/09/Best-Gilk-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/09/Best-Gilk-225x300\\.jpg$', to: '/wp-content/uploads/2020/09/Best-Gilk-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/09/Best-Gilk-768x1024\\.jpg$', to: '/wp-content/uploads/2020/09/Best-Gilk-scaled.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/09/Sept-27-Film-Screening-1-1024x576\\.png$', to: '/wp-content/uploads/2020/09/Sept-27-Film-Screening-1.png', permanent: true },
+    { from: '^/wp-content/uploads/2020/09/Sept-27-Film-Screening-1-300x169\\.png$', to: '/wp-content/uploads/2020/09/Sept-27-Film-Screening-1.png', permanent: true },
+    { from: '^/wp-content/uploads/2020/09/Sept-27-Film-Screening-1-768x432\\.png$', to: '/wp-content/uploads/2020/09/Sept-27-Film-Screening-1.png', permanent: true },
+
+    // 2020/10
+    { from: '^/wp-content/uploads/2020/10/Serra-Stamp-1024x768\\.jpg$', to: '/wp-content/uploads/2020/10/Serra-Stamp.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/10/Serra-Stamp-300x225\\.jpg$', to: '/wp-content/uploads/2020/10/Serra-Stamp.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2020/10/Serra-Stamp-768x576\\.jpg$', to: '/wp-content/uploads/2020/10/Serra-Stamp.jpg', permanent: true },
+
+    // 2020/12
+    { from: '^/wp-content/uploads/2020/12/cropped-original-free-nations-site-icon-1-180x180\\.png$', to: '/wp-content/uploads/2020/12/cropped-original-free-nations-site-icon-1-192x192.png', permanent: true },
+    { from: '^/wp-content/uploads/2020/12/cropped-original-free-nations-site-icon-1-32x32\\.png$', to: '/wp-content/uploads/2020/12/cropped-original-free-nations-site-icon-1-192x192.png', permanent: true },
+
+    // 2021/02
+    { from: '^/wp-content/uploads/2021/02/Apache-Ceremony-2-300x200\\.jpg$', to: '/wp-content/uploads/2021/02/Apache-Ceremony-2.jpg', permanent: true },
+
+    // 2021/04
+    { from: '^/wp-content/uploads/2021/04/Apache-Puberty-Ceremony-300x200\\.jpg$', to: '/wp-content/uploads/2021/04/Apache-Puberty-Ceremony.jpg', permanent: true },
+
+    // 2023/04
+    { from: '^/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2-1000x531\\.jpg$', to: '/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2-1024x543\\.jpg$', to: '/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2-300x159\\.jpg$', to: '/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2-450x239\\.jpg$', to: '/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2-540x287\\.jpg$', to: '/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2-768x408\\.jpg$', to: '/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2-840x446\\.jpg$', to: '/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2-900x478\\.jpg$', to: '/wp-content/uploads/2023/04/DoD-ShipOnOceanBlue2.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-1000x563\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-1024x576\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-1536x865\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-2048x1153\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-300x169\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-450x253\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-540x304\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-768x432\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-840x473\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016-900x507\\.jpg$', to: '/wp-content/uploads/2023/04/StevenNewcombPopeFrancis-2016.jpg', permanent: true },
+
+    // 2023/06
+    { from: '^/wp-content/uploads/2023/06/PiPLcover-217x300\\.jpg$', to: '/wp-content/uploads/2023/06/PiPLcover.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/PiPLcover-450x622\\.jpg$', to: '/wp-content/uploads/2023/06/PiPLcover.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/vatican-steve-newcomb-med-1000x750\\.jpg$', to: '/wp-content/uploads/2023/06/vatican-steve-newcomb-med.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/vatican-steve-newcomb-med-1024x768\\.jpg$', to: '/wp-content/uploads/2023/06/vatican-steve-newcomb-med.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/vatican-steve-newcomb-med-1536x1151\\.jpg$', to: '/wp-content/uploads/2023/06/vatican-steve-newcomb-med.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/vatican-steve-newcomb-med-300x225\\.jpg$', to: '/wp-content/uploads/2023/06/vatican-steve-newcomb-med.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/vatican-steve-newcomb-med-450x337\\.jpg$', to: '/wp-content/uploads/2023/06/vatican-steve-newcomb-med.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/vatican-steve-newcomb-med-540x405\\.jpg$', to: '/wp-content/uploads/2023/06/vatican-steve-newcomb-med.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/vatican-steve-newcomb-med-768x576\\.jpg$', to: '/wp-content/uploads/2023/06/vatican-steve-newcomb-med.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/vatican-steve-newcomb-med-840x630\\.jpg$', to: '/wp-content/uploads/2023/06/vatican-steve-newcomb-med.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/06/vatican-steve-newcomb-med-900x675\\.jpg$', to: '/wp-content/uploads/2023/06/vatican-steve-newcomb-med.jpg', permanent: true },
+
+    // 2023/08
+    { from: '^/wp-content/uploads/2023/08/1893Indian-1000x571\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/1893Indian-1024x585\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/1893Indian-1536x878\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/1893Indian-2048x1170\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/1893Indian-300x171\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/1893Indian-450x257\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/1893Indian-540x309\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/1893Indian-768x439\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/1893Indian-840x480\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/1893Indian-900x514\\.jpg$', to: '/wp-content/uploads/2023/08/1893Indian.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/BKSSN-WPR-1993-300x192\\.jpg$', to: '/wp-content/uploads/2023/08/BKSSN-WPR-1993.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/BKSSN-WPR-1993-450x288\\.jpg$', to: '/wp-content/uploads/2023/08/BKSSN-WPR-1993.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/BKSSN-WPR-1993-540x346\\.jpg$', to: '/wp-content/uploads/2023/08/BKSSN-WPR-1993.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/BKSSN-WPR-1993-768x492\\.jpg$', to: '/wp-content/uploads/2023/08/BKSSN-WPR-1993.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra-1000x592\\.jpg$', to: '/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra-1024x607\\.jpg$', to: '/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra-300x178\\.jpg$', to: '/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra-450x267\\.jpg$', to: '/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra-540x320\\.jpg$', to: '/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra-768x455\\.jpg$', to: '/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra-840x498\\.jpg$', to: '/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra-900x533\\.jpg$', to: '/wp-content/uploads/2023/08/GasparDePortolaAndJuniperioSerra.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/RadialCategoryOfDomination-300x215\\.jpg$', to: '/wp-content/uploads/2023/08/RadialCategoryOfDomination.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/RadialCategoryOfDomination-450x322\\.jpg$', to: '/wp-content/uploads/2023/08/RadialCategoryOfDomination.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/RadialCategoryOfDomination-540x387\\.jpg$', to: '/wp-content/uploads/2023/08/RadialCategoryOfDomination.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/RadialCategoryOfDomination-768x550\\.jpg$', to: '/wp-content/uploads/2023/08/RadialCategoryOfDomination.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/RadialCategoryOfDomination-840x601\\.jpg$', to: '/wp-content/uploads/2023/08/RadialCategoryOfDomination.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/SanFranciscoPeaks-JG-1000x666\\.jpg$', to: '/wp-content/uploads/2023/08/SanFranciscoPeaks-JG.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/SanFranciscoPeaks-JG-1024x682\\.jpg$', to: '/wp-content/uploads/2023/08/SanFranciscoPeaks-JG.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/SanFranciscoPeaks-JG-1536x1023\\.jpg$', to: '/wp-content/uploads/2023/08/SanFranciscoPeaks-JG.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/SanFranciscoPeaks-JG-300x200\\.jpg$', to: '/wp-content/uploads/2023/08/SanFranciscoPeaks-JG.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/SanFranciscoPeaks-JG-450x300\\.jpg$', to: '/wp-content/uploads/2023/08/SanFranciscoPeaks-JG.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/SanFranciscoPeaks-JG-540x360\\.jpg$', to: '/wp-content/uploads/2023/08/SanFranciscoPeaks-JG.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/SanFranciscoPeaks-JG-768x511\\.jpg$', to: '/wp-content/uploads/2023/08/SanFranciscoPeaks-JG.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/SanFranciscoPeaks-JG-840x559\\.jpg$', to: '/wp-content/uploads/2023/08/SanFranciscoPeaks-JG.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/SanFranciscoPeaks-JG-900x599\\.jpg$', to: '/wp-content/uploads/2023/08/SanFranciscoPeaks-JG.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/VaticanStmt-033023-300x77\\.jpg$', to: '/wp-content/uploads/2023/08/VaticanStmt-033023.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/VaticanStmt-033023-450x116\\.jpg$', to: '/wp-content/uploads/2023/08/VaticanStmt-033023.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/VaticanStmt-033023-540x139\\.jpg$', to: '/wp-content/uploads/2023/08/VaticanStmt-033023.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/VaticanStmt-033023-768x198\\.jpg$', to: '/wp-content/uploads/2023/08/VaticanStmt-033023.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/Woundedknee1891-1000x722\\.jpg$', to: '/wp-content/uploads/2023/08/Woundedknee1891.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/Woundedknee1891-1024x739\\.jpg$', to: '/wp-content/uploads/2023/08/Woundedknee1891.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/Woundedknee1891-300x217\\.jpg$', to: '/wp-content/uploads/2023/08/Woundedknee1891.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/Woundedknee1891-450x325\\.jpg$', to: '/wp-content/uploads/2023/08/Woundedknee1891.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/Woundedknee1891-540x390\\.jpg$', to: '/wp-content/uploads/2023/08/Woundedknee1891.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/Woundedknee1891-768x554\\.jpg$', to: '/wp-content/uploads/2023/08/Woundedknee1891.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/Woundedknee1891-840x606\\.jpg$', to: '/wp-content/uploads/2023/08/Woundedknee1891.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2023/08/Woundedknee1891-900x650\\.jpg$', to: '/wp-content/uploads/2023/08/Woundedknee1891.jpg', permanent: true },
+
+    // 2024/01
+    { from: '^/wp-content/uploads/2024/01/Doctrine-of-Discovery-Domination-Film-Screening-Jan-2024-257x300\\.png$', to: '/wp-content/uploads/2024/01/Doctrine-of-Discovery-Domination-Film-Screening-Jan-2024.png', permanent: true },
+
+    // 2025/05
+    { from: '^/wp-content/uploads/2025/05/Ojai-Event-flyer-may-1000x1294\\.png$', to: '/wp-content/uploads/2025/05/Ojai-Event-flyer-may.png', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/Ojai-Event-flyer-may-1187x1536\\.png$', to: '/wp-content/uploads/2025/05/Ojai-Event-flyer-may.png', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/Ojai-Event-flyer-may-232x300\\.png$', to: '/wp-content/uploads/2025/05/Ojai-Event-flyer-may.png', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/Ojai-Event-flyer-may-450x583\\.png$', to: '/wp-content/uploads/2025/05/Ojai-Event-flyer-may.png', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/Ojai-Event-flyer-may-540x699\\.png$', to: '/wp-content/uploads/2025/05/Ojai-Event-flyer-may.png', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/Ojai-Event-flyer-may-768x994\\.png$', to: '/wp-content/uploads/2025/05/Ojai-Event-flyer-may.png', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/Ojai-Event-flyer-may-791x1024\\.png$', to: '/wp-content/uploads/2025/05/Ojai-Event-flyer-may.png', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/Ojai-Event-flyer-may-840x1087\\.png$', to: '/wp-content/uploads/2025/05/Ojai-Event-flyer-may.png', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/Ojai-Event-flyer-may-900x1165\\.png$', to: '/wp-content/uploads/2025/05/Ojai-Event-flyer-may.png', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/https___cdn\\.evbuc_\\.com_images_1022283993_29644103259_1_original-300x150\\.jpg$', to: '/wp-content/uploads/2025/05/https___cdn.evbuc_.com_images_1022283993_29644103259_1_original-900x450.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/https___cdn\\.evbuc_\\.com_images_1022283993_29644103259_1_original-450x225\\.jpg$', to: '/wp-content/uploads/2025/05/https___cdn.evbuc_.com_images_1022283993_29644103259_1_original-900x450.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/https___cdn\\.evbuc_\\.com_images_1022283993_29644103259_1_original-540x270\\.jpg$', to: '/wp-content/uploads/2025/05/https___cdn.evbuc_.com_images_1022283993_29644103259_1_original-900x450.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/https___cdn\\.evbuc_\\.com_images_1022283993_29644103259_1_original-768x384\\.jpg$', to: '/wp-content/uploads/2025/05/https___cdn.evbuc_.com_images_1022283993_29644103259_1_original-900x450.jpg', permanent: true },
+    { from: '^/wp-content/uploads/2025/05/https___cdn\\.evbuc_\\.com_images_1022283993_29644103259_1_original-840x420\\.jpg$', to: '/wp-content/uploads/2025/05/https___cdn.evbuc_.com_images_1022283993_29644103259_1_original-900x450.jpg', permanent: true },
 
   ],
 }

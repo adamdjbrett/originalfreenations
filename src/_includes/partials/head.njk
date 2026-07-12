@@ -82,10 +82,13 @@
 </script>
 
 {#- Styles: one external stylesheet (large, cacheable) + one inline <style>.
-    fonts.css and darkmode.css are inlined below to save two render-blocking
-    requests; @font-face urls are rewritten from ../fonts/ to /assets/fonts/
-    because they are now relative to the HTML document.
-    If you edit src/assets/css/darkmode.css, re-sync the copy here.
+    fonts.css, typography.css and darkmode.css are inlined below to save
+    render-blocking requests. There are NO @font-face rules and NO font files:
+    fonts.css only redefines the theme's font vars to a system/local stack,
+    typography.css layers a fluid rem-based type scale on top, and both must
+    come after /assets/built/screen.css to win.
+    If you edit src/assets/css/darkmode.css, fonts.css or typography.css,
+    re-sync the copy here.
     Pagefind Component UI is no longer loaded in <head> — it is lazy-loaded
     on first search intent by /assets/js/pagefind-loader.js (see default.njk). -#}
 <link rel="stylesheet" href="/assets/built/screen.css">
@@ -103,17 +106,39 @@
 .gh-article-sidebar .gh-button-share:hover{border-color:rgba(0,0,0,.5)}
 :root[data-theme="dark"] .gh-article-sidebar .gh-button-share{color:rgba(255,255,255,.9);border-color:rgba(255,255,255,.22)}
 :root[data-theme="dark"] .gh-article-sidebar .gh-button-share:hover{border-color:rgba(255,255,255,.5)}
-/* --- fonts.css (inlined) --- */
-@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:optional;src:local(""),url("/assets/fonts/inter-v12-latin-regular.woff2") format("woff2"),url("/assets/fonts/inter-v12-latin-regular.woff") format("woff")}
-@font-face{font-family:Inter;font-style:normal;font-weight:500;font-display:optional;src:local(""),url("/assets/fonts/inter-v12-latin-500.woff2") format("woff2"),url("/assets/fonts/inter-v12-latin-500.woff") format("woff")}
-@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:optional;src:local(""),url("/assets/fonts/inter-v12-latin-600.woff2") format("woff2"),url("/assets/fonts/inter-v12-latin-600.woff") format("woff")}
-@font-face{font-family:Inter;font-style:normal;font-weight:700;font-display:optional;src:local(""),url("/assets/fonts/inter-v12-latin-700.woff2") format("woff2"),url("/assets/fonts/inter-v12-latin-700.woff") format("woff")}
-@font-face{font-family:Lora;font-style:normal;font-weight:400;font-display:optional;src:local(""),url("/assets/fonts/lora-v25-latin-regular.woff2") format("woff2"),url("/assets/fonts/lora-v25-latin-regular.woff") format("woff")}
-@font-face{font-family:Lora;font-style:normal;font-weight:500;font-display:optional;src:local(""),url("/assets/fonts/lora-v25-latin-500.woff2") format("woff2"),url("/assets/fonts/lora-v25-latin-500.woff") format("woff")}
-@font-face{font-family:Lora;font-style:normal;font-weight:600;font-display:optional;src:local(""),url("/assets/fonts/lora-v25-latin-600.woff2") format("woff2"),url("/assets/fonts/lora-v25-latin-600.woff") format("woff")}
-@font-face{font-family:Lora;font-style:normal;font-weight:700;font-display:optional;src:local(""),url("/assets/fonts/lora-v25-latin-700.woff2") format("woff2"),url("/assets/fonts/lora-v25-latin-700.woff") format("woff")}
-@font-face{font-family:Lora;font-style:italic;font-weight:400;font-display:optional;src:local(""),url("/assets/fonts/lora-v25-latin-italic.woff2") format("woff2"),url("/assets/fonts/lora-v25-latin-italic.woff") format("woff")}
-@font-face{font-family:Lora;font-style:italic;font-weight:700;font-display:optional;src:local(""),url("/assets/fonts/lora-v25-latin-700italic.woff2") format("woff2"),url("/assets/fonts/lora-v25-latin-700italic.woff") format("woff")}
+/* --- fonts.css (inlined) — system font stack, no web fonts, no font files --- */
+:root{--font-sans:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;--font-serif:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;--gh-font-heading:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;--gh-font-body:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif}
+body{font-family:Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif;font-weight:normal}
+code,kbd,pre,samp{font-family:var(--font-mono)}
+/* --- typography.css (inlined) — fluid modular type scale (320px→1440px, minor→major third).
+   1rem = 10px: the theme sets html{font-size:62.5%} — a percentage, NOT a px pin, so browser
+   font-size preferences still scale everything; do not pin html in px. Every clamp() keeps a
+   rem term in its preferred value so text stays zoomable (WCAG 1.4.4). --- */
+:root{--step--2:clamp(1.25rem, 1.241rem + 0.027vw, 1.28rem);--step--1:clamp(1.5rem, 1.471rem + 0.089vw, 1.6rem);--step-0:clamp(1.8rem, 1.743rem + 0.179vw, 2rem);--step-1:clamp(2.16rem, 2.063rem + 0.304vw, 2.5rem);--step-2:clamp(2.592rem, 2.44rem + 0.476vw, 3.125rem);--step-3:clamp(3.11rem, 2.883rem + 0.711vw, 3.906rem);--step-4:clamp(3.732rem, 3.404rem + 1.027vw, 4.883rem)}
+body{font-size:var(--step-0);line-height:1.6}
+.gh-content{font-size:var(--step-0)}
+h1,h2,h3,h4,h5,h6{line-height:1.15;text-wrap:balance}
+h1{font-size:var(--step-4)}
+h2,.gh-content h2{font-size:var(--step-3)}
+h3,.gh-content h3{font-size:var(--step-2)}
+h4{font-size:var(--step-1)}
+h5,h6{font-size:var(--step-0)}
+p{text-wrap:pretty}
+.gh-article-excerpt{font-size:var(--step-1)}
+.gh-article-tag{font-size:var(--step--2)}
+figcaption{font-size:var(--step--1)}
+code,kbd,samp{font-size:.875em}
+.gh-topic-grid .gh-card-title{font-size:var(--step-1)}
+.gh-topic-grid .gh-card.large .gh-card-title{font-size:var(--step-2)}
+.gh-topic-grid .gh-card.no-image.large .gh-card-title,.gh-topic-grid .gh-card.featured.large .gh-card-title{font-size:var(--step-4)}
+.gh-topic-grid .gh-card-excerpt,.gh-topic-grid .gh-card:not(.large) .gh-card-excerpt{font-size:var(--step-0)}
+.gh-topic-minimal .gh-card-title{font-size:var(--step-0)}
+.gh-topic-grid .gh-topic-name,.gh-topic-header .gh-topic-name{font-size:var(--step-1)}
+.gh-card-footer{font-size:var(--step--2)}
+.gh-pagehead-title{font-size:var(--step-2)}
+.gh-pagehead-description{font-size:var(--step-0)}
+.gh-head{font-size:var(--step--1)}
+.gh-foot-inner{font-size:var(--step--1)}
 /* --- darkmode.css (inlined) --- */
 :root{color-scheme:light;--gh-transition:color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease}
 :root[data-theme="dark"]{color-scheme:dark;--color-white:#16181c;--color-lighter-gray:#1c1f24;--color-light-gray:#2a2e35;--color-mid-gray:#3a3f47;--color-dark-gray:#c3c8d0;--color-darker-gray:#f3f4f6;--color-primary-text:#e6e8eb;--color-secondary-text:#a4abb4;--color-black:#ffffff;--background-color:#16181c}

@@ -1,69 +1,33 @@
-@font-face {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    src: local(""), url("../fonts/inter-v12-latin-regular.woff2") format("woff2"), url("../fonts/inter-v12-latin-regular.woff") format("woff");
+/* System font stack — this site ships NO web fonts and NO font files at all.
+   Text renders in whichever family below the visitor already has installed.
+   Do not reintroduce a font-face rule or a fonts directory here.
+
+   This file is INLINED into src/_includes/partials/head.njk (see the note at
+   the top of the <style> block there). Editing this file alone does nothing —
+   re-sync the inlined copy.
+
+   It loads after /assets/built/screen.css, so these :root values override the
+   vendored theme's --font-sans / --font-serif. --font-mono is deliberately
+   left alone so <code> and <pre> keep a monospace face. */
+
+:root {
+    /* stylelint-disable value-keyword-case */
+    --font-sans: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+    --font-serif: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+    --gh-font-heading: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+    --gh-font-body: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+    /* stylelint-enable value-keyword-case */
 }
 
-@font-face {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 500;
-    src: local(""), url("../fonts/inter-v12-latin-500.woff2") format("woff2"), url("../fonts/inter-v12-latin-500.woff") format("woff");
+body {
+    font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif; /* stylelint-disable-line value-keyword-case */
+    font-weight: normal;
 }
 
-@font-face {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    src: local(""), url("../fonts/inter-v12-latin-600.woff2") format("woff2"), url("../fonts/inter-v12-latin-600.woff") format("woff");
-}
-
-@font-face {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 700;
-    src: local(""), url("../fonts/inter-v12-latin-700.woff2") format("woff2"), url("../fonts/inter-v12-latin-700.woff") format("woff");
-}
-
-@font-face {
-    font-family: Lora;
-    font-style: normal;
-    font-weight: 400;
-    src: local(""), url("../fonts/lora-v25-latin-regular.woff2") format("woff2"), url("../fonts/lora-v25-latin-regular.woff") format("woff");
-}
-
-@font-face {
-    font-family: Lora;
-    font-style: normal;
-    font-weight: 500;
-    src: local(""), url("../fonts/lora-v25-latin-500.woff2") format("woff2"), url("../fonts/lora-v25-latin-500.woff") format("woff");
-}
-
-@font-face {
-    font-family: Lora;
-    font-style: normal;
-    font-weight: 600;
-    src: local(""), url("../fonts/lora-v25-latin-600.woff2") format("woff2"), url("../fonts/lora-v25-latin-600.woff") format("woff");
-}
-
-@font-face {
-    font-family: Lora;
-    font-style: normal;
-    font-weight: 700;
-    src: local(""), url("../fonts/lora-v25-latin-700.woff2") format("woff2"), url("../fonts/lora-v25-latin-700.woff") format("woff");
-}
-
-@font-face {
-    font-family: Lora;
-    font-style: italic;
-    font-weight: 400;
-    src: local(""), url("../fonts/lora-v25-latin-italic.woff2") format("woff2"), url("../fonts/lora-v25-latin-italic.woff") format("woff");
-}
-
-@font-face {
-    font-family: Lora;
-    font-style: italic;
-    font-weight: 700;
-    src: local(""), url("../fonts/lora-v25-latin-700italic.woff2") format("woff2"), url("../fonts/lora-v25-latin-700italic.woff") format("woff");
+/* Keep code in a monospace face — never inherit the sans stack. */
+code,
+kbd,
+pre,
+samp {
+    font-family: var(--font-mono);
 }

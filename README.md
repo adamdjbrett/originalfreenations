@@ -9,7 +9,8 @@ is the original WordPress export and is kept in the repo as the **migration
 source of truth** — if a post's body, date, tags or images look wrong, that file
 is the thing to check against. Do not delete it.
 
-## Elements needed
+## CHANGELOG
+## ELEMENTS NEEDED
 1. under the navbar make the homepage layout match <headline.ghost>
 2. make the footer match <headline.ghost.io>
 3. add the following to the 'gh-subscribe' class
@@ -21,6 +22,7 @@ is the thing to check against. Do not delete it.
 6. in the footer add a button with a link labeled `buy the book` <https://www.chicagoreviewpress.com/pagans-in-the-promised-land-products-9781555916428.php>
 7. add row of social media icons in the footer including <https://www.facebook.com/steventnewcomb> use phosphor icons <https://phosphoricons.com/?q=facebook>
 8. check that theme adapation is rather literal except for the additioanl buttons we added and light/darkmode
+
 
 
 ## Stack
