@@ -51,14 +51,17 @@
 					{% include "partials/search.njk" %}
 				</div>
 				<div class="gh-head-actions-right">
-					{%- set subUrl = metadata.subscribe_url or '#subscribe' -%}
-					<a class="gh-subscribe-btn gh-btn" href="{{ subUrl }}"{% if subUrl.startsWith('http') %} target="_blank" rel="noopener"{% endif %}>{{ 'Subscribe' | t }}</a>
+					<a class="gh-subscribe-btn gh-btn" href="{{ metadata.subscribe.url }}" target="_blank" rel="noopener">{{ metadata.subscribe.text }}</a>
+					<a style="margin-left: 10px;" class="gh-subscribe-outline-btn btn gh-btn" href="{{ metadata.podcast.url }}" target="_blank" rel="noopener">{{ metadata.podcast.text }}</a>
 				</div>
 			</div>
 		</div>
 	</header>
 
 	{{ content | safe }}
+
+
+{% include "partials/feed.njk" %}
 
 	<footer class="gh-foot gh-outer">
 		<div class="gh-foot-inner gh-inner">

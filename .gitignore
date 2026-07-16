@@ -7,6 +7,7 @@ dist/
 .env.*
 !.env.example
 .claude
+RAW/
 
 # SiteSucker crawl of the old WordPress site (51MB, 903 files).
 # Kept locally as a reference for the redirect map; not versioned.

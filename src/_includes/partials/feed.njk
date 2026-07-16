@@ -1,0 +1,15 @@
+<section class="gh-footer-feeds">
+    <div class="gh-container">
+        <div class="gh-feeds-grid">
+            {% for key, feed in metadata.feeds %}
+                <div class="gh-feed-card">
+                    <h3 class="gh-feed-title">{{ feed.title }}</h3>
+                    <p class="gh-feed-desc">{{ feed.desc }}</p>
+                    <a href="{{ feed.url }}" class="gh-feed-link" target="_blank" rel="noopener noreferrer">
+                        {{ feed.label }} →
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

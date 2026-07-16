@@ -2,16 +2,13 @@
 layout: layouts/default.njk
 bodyClass: tag-template
 pagination:
-  data: collections.tags
+  data: collections.topics
   size: 1
   alias: topic
-permalink: "/tag/{{ topic.slug }}/"
+permalink: "/tag/{{ topic.name | slug }}/"
 eleventyComputed:
   title: "{{ topic.name }}"
 ---
-{#- One page per TAG. `topic` carries its own newest-first `posts` array
-    (built in the single taxonomy pass in eleventy.config.js), so this
-    template never filters collections.posts. -#}
 <main class="gh-main gh-outer">
 	<div class="gh-inner">
 		<section class="gh-pagehead">
@@ -20,7 +17,7 @@ eleventyComputed:
 
 		<div class="gh-topic gh-topic-grid">
 			<div class="gh-topic-content gh-feed">
-				{% for post in topic.posts %}
+				{% for post in collections.posts | byTag(topic.name) %}
 					{% include "partials/loop-grid.njk" %}
 				{% endfor %}
 			</div>

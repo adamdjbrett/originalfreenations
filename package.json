@@ -1,7 +1,7 @@
 {
-  "name": "originalfreenations",
+  "name": "11ty-headline",
   "version": "1.0.0",
-  "description": "Original Free Nations — originalfreenations.com. Cutting-edge research for Indigenous Peoples' liberation. Eleventy v4 site using the 11ty-Headline theme.",
+  "description": "Headline — the Ghost local-news theme, converted to Eleventy (v4) with Nunjucks, Pagefind search, light/dark mode and Pages CMS. Originally a Ghost theme by Ghost Foundation; 11ty conversion by Adam DJ Brett.",
   "type": "module",
   "scripts": {
     "dev": "npx @11ty/eleventy --serve --quiet",
@@ -12,23 +12,21 @@
     "clean": "rm -rf _site"
   },
   "keywords": [
-    "originalfreenations",
-    "indigenous",
-    "doctrine-of-discovery",
     "eleventy",
     "11ty",
     "nunjucks",
+    "ghost-theme",
     "headline",
     "pagefind",
     "pagescms"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/adamdjbrett/originalfreenations.git"
+    "url": "git://github.com/adamdjbrett/11ty-Headline.git"
   },
   "author": {
     "name": "Adam DJ Brett",
-    "email": "adam@adamdjbrett.com",
+    "email": "info@adamdjbrett.com",
     "url": "https://adamdjbrett.com/"
   },
   "license": "MIT",
@@ -37,16 +35,25 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "4.0.0-alpha.10",
+    "@11ty/eleventy-img": "^6.0.4",
     "@awesome.me/buildawesome": "^4.0.0-alpha.10",
+    "axios": "^1.18.1",
+    "cheerio": "^1.2.0",
     "cross-env": "^10.1.0",
     "js-yaml": "^4.1.0",
-    "json5": "2.2.3",
     "luxon": "^3.7.2",
-    "pagefind": "^1.4.0"
+    "pagefind": "^1.4.0",
+    "turndown": "^7.2.4"
+  },
+  "allowScripts": {
+    "sharp@0.33.5": true
   },
   "dependencies": {
-    "markdown-it-anchor": "9.2.1",
-    "markdown-it-footnote": "4.0.0",
-    "markdown-it-table-of-contents": "1.2.0"
+    "@uncenter/eleventy-plugin-toc": "^2.1.2",
+    "markdown-it": "^14.3.0",
+    "markdown-it-anchor": "^9.2.1",
+    "markdown-it-attrs": "^5.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "slugify": "^1.6.9"
   }
 }

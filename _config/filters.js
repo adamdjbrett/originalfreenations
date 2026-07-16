@@ -2,6 +2,7 @@ import { DateTime } from "luxon";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import yaml from "js-yaml";
+import { statsSync } from "@11ty/eleventy-img";
 
 // Load the English locale strings once. Ghost's Headline theme ships value-less
 // entries (the key IS the English string), so `t` falls back to the key.
@@ -83,37 +84,63 @@ export default function (eleventyConfig) {
 		return parts.length > words ? parts.slice(0, words).join(" ") + "…" : text;
 	});
 
+	// --- LCP hero preload -----------------------------------------------------
+	// Build a <link rel=preload as=image imagesrcset> for a self-hosted hero
+	// image, using eleventy-img's SYNC stats so the URLs/hashes match exactly
+	// what the eleventyImageTransformPlugin emits (same widths/formats/quality).
+	// Starting the LCP image early (in <head>) shaves ~1s off LCP and stabilizes
+	// it. Kept in sync with the plugin options in eleventy.config.js.
+	// MUST mirror the eleventyImageTransformPlugin options exactly — the image
+	// hash is computed over the full options set, so any difference yields a
+	// different filename than the one the plugin actually writes.
+	const PRELOAD_OPTS = {
+		formats: ["avif", "webp", "auto"],
+		widths: ["auto", 300, 600, 960, 1200, 2000],
+		urlPath: "/assets/images/optimized/",
+		outputDir: "./_site/assets/images/optimized/",
+		sharpOptions: { animated: false },
+		sharpAvifOptions: { quality: 55 },
+		sharpWebpOptions: { quality: 66 },
+		sharpJpegOptions: { quality: 72, mozjpeg: true },
+	};
+	const preloadCache = new Map();
+	eleventyConfig.addFilter("heroPreload", (src, sizes = "100vw") => {
+		if (!src || String(src).startsWith("http")) return "";
+		const key = src + "|" + sizes;
+		if (preloadCache.has(key)) return preloadCache.get(key);
+		let out = "";
+		try {
+			const input = fileURLToPath(new URL("../src" + src, import.meta.url));
+			const stats = statsSync(input, PRELOAD_OPTS);
+			const avif = (stats && stats.avif) || [];
+			if (avif.length) {
+				const srcset = avif.map((e) => `${e.url} ${e.width}w`).join(", ");
+				out = `<link rel="preload" as="image" type="image/avif" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high">`;
+			}
+		} catch {
+			out = "";
+		}
+		preloadCache.set(key, out);
+		return out;
+	});
+
 	// --- Small array helpers used by the templates ----------------------------
 	eleventyConfig.addFilter("limit", (arr, n) => (Array.isArray(arr) ? arr.slice(0, n) : arr));
 	eleventyConfig.addFilter("head", (arr, n) => (Array.isArray(arr) ? arr.slice(0, n) : arr));
 	eleventyConfig.addFilter("skip", (arr, n) => (Array.isArray(arr) ? arr.slice(n) : arr));
 
-	// Resolve a post's author KEYS to full author objects from the global
-	// _data/siteAuthors.yaml list. `keys` may be a single key ("adam-brett"), a
-	// comma-separated string, or an array of keys — all normalize to an array.
-	// The global list is passed in explicitly by the templates:
-	//   post.data.authors | resolveAuthors(siteAuthors)
-	eleventyConfig.addFilter("resolveAuthors", (keys, siteAuthors) => {
-		if (!keys || !Array.isArray(siteAuthors)) return [];
-		const list = (Array.isArray(keys) ? keys : String(keys).split(","))
-			.filter((k) => typeof k === "string")
-			.map((k) => k.trim())
-			.filter(Boolean);
+	// Resolve author keys on a post to full author objects from _data/authors.
+	eleventyConfig.addFilter("resolveAuthors", (keys, authors) => {
+		if (!keys || !authors) return [];
+		const list = Array.isArray(keys) ? keys : String(keys).split(",").map((k) => k.trim());
 		return list
-			.map((key) => siteAuthors.find((a) => a && a.key === key))
+			.map((key) => authors.find((a) => a.key === key))
 			.filter(Boolean);
 	});
 
-	// Pick named terms out of a taxonomy collection, in the order given.
-	// Used by home.njk to turn theme.primary_section_tags (a list of NAMES) into
-	// the real term objects — which already carry their own `posts` array, so the
-	// topic partials never re-scan collections.posts. Unknown names drop out.
-	// (This replaced the old `byTag` filter, whose per-render rescan was the
-	// O(terms x posts) cost the taxonomy collections now pay exactly once.)
-	eleventyConfig.addFilter("pickTopics", (topics, names) =>
-		(names || [])
-			.map((name) => (topics || []).find((t) => t.name === name))
-			.filter(Boolean),
+	// Posts that carry a given tag.
+	eleventyConfig.addFilter("byTag", (posts, tag) =>
+		(posts || []).filter((p) => (p.data.tags || []).includes(tag)),
 	);
 
 	// Up to `n` other posts that share a public tag with the current post.
@@ -158,7 +185,7 @@ export default function (eleventyConfig) {
 		ld.author = (o.authors || []).map((a) => ({
 			"@type": "Person",
 			name: a.name,
-			url: o.siteUrl + "/author/" + a.key + "/",
+			url: o.siteUrl + "/author/" + a.slug + "/",
 		}));
 		return ld;
 	});

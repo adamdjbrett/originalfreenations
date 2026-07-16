@@ -1,0 +1,45 @@
+# Post authors (Ghost's author objects). `key` is referenced from post
+# front matter (`authors: [key]`) and builds the /author/<slug>/ archive.
+- key: adam-brett
+  name: Adam DJ Brett
+  slug: adam-brett
+  bio: Editor-in-chief. Writes about local government, civic tech and the news.
+  location: Syracuse, NY
+  profile_image: /assets/images/1633332755192-727a05c4013d.jpg
+  website: https://adamdjbrett.com
+  bluesky: https://bsky.app/profile/adamdjbrett.com
+  x: ""
+  mastodon: ""
+
+- key: steven-newcomb
+  name: Steven Newcomb
+  slug: steven-newcomb
+  bio: "Shawnee (Lenape), co-founder of the Indigenous Law Institute, author of “Pagans in the Promised Land: Decoding the Doctrine of Christian Discovery” and co-producer of the documentary “The Doctrine of Discovery: Unmasking the Domination Code”. Primary author of this site."
+  location: Kumeyaay Territory, San Diego, CA
+  profile_image: /assets/images/1633332755192-727a05c4013d.jpg
+  website: https://originalfreenations.com
+  bluesky: ""
+  x: ""
+  mastodon: ""
+
+- key: jamie-rivera
+  name: Jamie Rivera
+  slug: jamie-rivera
+  bio: City hall reporter covering budgets, zoning and the people affected by both.
+  location: Rochester, NY
+  profile_image: /assets/images/1494790108377-be9c29b29330.jpg
+  website: ""
+  bluesky: ""
+  x: ""
+  mastodon: https://mastodon.social/@jamie
+
+- key: anonymous
+  name: anonymous
+  slug: anonymous
+  bio: anonymous
+  location: anonymous
+  profile_image: /assets/images/1494790108377-be9c29b29330.jpg
+  website: ""
+  bluesky: ""
+  x: ""
+  mastodon: https://mastodon.social/@jamie

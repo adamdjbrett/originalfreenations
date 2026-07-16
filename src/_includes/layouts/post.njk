@@ -17,7 +17,6 @@ bodyClass: post-template
 		feature_image_caption: feature_image_caption,
 		authors: authors,
 		tags: tags,
-		categories: categories,
 		template: template
 	}
 } %}
@@ -58,11 +57,10 @@ bodyClass: post-template
 		</header>
 
 		<section class="gh-content gh-canvas e-content" itemprop="articleBody">
+			{% if show_toc %}<p>Contents</p>{{ content | toc | safe }}{% endif %}
 			{{ content | safe }}
 		</section>
 	</article>
-
-	{% include "partials/post-nav.njk" %}
 
 	{% include "partials/related-posts.njk" %}
 
@@ -90,12 +88,11 @@ bodyClass: post-template
 		</header>
 
 		<section class="gh-content gh-canvas e-content" itemprop="articleBody">
+			{% if show_toc %}<p>Contents</p>{{ content | toc | safe }}{% endif %}
 			{{ content | safe }}
 		</section>
 
 	</article>
-
-	{% include "partials/post-nav.njk" %}
 
 	{% include "partials/related-posts.njk" %}
 

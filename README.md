@@ -10,6 +10,19 @@ source of truth** — if a post's body, date, tags or images look wrong, that fi
 is the thing to check against. Do not delete it.
 
 ## CHANGELOG
+
+## 17 Jul 2026
++ Convert in to Headline 11ty
++ Add footernotes
++ Add markdown it anchor
++ Add TOC
+
+How to use toc :
+on your post please add this
+```
+shot_toc: true
+```
+
 ## ELEMENTS NEEDED
 1. under the navbar make the homepage layout match <headline.ghost>
 2. make the footer match <headline.ghost.io>

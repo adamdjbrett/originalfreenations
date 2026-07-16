@@ -6,7 +6,7 @@ body_font: Elegant serif          # "Modern sans-serif" | "Elegant serif"
 email_signup_text: "Original Free Nations is reader-supported. Help us continue this research and advocacy."
 footer_text: ""
 # Homepage topic sections. Leave blank to auto-pick the most-written-about tags.
-primary_section_tags: ["united-states", "supreme-court"]
-secondary_section_tags: ["christian-europeans", "domination-code"]
+primary_section_tags: ["federal-indian-law", "Supreme Court"]  
+secondary_section_tags: ["Christian Europeans", "Domination Code"]
 # Default light/dark preference before the visitor chooses ("light" | "dark").
 default_color_scheme: light
