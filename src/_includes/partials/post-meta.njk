@@ -1,9 +1,9 @@
 <aside class="gh-article-sidebar">
-    {%- set postAuthors = post.data.authors | resolveAuthors(siteAuthors) %}
+    {%- set postAuthors = post.data.authors | resolveAuthors(authors) %}
 
     <div class="gh-author-image-list instapaper_ignore">
         {% for a in postAuthors %}
-            <a class="gh-author-image" href="/author/{{ a.key }}/">
+            <a class="gh-author-image" href="/author/{{ a.slug }}/">
                 {% if a.profile_image %}
                     <img class="u-photo" itemprop="image" src="{{ a.profile_image }}" alt="{{ a.name }}">
                 {% else %}
@@ -16,7 +16,7 @@
     <div class="gh-author-name-list">
         {% for a in postAuthors %}
             <p class="gh-author-name p-author h-card" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                <a class="u-url" href="/author/{{ a.key }}/" itemprop="url"><span class="p-name" itemprop="name">{{ a.name }}</span></a>
+                <a class="u-url" href="/author/{{ a.slug }}/" itemprop="url"><span class="p-name" itemprop="name">{{ a.name }}</span></a>
             </p>
             {% if not loop.last %},&nbsp;{% endif %}
         {% endfor %}
@@ -34,7 +34,5 @@
     </div>
 
     <a href="#/share" class="gh-button-share">{{ "Share" | t }}</a>
-
-    {%- include "partials/post-taxonomy.njk" %}
 
 </aside>

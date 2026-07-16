@@ -1,0 +1,38 @@
+---
+title: "The U.S. Government’s Christian Nations Argument in Tee-Hit-Ton Indians v. United States (1955)"
+date: 2020-08-27
+custom_excerpt: "Sixty-six years ago, in November of 1954, the U.S. Justice Department submitted a bizarre argument to the Supreme Court in the case Tee-Hit-Ton Indians v. Unite"
+feature_image: ""
+feature_image_alt: ""
+feature_image_caption: ""
+authors: ["anonymous"]
+tags: ["federal-indian-law", "europe", "Supreme Court", "Tlingit Indians", "United States"]
+template: "wide-feature-image"
+bodyClass: "post-template has-wide-image"
+---
+
+Sixty-six years ago, in November of 1954, the U.S. Justice Department submitted a bizarre argument to the Supreme Court in the case _Tee-Hit-Ton Indians_ v. _United States_. The United States argued that the Tee-Hit-Ton Band of Tlingit Indians in Alaska should not receive monetary compensation for a taking of timber from their Tlingit territory. Why?  Because “the Christian nations of Europe” had claimed “sovereignty” and “acquired jurisdiction” over the lands of heathens and infidels during the so-called Age of Discovery.
+
+The religious metaphors in the U.S. Justice Department’s legal brief—including citations to Genesis and Psalms in the Old Testament of the Bible—tell us that the United States government was arguing on the basis of the Christian religion that the Tlingit Indians should not be paid for a taking of their timber. The United States won that argument in a majority opinion that was written by Justice Stanley Reed, and issued by the Supreme Court in February of 1955. I was born two months after the ruling was delivered.
+
+As nations and peoples that were invaded and to a great extent shattered by the nations of Western Christendom, we as Native peoples are constantly attempting to come to terms with the United States’ version of “reality,” past and present. Yet for some reason, federal-indian-law scholars have made no effort to come to terms with the fact that in 1954, the same year that the Supreme Court overturned Plessy v. Ferguson and the Separate But Equal Doctrine, the United States government used the Bible and the Christian religion, along with papal documents from the Fifteenth Century as the basis for its arguments in a U.S. legal brief.  
+
+Unfortunately, prior to 1955 the Supreme Court did not audio record oral arguments, except in highly important cases. Tee-Hit-Ton Indians was not deemed to be one of those cases. A thorough search by a librarian at UMass/Amherst revealed that no written transcript was kept of the U.S. government’s argument in _Tee-Hit-Ton Indians_ v. _United States_. What we do have, however, is the actual U.S. legal brief in that case. And, as stated above, I have not found a single example of a federal-indian-law practitioner, in a book or law review article, quoting the Christian religious metaphors used by the United States government in its argument to the Supreme Court in _Tee-Hit-Ton Indians_ v. _United States_.
+
+Importantly, a few Native scholars have put together the metaphors they are accustomed to using, and what they have discerned from the written record, or interpretations of the written record by other scholars. U.S. federal-indian-law attorneys have not mentioned the Christian religious dimension of U.S. federal-indian-law in their accounts of the past.
+
+Justice Stanley Reed, who wrote the majority ruling in _Tee-Hit-Ton_, expressed his interpretation of the _Johnson_ ruling in a 1946 dissenting opinion in the case _Alcea Band of Tillamooks_. Reed said that the _Johnson_ ruling was based on the theory that “discovery by Christian nations gave them sovereignty over and title to the lands discovered.” He tacitly or covertly cited to this same view in the _Tee-Hit-Ton Indians_ majority opinion by citing to the chapter “Property” (Chapter V) in Henry Wheaton’s _Elements of International Law_, which expressed a contrast between the domination of Christian nations of Europe and the subordination of non-Christian Indians.
+
+Scholarly accounts of “the past” filter out the Christian/heathen, infidel categories in U.S. federal-indian-law and policy. This is certainly a factor when it comes to an ability to challenge the idea-patterns that I now typically call “the doctrine of Christian discovery and domination.” We have no access to “unfiltered” “truth” about the ancient historical record, especially from our distant vantage point in the second decade of the 21st century. What we do have are endless streams of scholarly and highly contested interpretations, all of which are vying for recognition as the _true_ reality.
+
+Yet the silences—what does not get discussed—are often more important than what does get discussed. Take, political science professor David Wilkins (Lumbee) as one example. In an article about the doctrine of discovery he wrote from year ago, Wilkins said that Stanley Reed’s majority decision in Tee-Hit-Ton Indians “ranks among the most glaring and racist misrepresentations of fact ever uttered by a Supreme Court justice.”
+
+Wilkins obviously has no problem expressing his outrage when it comes what he sees as race and racism in U.S. law. But is he not equally outraged by the United States’ use of the Christian religion and the categories “heathen” and “infidel” against our nations and peoples in the U.S. legal argument in Tee-Hit-Ton Indians, and by the U.S. Supreme Court’s endorsement of that language by citing to the religious language in Henry Wheaton’s Elements of International Law?
+
+I sent the pertinent language from the U.S. legal brief in _Tee-Hit-Ton Indians_ to another federal-indian-law scholar some years ago. When I later asked him about it, he replied: “I’m not going to read that.” No clarification as to why. Just a flat out refusal to even so much as read the Christian/ heathen, infidel religious language in the U.S. legal brief in Tee-Hit-Ton, along with its reference to the Old Testament.
+
+I expecting a more nuanced response from Wilkins, but he says that “the historical record, both written and oral shows that legal ownership remained with the tribal nations.” Yet, he neglected to acknowledge a presumed right of domination on the part of the United States government with regard to Native nations. As to what Wilkins means by “legal ownership” when applied to Indian nations, he does provide a clue when he says that the doctrine of discovery “affirmed that tribal nations were the “rightful occupants of the soil” and had “a legal and just claim to retain possession of it, and to use it according to their own discretion.”
+
+Yet in 2014, the Ninth Circuit Court of Appeals said in _White_ v. _University of California_ that the right of “occupancy” “is not a property right,” while citing to _Johnson_ v. _M’Intosh_ and _Tee-Hit-Ton Indians_ v. _United States_ for documentation. We might ask Professor Wilkins, “What kind of ‘legal ownership is it that supposedly ‘remained with the tribal nations,’ given that in August 2014 the Ninth Circuit Court of Appeals said that that Indian title of ‘aboriginal occupancy’ is an ‘aboriginal interest’ but ‘not a property right?’”
+
+You really have to wonder whether federal-indian-law practitioners are ever going to challenge the Christian religious basis for the claim by the United States that Indian “occupancy” is “not a property right” based on a distinction between the Christian nations of Europe and their successors, and heathens and infidels nations?” Where is the outrage in Indian Country over the use of Christianity by the U.S. courts to claim a right of domination against our Native nations and peoples? – Steven Newcomb

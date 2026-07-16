@@ -18,7 +18,7 @@ eleventyExcludeFromCollections: true
 			"content_html": {{ post.content | dump | safe }},
 			"date_published": {{ (post.date | rfc3339) | dump | safe }},
 			"authors": [
-				{%- for a in (post.data.authors | resolveAuthors(siteAuthors)) %}
+				{%- for a in (post.data.authors | resolveAuthors(authors)) %}
 				{ "name": {{ a.name | dump | safe }} }{% if not loop.last %},{% endif %}
 				{%- endfor %}
 			]

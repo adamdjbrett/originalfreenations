@@ -1,57 +1,13 @@
 import { execSync } from "node:child_process";
-import { readFileSync, writeFileSync } from "node:fs";
-import JSON5 from "json5";
 import yaml from "js-yaml";
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import pluginFilters from "./_config/filters.js";
-import pluginMarkdown from "./_config/markdown.js";
-
-/**
- * Emit the redirect map into the built site.
- *
- * `_redirects.json` (JSON5) at the repo root is the single source of truth. It is
- * PARSED here rather than blindly copied, so a syntax error fails the build loudly
- * instead of silently shipping a site with no redirects — the exact failure mode
- * xmit's docs warn about ("the redirects just silently won't do anything").
- *
- * Two files are written to the site root:
- *   _redirects.json — the source map, verbatim
- *   xmit.toml       — generated, because xmit's documented redirect format is TOML
- *                     ([[redirects]] with a regex `from`, a `to` supporting $1
- *                     capture groups, and `permanent`). Generating it from the JSON5
- *                     keeps one authoring format and one source of truth.
- */
-function emitRedirects(outputDir) {
-	const src = readFileSync("_redirects.json", "utf8");
-	const { redirects } = JSON5.parse(src); // throws on malformed input -> build fails
-
-	if (!Array.isArray(redirects) || redirects.length === 0) {
-		throw new Error("[redirects] _redirects.json parsed but contains no rules");
-	}
-	for (const [i, r] of redirects.entries()) {
-		if (!r.from || !r.to) {
-			throw new Error(`[redirects] rule ${i} is missing \`from\` or \`to\``);
-		}
-		new RegExp(r.from); // throws on an invalid pattern -> build fails
-	}
-
-	const esc = (s) => String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
-	const toml = [
-		"# GENERATED — do not edit. Source of truth: _redirects.json (JSON5).",
-		"# Regenerated on every `npm run build` by eleventy.config.js.",
-		"",
-		...redirects.flatMap((r) => [
-			"[[redirects]]",
-			`from = "${esc(r.from)}"`,
-			`to = "${esc(r.to)}"`,
-			...(r.permanent ? ["permanent = true"] : []),
-			"",
-		]),
-	].join("\n");
-
-	writeFileSync(`${outputDir}/_redirects.json`, src);
-	writeFileSync(`${outputDir}/xmit.toml`, toml);
-	console.log(`[redirects] wrote ${redirects.length} rules to _redirects.json + xmit.toml`);
-}
+import markdownIt from "markdown-it";
+import markdownItAttrs from 'markdown-it-attrs';
+import markdownItAnchor from 'markdown-it-anchor';
+import markdownItFootnote from "markdown-it-footnote";
+import slugify from "slugify";
+import pluginTOC from '@uncenter/eleventy-plugin-toc';
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
@@ -60,18 +16,11 @@ export default async function (eleventyConfig) {
 	// ---------------------------------------------------------------------------
 	eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
-	// Drafts are never written — not in `build`, not in `--serve`. Two rules,
-	// either one alone is enough to withhold a page:
-	//
-	//   1. `published: false` in front matter (or inherited from directory data)
-	//   2. the file lives under src/_drafts/
-	//
-	// Rule 2 is checked against inputPath rather than leaning on the `published`
-	// flag, so a stray `published: true` inside src/_drafts/ cannot leak a draft
-	// onto the site. To publish a draft, MOVE it into src/content/posts/.
+	// Drafts: a post is a draft when `published: false` (or it lives in
+	// src/_drafts/, whose directory data defaults published to false). Drafts
+	// are excluded from production builds but render in --serve for preview.
 	eleventyConfig.addPreprocessor("drafts", "*", (data) => {
-		const inDraftsDir = (data.page?.inputPath || "").includes("/_drafts/");
-		if (data.published === false || inDraftsDir) {
+		if (data.published === false && process.env.ELEVENTY_RUN_MODE === "build") {
 			return false;
 		}
 	});
@@ -84,7 +33,6 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addWatchTarget("src/assets/css/**/*.css");
 	eleventyConfig.addWatchTarget("src/assets/js/**/*.js");
-	eleventyConfig.addWatchTarget("_redirects.json");
 
 	// ---------------------------------------------------------------------------
 	// Filters & shortcodes (t, dates, reading time, image helpers, …)
@@ -92,96 +40,98 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPlugin(pluginFilters);
 
 	// ---------------------------------------------------------------------------
-	// Markdown pipeline — footnotes, opt-in TOC (`toc: true`), [caption] shortcode
+	// Images — optimize every local <img> in the built HTML to AVIF/WebP with
+	// a responsive srcset + explicit width/height (kills CLS and "properly
+	// size images" / "next-gen formats" Lighthouse failures). Feature images
+	// are self-hosted under /assets/images/ so builds are network-free and
+	// reproducible. Per-image loading/fetchpriority/sizes come from the tags.
 	// ---------------------------------------------------------------------------
-	eleventyConfig.addPlugin(pluginMarkdown);
-
-	// ---------------------------------------------------------------------------
-	// Collections — TWO INDEPENDENT TAXONOMIES, BUILT IN ONE PASS
-	// ---------------------------------------------------------------------------
-	// `tags` and `categories` are separate archives (/tag/<slug>/ and
-	// /category/<slug>/). Both, plus the sorted `posts` list they are derived from,
-	// come out of a SINGLE iteration over the posts, memoized for the run:
-	//
-	//   * posts are sorted newest-first ONCE, before the loop, so every term's
-	//     `posts` array is already newest-first — no per-term sort.
-	//   * each term is slugged ONCE here, not on every template render.
-	//   * each term CARRIES ITS OWN POSTS, so an archive template just iterates
-	//     `term.posts`. Nothing re-scans the post list per page (the old
-	//     `collections.posts | byTag(name)` inside tags.njk was O(terms x posts)).
-	//
-	// Term shape: { name, slug, count, posts }.
-	//
-	// `featured` is an internal editorial flag, not a public archive term; `posts`,
-	// `all` and `page` are Eleventy/theme plumbing. None of them get an archive.
-	const INTERNAL_TERMS = new Set(["posts", "all", "featured", "page"]);
-
-	let taxonomyCache = null;
-	eleventyConfig.on("eleventy.before", () => {
-		taxonomyCache = null; // content changed (or --watch re-ran) — recompute
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		extensions: "html",
+		formats: ["avif", "webp", "auto"],
+		widths: ["auto", 300, 600, 960, 1200, 2000],
+		sharpOptions: { animated: false },
+		sharpAvifOptions: { quality: 55 },
+		sharpWebpOptions: { quality: 66 },
+		sharpJpegOptions: { quality: 72, mozjpeg: true },
+		defaultAttributes: {
+			loading: "lazy",
+			decoding: "async",
+			sizes: "(max-width: 1200px) 100vw, 1200px",
+		},
+		urlPath: "/assets/images/optimized/",
+		outputDir: "./_site/assets/images/optimized/",
 	});
 
-	function taxonomies(api) {
-		if (taxonomyCache) return taxonomyCache;
+	eleventyConfig.addPlugin(pluginTOC, {
+        tags: ['h2', 'h3', 'h4'],
+        wrapper: function(toc) {
+            return `<nav class="toc">${toc}</nav>`;
+        }
+    });
 
-		const slugify = eleventyConfig.getFilter("slugify");
-		const posts = api.getFilteredByTag("posts").sort((a, b) => b.date - a.date);
-		const categories = new Map();
-		const tags = new Map();
+	 eleventyConfig.addFilter("slug", function(str, options = {}) {
+        if (!str) return "";
+        options.lower ??= true;
+        return slugify("" + str, options);
+    });
 
-		const collect = (map, names, post) => {
-			for (const name of names || []) {
-				if (INTERNAL_TERMS.has(name)) continue;
-				let term = map.get(name);
-				if (!term) {
-					term = { name, slug: slugify(name), count: 0, posts: [] };
-					map.set(name, term);
-				}
-				term.posts.push(post); // `posts` is pre-sorted -> so is this
-				term.count = term.posts.length;
-			}
-		};
+eleventyConfig.setLibrary("md", markdownIt({
+    html: true,
+    linkify: true,
+    typographer: true
+})
+.use(markdownItFootnote)
+.use(markdownItAnchor, {
+    level: [2, 3, 4],
+    slugify: function(str) {
+        if (typeof this._headingCounter === 'undefined') {
+            this._headingCounter = 0;
+        }
+        this._headingCounter++;
+        return `S${this._headingCounter}`;
+    }
+}));
 
-		for (const post of posts) {
-			collect(categories, post.data.categories, post);
-			collect(tags, post.data.tags, post);
-		}
 
-		// Busiest term first, ties broken alphabetically for a stable build.
-		const byCount = (map) =>
-			[...map.values()].sort(
-				(a, b) => b.count - a.count || a.name.localeCompare(b.name),
-			);
-
-		taxonomyCache = {
-			posts,
-			categories: byCount(categories),
-			tags: byCount(tags),
-		};
-		return taxonomyCache;
-	}
-
+	// ---------------------------------------------------------------------------
+	// Collections
+	// ---------------------------------------------------------------------------
 	// All published posts, newest first.
-	eleventyConfig.addCollection("posts", (api) => taxonomies(api).posts);
+	eleventyConfig.addCollection("posts", (api) =>
+		api.getFilteredByTag("posts").sort((a, b) => b.date - a.date),
+	);
 
-	// /category/<slug>/ — src/categories.njk paginates this.
-	eleventyConfig.addCollection("categories", (api) => taxonomies(api).categories);
-
-	// /tag/<slug>/ — src/tags.njk paginates this.
-	eleventyConfig.addCollection("tags", (api) => taxonomies(api).tags);
-
-	// `topics` = the TAG taxonomy under its theme-facing name (home.njk's topic
-	// sections). Same array, same objects as `collections.tags` — the single pass
-	// above is not repeated.
-	eleventyConfig.addCollection("topics", (api) => taxonomies(api).tags);
-
-	// ---------------------------------------------------------------------------
-	// Redirects — emitted on EVERY run (build and --serve), so a broken
-	// _redirects.json surfaces in dev rather than at deploy time.
-	// ---------------------------------------------------------------------------
-	eleventyConfig.on("eleventy.after", ({ dir }) => {
-		emitRedirects(dir.output);
+	// Unique post tags (excluding internal tags) with their post counts,
+	// ordered by count desc — used for the homepage topic sections.
+	eleventyConfig.addCollection("topics", (api) => {
+		const excluded = new Set(["posts", "all", "featured", "page"]);
+		const counts = new Map();
+		for (const item of api.getFilteredByTag("posts")) {
+			for (const tag of item.data.tags || []) {
+				if (excluded.has(tag)) continue;
+				counts.set(tag, (counts.get(tag) || 0) + 1);
+			}
+		}
+		return [...counts.entries()]
+			.map(([name, count]) => ({ name, count }))
+			.sort((a, b) => b.count - a.count);
 	});
+
+	eleventyConfig.addFilter("findTopicByName", function(topics, name) {
+	if (!topics || !name) return null;
+	return topics.find(t => t.name.toLowerCase() === name.toLowerCase());
+});
+	
+	  eleventyConfig.addFilter("byTag", function(posts, tagName) {
+    if (!posts || !tagName) return [];
+    return posts.filter(post => {
+      const tags = post.data.tags || [];
+      return tags.some(tag => tag.toLowerCase() === tagName.toLowerCase());
+    });
+  });
+
+  
 
 	// ---------------------------------------------------------------------------
 	// Pagefind — build-only: index the site after production builds
