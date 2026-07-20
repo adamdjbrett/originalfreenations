@@ -1,3 +1,4 @@
+[![Deploy Eleventy to XMIT](https://github.com/adamdjbrett/originalfreenations/actions/workflows/xmit-deploy.yml/badge.svg)](https://github.com/adamdjbrett/originalfreenations/actions/workflows/xmit-deploy.yml)
 # originalfreenations.com
 
 **Original Free Nations** — cutting-edge research for Indigenous Peoples'
