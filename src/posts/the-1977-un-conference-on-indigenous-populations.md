@@ -5,7 +5,8 @@ custom_excerpt: "The International Indian Treaty Council&#8217;s Intervention In
 feature_image: "/assets/images/UN-Conference-1977.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "IITC", "Max Weber", "UN"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

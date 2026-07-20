@@ -5,7 +5,8 @@ custom_excerpt: "Years ago I was visiting the John Carter Brown Library at the B
 feature_image: "/assets/images/Brown_university_john_carter_brown_lib-1024x680.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "American Indians", "Christian Europeans", "Columbus Day", "Western Hemisphere"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

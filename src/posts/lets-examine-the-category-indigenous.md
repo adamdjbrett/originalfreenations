@@ -5,7 +5,8 @@ custom_excerpt: "We begin with the entirety of a People that is living in a part
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "First People", "Second People"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

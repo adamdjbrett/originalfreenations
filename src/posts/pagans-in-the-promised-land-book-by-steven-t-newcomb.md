@@ -5,7 +5,8 @@ custom_excerpt: "Pagans explains how Christendom&#8217;s system of domination co
 feature_image: "/assets/images/StevenNewcombPopeFrancis-2016.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["doctrine of discovery","featured"]
 tags: ["doctrine of discovery", "featured"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

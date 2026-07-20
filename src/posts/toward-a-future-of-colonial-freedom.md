@@ -5,7 +5,8 @@ custom_excerpt: "When people these days discuss the United Nations (UN) Declarat
 feature_image: "/assets/images/Priest-Statue-e1519675938244.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["Archive"]
 tags: ["Archive", "American Indian", "Colonial Charter", "Colonial Freedom", "Laura Thompson"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

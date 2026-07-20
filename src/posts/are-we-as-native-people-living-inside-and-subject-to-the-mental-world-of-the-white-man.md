@@ -5,7 +5,8 @@ custom_excerpt: "In Red Man’s Land—White Man’s Law (1971), Wilcomb Washbur
 feature_image: "/assets/images/washburn.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Christian Europeans", "Land White Man", "Red Man", "Wilcomb Washburn"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

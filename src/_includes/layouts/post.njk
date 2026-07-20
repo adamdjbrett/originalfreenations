@@ -17,10 +17,12 @@ bodyClass: post-template
 		feature_image_caption: feature_image_caption,
 		authors: authors,
 		tags: tags,
+		categories: categories,
 		template: template
 	}
 } %}
 {% set primaryTag = (tags | publicTags)[0] %}
+{% set primaryCategory = categories[0] %}
 
 {% if template == "full-feature-image" %}
 {#- custom-full-feature-image.hbs: full-bleed cover, then article -#}
@@ -37,7 +39,9 @@ bodyClass: post-template
 		>
 
 		<div class="gh-cover-content">
-			{% if primaryTag %}
+			{% if primaryCategory %}
+				<a class="gh-article-tag" href="/category/{{ primaryCategory | slug }}/">{{ primaryCategory }}</a>
+			{% elif primaryTag %}
 				<a class="gh-article-tag" href="/tag/{{ primaryTag | slug }}/">{{ primaryTag }}</a>
 			{% endif %}
 
@@ -47,7 +51,9 @@ bodyClass: post-template
 {% endif %}
 
 <main class="gh-main">
+	{% include "partials/breadcrumbs.njk" %}
 	<article class="gh-article post h-entry" data-pagefind-body itemscope itemtype="https://schema.org/BlogPosting">
+		<a class="u-url" href="{{ page.url }}" hidden aria-hidden="true"></a>
 		<header class="gh-article-header gh-canvas">
 			{% include "partials/post-meta.njk" %}
 
@@ -69,10 +75,14 @@ bodyClass: post-template
 {% else %}
 {#- post.hbs (default, also used for "wide-feature-image") -#}
 <main class="gh-main">
+	{% include "partials/breadcrumbs.njk" %}
 	<article class="gh-article post h-entry" data-pagefind-body itemscope itemtype="https://schema.org/BlogPosting">
+		<a class="u-url" href="{{ page.url }}" hidden aria-hidden="true"></a>
 
 		<header class="gh-article-header gh-canvas">
-			{% if primaryTag %}
+			{% if primaryCategory %}
+				<a class="gh-article-tag" href="/category/{{ primaryCategory | slug }}/">{{ primaryCategory }}</a>
+			{% elif primaryTag %}
 				<a class="gh-article-tag" href="/tag/{{ primaryTag | slug }}/">{{ primaryTag }}</a>
 			{% endif %}
 

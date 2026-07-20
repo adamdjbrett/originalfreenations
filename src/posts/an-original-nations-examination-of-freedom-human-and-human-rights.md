@@ -5,7 +5,8 @@ custom_excerpt: "In our view, the claim of a right of domination, and the behavi
 feature_image: "/assets/images/BKSSN-WPR-1993.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["doctrine of discovery","featured","federal Indian law","Religion"]
 tags: ["doctrine of discovery", "featured", "federal-indian-law", "Religion", "Catholic Church", "Christian Europeans", "Domination Code", "federal-indian-law", "Inter Caetera", "Original Free Nations", "Original Nations", "Pope Alexander", "Steven Newcomb", "Western Christendom"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

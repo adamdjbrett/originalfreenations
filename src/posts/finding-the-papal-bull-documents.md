@@ -5,7 +5,8 @@ custom_excerpt: "In 1988, I realized that I had never actually read the original
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Carnegie Institution", "Catholic Church", "Catholic Diocese", "Red Man"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

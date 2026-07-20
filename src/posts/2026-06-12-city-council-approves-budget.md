@@ -5,7 +5,7 @@ custom_excerpt: "The 7–2 vote keeps the property tax rate flat and doubles the
 feature_image: /assets/images/1477959858617-67f85cf4f1df.jpg
 feature_image_alt: A city hall building lit at dusk with downtown towers behind it
 feature_image_caption: City Hall on Thursday evening, hours before the final budget vote.
-authors: [jamie-rivera]
+authors: [steven-newcomb]
 tags: [politics]
 template: post
 ---

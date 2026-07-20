@@ -5,7 +5,8 @@ custom_excerpt: "Sixty-six years ago, in November of 1954, the U.S. Justice Depa
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "europe", "Supreme Court", "Tlingit Indians", "United States"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

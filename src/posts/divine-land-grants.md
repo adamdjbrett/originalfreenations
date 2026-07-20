@@ -5,7 +5,8 @@ custom_excerpt: "by Paul Gilk “The disclosure of a myth is deemed academic as 
 feature_image: "/assets/images/Best-Gilk-768x1024.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Old Testament Yahweh", "Roman Empire", "Steven Newcomb", "YHWH"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

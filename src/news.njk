@@ -1,0 +1,58 @@
+---
+layout: layouts/default.njk
+bodyClass: paged-template
+title: News
+description: News and commentary from Original Nations Advocates.
+pagination:
+  data: collections.posts
+  size: 15
+  alias: newsPosts
+permalink: "/news/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+---
+<main class="gh-main gh-outer">
+  <div class="gh-inner">
+    <section class="gh-pagehead">
+      <h1 class="gh-pagehead-title">{{ title }}</h1>
+      <p class="gh-pagehead-description">{{ description }}</p>
+    </section>
+
+    <section class="gh-topic gh-topic-grid" aria-label="News posts">
+      <div class="gh-topic-content gh-feed">
+        {% for post in newsPosts %}
+          {% set postDescription = post.data.description or post.data.custom_excerpt or (post.content | excerpt(40)) %}
+          <article class="gh-card h-entry" itemscope itemtype="https://schema.org/BlogPosting">
+            <a class="gh-card-link u-url" itemprop="url" href="{{ post.url }}">
+              {% if post.data.feature_image %}
+                <figure class="gh-card-image">
+                  <img src="{{ post.data.feature_image }}"
+                    alt="{{ post.data.feature_image_alt or post.data.title }}"
+                    loading="lazy" decoding="async">
+                </figure>
+              {% endif %}
+              <div class="gh-card-wrapper">
+                <header class="gh-card-header">
+                  <h2 class="gh-card-title p-name" itemprop="headline">{{ post.data.title }}</h2>
+                </header>
+                {% if postDescription %}
+                  <div class="gh-card-excerpt p-summary">{{ postDescription }}</div>
+                {% endif %}
+                <span class="gh-btn">Read more</span>
+              </div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% if pagination.href.previous or pagination.href.next %}
+      <nav class="gh-pagination" aria-label="News pagination">
+        {% if pagination.href.previous %}
+          <a class="gh-pagination-newer" href="{{ pagination.href.previous }}">Newer Posts</a>
+        {% endif %}
+        {% if pagination.href.next %}
+          <a class="gh-pagination-older" href="{{ pagination.href.next }}">Older Posts</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </div>
+</main>

@@ -5,7 +5,8 @@ custom_excerpt: "What has been typically called &#8220;The Doctrine of Discovery
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["Biblical","Culture","doctrine of discovery","Politics"]
 tags: ["Biblical", "culture", "doctrine of discovery", "politics", "John Cabot", "Supreme Court"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

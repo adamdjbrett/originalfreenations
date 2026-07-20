@@ -5,7 +5,8 @@ custom_excerpt: "The Doctrine of Discovery: Unmasking the Domination Code The fi
 feature_image: "/assets/images/DoD-ShipOnOceanBlue2.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["doctrine of discovery","featured","federal Indian law"]
 tags: ["doctrine of discovery", "featured", "federal-indian-law"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

@@ -5,7 +5,8 @@ custom_excerpt: "One of the most significant sections of the Johnson v. McIntosh
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Christian European", "Steven Newcomb", "Supreme Court", "United States"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

@@ -5,7 +5,8 @@ custom_excerpt: "Let’s take a closer look at the Truth and Reconciliation proc
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "canada", "Final Report", "Original Nations", "TRC"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

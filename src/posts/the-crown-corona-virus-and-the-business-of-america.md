@@ -5,7 +5,8 @@ custom_excerpt: "The Business of America is Business"
 feature_image: "/assets/images/7F7DA522-FD69-4E0E-ADD3-B734240C1DE7_1_201_a-188x300.jpeg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["American Dream","Corona Virus","Culture","News","Politics"]
 tags: ["American Dream", "Corona Virus", "culture", "News", "politics", "Ame Rica", "American Indian", "Body Politic", "Colonization", "Crown Virus", "Pandemic", "Predator Society"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

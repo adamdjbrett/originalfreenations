@@ -5,7 +5,8 @@ custom_excerpt: "Tecumseh’s Speech: The following is a speech by the great Sha
 feature_image: "/assets/images/Tecumseh02-1.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["Biblical","Culture","doctrine of discovery","federal Indian law","Legal","Politics","Religion","Tecumseh-Shawnee Leader"]
 tags: ["Biblical", "culture", "doctrine of discovery", "federal-indian-law", "Legal", "politics", "Religion", "Tecumseh-Shawnee Leader", "Chief Harmar", "Chief Simon Pokagon", "Fort Harmar", "Great Lakes"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

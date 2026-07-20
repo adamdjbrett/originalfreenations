@@ -5,7 +5,8 @@ custom_excerpt: "Ever since the election of Donald J. Trump as President of the 
 feature_image: "/assets/images/Slave-Ship-169x300.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "During Roman", "South Africa", "Supreme Court", "United States"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

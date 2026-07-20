@@ -5,7 +5,8 @@ custom_excerpt: "As a young Shawnee, Lenape person trying to gain a better under
 feature_image: "/assets/images/IMG_3765-x1000.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["Archive","Biblical","Culture","doctrine of discovery","Legal","News","Politics","Religion"]
 tags: ["Archive", "Biblical", "culture", "doctrine of discovery", "Legal", "News", "politics", "Religion", "Vine Deloria"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

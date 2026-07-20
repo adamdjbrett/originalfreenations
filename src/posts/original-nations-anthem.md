@@ -5,7 +5,8 @@ custom_excerpt: "Greetings Everyone, This “Original Free Nations Anthem” is 
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: []
 tags: ["Sheldon Wolfchild", "Standing Rock", "Steve Banegas", "Wiley Elliott"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

@@ -5,7 +5,8 @@ custom_excerpt: "The Domination Code and Translator The Domination Code is embed
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Almighty God", "India", "Lord Jesus Christ"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

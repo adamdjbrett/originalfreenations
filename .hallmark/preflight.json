@@ -1,0 +1,8 @@
+{
+  "date": "2026-07-20",
+  "font_stack": "Inter + Lora, locally hosted",
+  "palette": "CSS custom properties in src/assets/css/tokens.css",
+  "motion": "CSS transitions only",
+  "spacing": "Existing Headline theme scale",
+  "framework": "Eleventy 4 + Nunjucks"
+}

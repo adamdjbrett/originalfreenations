@@ -1,22 +1,17 @@
 ---
-title: Contact
-custom_excerpt: Send us a tip, a correction or a story idea — we read everything.
+title: Contact Original Nations Advocates
+description: Contact Original Nations Advocates by mail, phone, or email.
+custom_excerpt: Get in touch with Original Nations Advocates.
 show_title_and_feature_image: true
 ---
-The newsroom reads every message we receive. Here is the best way to reach us, depending on what you need.
+## Postal address
 
-## News tips
+<address>
+P.O. Box 188<br>
+Alpine, CA 91903
+</address>
 
-Email **tips@headline.example.com**. If your tip is sensitive, say so in the subject line and we will move the conversation to a secure channel before you share details.
+## Phone and email
 
-## Corrections
-
-Spotted an error? Email **corrections@headline.example.com** with a link to the story. We correct mistakes quickly and note the change at the bottom of the article.
-
-## Everything else
-
-- General inquiries: **hello@headline.example.com**
-- Advertising and sponsorships: **ads@headline.example.com**
-- Events and partnerships: **events@headline.example.com**
-
-We aim to respond within two business days. For breaking news, the fastest way to reach an editor is the tips address above.
+Phone: [619-618-9346](tel:+16196189346)<br>
+Email: [info@originalfreenations.com](mailto:info@originalfreenations.com)

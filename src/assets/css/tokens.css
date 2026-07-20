@@ -1,0 +1,59 @@
+/* Hallmark · palette refresh · tone: modern editorial · anchor hue: red */
+:root {
+	--color-black: oklch(0% 0 0);
+	--color-white: oklch(100% 0 0);
+	--color-background: oklch(98.5% 0.002 264);
+	--color-surface: oklch(100% 0 0);
+	--color-surface-muted: oklch(96.7% 0.003 264);
+	--color-lighter-gray: var(--color-surface-muted);
+	--color-light-gray: oklch(90.5% 0.008 264);
+	--color-mid-gray: oklch(55.4% 0.016 264);
+	--color-dark-gray: oklch(37% 0.014 264);
+	--color-darker-gray: oklch(14.5% 0.008 264);
+	--color-primary-text: var(--color-darker-gray);
+	--color-secondary-text: oklch(37% 0.014 264);
+	--color-accent-red: oklch(45.5% 0.19 27);
+	--color-accent-red-hover: oklch(37.5% 0.15 27);
+	--color-accent-violet: oklch(43.2% 0.2 294);
+	--color-accent-violet-hover: oklch(35% 0.17 294);
+	--color-action-text: var(--color-white);
+	--color-accent-ink: var(--color-action-text);
+	--color-focus: oklch(54% 0.23 294);
+	--color-hover-wash: oklch(55% 0.016 264 / 0.14);
+	--color-card-shadow: oklch(14.5% 0.008 264 / 0.08);
+	--ghost-accent-color: var(--color-accent-red);
+	--background-color: var(--color-background);
+}
+
+:root[data-theme="dark"] {
+	--color-background: oklch(14.5% 0.008 264);
+	--color-surface: oklch(19% 0.01 264);
+	--color-surface-muted: oklch(23% 0.012 264);
+	--color-white: var(--color-surface);
+	--color-lighter-gray: var(--color-surface-muted);
+	--color-light-gray: oklch(50% 0.018 264);
+	--color-mid-gray: oklch(60% 0.018 264);
+	--color-dark-gray: oklch(87% 0.01 264);
+	--color-darker-gray: oklch(98.5% 0.002 264);
+	--color-black: oklch(100% 0 0);
+	--color-primary-text: oklch(94% 0.006 264);
+	--color-secondary-text: oklch(79% 0.012 264);
+	--color-accent-red: oklch(78% 0.13 25);
+	--color-accent-red-hover: oklch(86% 0.075 25);
+	--color-accent-violet: oklch(82% 0.1 294);
+	--color-accent-violet-hover: oklch(89% 0.055 294);
+	--color-action-background: oklch(45.5% 0.19 27);
+	--color-action-background-hover: oklch(37.5% 0.15 27);
+	--color-action-text: oklch(100% 0 0);
+	--color-accent-ink: var(--color-action-text);
+	--color-focus: oklch(75% 0.16 294);
+	--color-hover-wash: oklch(87% 0.01 264 / 0.14);
+	--color-card-shadow: oklch(0% 0 0 / 0.28);
+	--ghost-accent-color: var(--color-action-background);
+	--background-color: var(--color-background);
+}
+
+:root:not([data-theme="dark"]) {
+	--color-action-background: var(--color-accent-red);
+	--color-action-background-hover: var(--color-accent-red-hover);
+}

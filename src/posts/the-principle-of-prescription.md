@@ -5,7 +5,8 @@ custom_excerpt: "In his book Elements of International Law, first published in 1
 feature_image: "/assets/images/H-Wheaton-3.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Behind Hinsdale", "Christian Europeans", "Henry Wheaton", "Western European"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

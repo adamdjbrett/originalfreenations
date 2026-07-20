@@ -5,7 +5,8 @@ custom_excerpt: "https://us02web.zoom.us/meeting/register/tZcvc-yqrDgpG91BUFfm0g
 feature_image: "/assets/images/Sept-27-Film-Screening-1.png"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

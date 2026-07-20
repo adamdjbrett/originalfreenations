@@ -5,7 +5,8 @@ custom_excerpt: "Here is the cover of a book that I found in a used bookstore in
 feature_image: "/assets/images/screen-shot.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Rapid City", "South Dakota"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

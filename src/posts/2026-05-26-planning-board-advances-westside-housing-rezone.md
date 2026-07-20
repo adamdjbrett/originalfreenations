@@ -5,7 +5,7 @@ custom_excerpt: "After three hours of public comment, the board voted 5–2 to s
 feature_image: /assets/images/1560518883-ce09059eeffa.jpg
 feature_image_alt: Row of new townhouses under a clear sky
 feature_image_caption: A rendering of the proposed Westside development shown at Monday’s hearing.
-authors: [jamie-rivera]
+authors: [steven-newcomb]
 tags: [politics, business]
 template: post
 ---

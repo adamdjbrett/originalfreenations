@@ -47,5 +47,8 @@
     "markdown-it": "^14.3.0",
     "markdown-it-anchor": "^9.2.1",
     "markdown-it-footnote": "^4.0.0"
+  },
+  "allowScripts": {
+    "@xmit.co/xmit@0.5.2-0": true
   }
 }

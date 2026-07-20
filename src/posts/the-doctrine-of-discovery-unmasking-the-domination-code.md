@@ -5,7 +5,8 @@ custom_excerpt: "At long last, here is our movie directed by Sheldon Wolfchild (
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["featured","federal Indian law"]
 tags: ["featured", "federal-indian-law", "Domination Code", "Gea tured", "Sheldon Wolfchild Dakota"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

@@ -5,7 +5,8 @@ custom_excerpt: "As far as the colonizers were concerned, we were never supposed
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

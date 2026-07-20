@@ -5,7 +5,8 @@ custom_excerpt: "Prior to the first voyage of Columbus in 1492, the original nat
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Hernando De Soto", "Pope Alexander", "Source George Bancroft", "United States"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

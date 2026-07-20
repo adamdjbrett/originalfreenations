@@ -5,7 +5,8 @@ custom_excerpt: "By Steven Newcomb (Shawnee/Lenape) They brought their soldiers,
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: []
 tags: ["Christianize Native"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

@@ -5,7 +5,8 @@ custom_excerpt: "Tecumseh’s Speech The following is a speech by the great Shaw
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Chief Harmar", "Chief Simon Pokagon", "Fort Harmar", "Great Lakes"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

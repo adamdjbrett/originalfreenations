@@ -42,6 +42,20 @@ eleventyComputed:
 						<a class="gh-author-social-link u-url" href="{{ author.website }}" target="_blank" rel="noopener" aria-label="{{ author.name }}’s website">{% include "partials/icons/website.njk" %}</a>
 					{% endif %}
 				</div>
+				<div class="gh-author-social">
+					{% if author.podcast %}
+						<a class="gh-btn" href="{{ author.podcast }}" target="_blank" rel="noopener">{% include "partials/icons/podcast.njk" %} Podcast</a>
+					{% endif %}
+					{% if author.substack %}
+						<a class="gh-btn" href="{{ author.substack }}" target="_blank" rel="noopener">{% include "partials/icons/substack.njk" %} Substack</a>
+					{% endif %}
+					{% if author.personal_website %}
+						<a class="gh-btn" href="{{ author.personal_website }}" target="_blank" rel="noopener">{% include "partials/icons/website.njk" %} Personal website</a>
+					{% endif %}
+					{% if author.organization %}
+						<a class="gh-btn" href="{{ author.organization }}" target="_blank" rel="noopener">{% include "partials/icons/website.njk" %} Indigenous Law Institute</a>
+					{% endif %}
+				</div>
 			</div>
 		</section>
 

@@ -12,6 +12,10 @@ is the thing to check against. Do not delete it.
 
 ## CHANGELOG
 
+## 20 Jul 2026
+- add a formspree contact form .njk to _includes apply it to contact.md
+
+
 ## 17 Jul 2026
 + Convert in to Headline 11ty
 + Add footernotes

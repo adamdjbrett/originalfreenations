@@ -1,3 +1,7 @@
+/* Hallmark · macrostructure: preserved Headline editorial · tone: modern high-contrast · anchor hue: red
+ * contrast: pass (40–41) · tokens: pass (48) · responsive: pass (34, 49–51)
+ * pre-emit critique: P5 H4 E5 S5 R5 V4
+ */
 /* --- utilities --- */
 .gh-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 /* --- a11y contrast overrides (loads after screen.css) ---
@@ -7,10 +11,22 @@
 /* Byline author links: ensure a >=24px touch target (WCAG 2.5.8) even when
    two authors sit side by side in the sidebar. */
 .gh-author-name-list .gh-author-name a{display:inline-block;min-height:24px;padding-block:3px}
-.gh-article-sidebar .gh-button-share{color:rgba(0,0,0,.85);border-color:rgba(0,0,0,.18)}
-.gh-article-sidebar .gh-button-share:hover{border-color:rgba(0,0,0,.5)}
-:root[data-theme="dark"] .gh-article-sidebar .gh-button-share{color:rgba(255,255,255,.9);border-color:rgba(255,255,255,.22)}
-:root[data-theme="dark"] .gh-article-sidebar .gh-button-share:hover{border-color:rgba(255,255,255,.5)}
+.gh-article-sidebar .gh-button-share{color:var(--color-primary-text);border-color:var(--color-mid-gray)}
+.gh-article-sidebar .gh-button-share:hover{color:var(--color-accent-violet);border-color:currentColor}
+:where(a,button,input,select,textarea):focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
+.gh-btn:active,.gh-feed-link:active{transform:translateY(1px)}
+:where(button,input,select,textarea):disabled{cursor:not-allowed;opacity:.55}
+.gh-content a,.gh-article-tag,.gh-topic-link{color:var(--color-accent-red);text-decoration-thickness:.08em;text-underline-offset:.18em}
+.gh-content a:hover,.gh-article-tag:hover,.gh-topic-link:hover{color:var(--color-accent-red-hover);opacity:1}
+.nav-current>a{color:var(--color-accent-violet);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+.gh-subscribe-btn{color:var(--color-accent-ink);background:var(--color-action-background)}
+.gh-subscribe-btn:hover{color:var(--color-accent-ink);background:var(--color-action-background-hover);opacity:1}
+.gh-subscribe-outline-btn{color:var(--color-accent-violet);border:2px solid currentColor;background:transparent}
+.gh-subscribe-outline-btn:hover{color:var(--color-accent-violet-hover);opacity:1}
+body{background:var(--color-background)}
+html,body{overflow-x:clip}
+h1,h2,h3,h4,h5,h6{min-width:0;overflow-wrap:anywhere}
+.gh-btn,.gh-feed-link,.nav a,.gh-foot a,.gh-breadcrumbs a{white-space:nowrap}
 /* ============================================
    HERO CARD - First Post 
    ============================================ */
@@ -25,7 +41,7 @@
 
 .gh-topic-content .gh-card.hero .gh-card-link {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 40px;
     padding: 0;
     text-decoration: none;
@@ -38,7 +54,7 @@
     border-radius: 0 !important;
     overflow: hidden;
     aspect-ratio: 16/10;
-    background: var(--color-lighter-gray, #f3f4f6);
+    background: var(--color-lighter-gray);
 }
 
 .gh-topic-content .gh-card.hero .gh-card-image img {
@@ -61,22 +77,22 @@
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 16px;
-    color: var(--color-primary-text, #1a1a1a);
+    color: var(--color-primary-text);
 }
 
 .gh-topic-content .gh-card.hero .gh-card-title:hover {
-    color: #e12026;
+    color: var(--color-accent-red);
 }
 
 .gh-topic-content .gh-card.hero .gh-card-excerpt {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 24px;
-    color: var(--color-secondary-text, #4a4a4a);
+    color: var(--color-secondary-text);
 }
 
 .gh-topic-content .gh-card.hero .gh-card-footer {
-    border-top: 1px solid var(--color-light-gray, #e5e7eb);
+    border-top: 1px solid var(--color-light-gray);
     padding-top: 16px;
     font-size: 0.95rem;
 }
@@ -123,8 +139,8 @@
 
 .gh-footer-feeds {
     padding: 60px 0 40px;
-    background: var(--color-lighter-gray, #f7f7f7);
-    border-bottom: 1px solid var(--color-light-gray, #e5e7eb);
+    background: var(--color-lighter-gray);
+    border-bottom: 1px solid var(--color-light-gray);
 }
 
 .gh-container {
@@ -135,23 +151,23 @@
 
 .gh-feeds-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 32px;
 }
 
 .gh-feed-card {
-    background: var(--color-white, #ffffff);
+    background: var(--color-surface);
     padding: 32px 24px;
     border-radius: 12px;
-    border: 1px solid var(--color-light-gray, #e5e7eb);
+    border: 1px solid var(--color-light-gray);
     text-align: center;
     transition: var(--gh-transition);
 }
 
 .gh-feed-card:hover {
-    border-color: var(--color-mid-gray, #9ca3af);
+    border-color: var(--color-accent-violet);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    box-shadow: 0 8px 24px var(--color-card-shadow);
 }
 
 .gh-feed-title {
@@ -159,12 +175,12 @@
     font-size: 1.2rem;
     font-weight: 600;
     margin: 0 0 6px 0;
-    color: var(--color-primary-text, #1a1a1a);
+    color: var(--color-primary-text);
 }
 
 .gh-feed-desc {
     font-size: 0.9rem;
-    color: var(--color-secondary-text, #4a4a4a);
+    color: var(--color-secondary-text);
     margin: 0 0 16px 0;
 }
 
@@ -175,15 +191,16 @@
     font-size: 0.85rem;
     font-weight: 500;
     text-decoration: none;
-    color: #e12026;
-    border: 2px solid #e12026;
+    color: var(--color-accent-red);
+    border: 2px solid currentColor;
     background: transparent;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .gh-feed-link:hover {
-    background: #e12026;
-    color: #fff;
+    background: var(--color-action-background);
+    border-color: var(--color-action-background);
+    color: var(--color-accent-ink);
 }
 
 /* Responsive */
@@ -210,7 +227,7 @@
 
 .gh-topic-content .gh-card.hero .gh-card-link {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 40px;
     padding: 0;
     text-decoration: none;
@@ -224,7 +241,7 @@
     border-radius: 12px;
     overflow: hidden;
     aspect-ratio: 16/10;
-    background: var(--color-lighter-gray, #f3f4f6);
+    background: var(--color-lighter-gray);
     width: 100%;
     min-width: 0;
 }
@@ -234,4 +251,34 @@
     height: 100%;
     object-fit: cover;
     display: block;
+}
+.gh-breadcrumbs {
+    margin-bottom: 24px;
+    font-size: 1.4rem;
+    color: var(--color-secondary-text);
+}
+
+.gh-breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.gh-breadcrumbs li:not(:last-child)::after {
+    margin-left: 6px;
+    content: "/";
+}
+
+.gh-breadcrumbs a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.gh-breadcrumbs [aria-current="page"] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

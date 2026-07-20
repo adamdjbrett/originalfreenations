@@ -10,14 +10,25 @@ locale: en_US
 # no UTC drift/off-by-one.
 timezone: America/Los_Angeles
 # Logo image (leave blank to render the title as text)
-logo: ""
-icon: ""
+logo: "/assets/images/original-free-nations-site-icon-1.png"
+icon: "/assets/images/ofn.png"
 cover_image: ""
+organization:
+  name: Original Nations Advocates
+  url: https://originalfreenations.com/
+  email: info@originalfreenations.com
+  telephone: "+1-619-618-9346"
+  address:
+    street: P.O. Box 188
+    locality: Alpine
+    region: CA
+    postal_code: "91903"
+    country: US
 # Where the red "Subscribe" button in the header points. A newsletter/signup
 # URL, a page like /subscribe/, or an on-page anchor like #subscribe.
 subscribe:
   text: Subscribe
-  url: "#https://stevennewcomb.substack.com/"
+  url: "https://stevennewcomb.substack.com/"
 podcast: 
   text: Podcast
   url: "https://dominationchronicles.com/episodes/"
@@ -27,28 +38,29 @@ podcast:
 social_accounts:
   - type: bluesky
     name: Bluesky
-    href: https://bsky.app/
+    href: https://bsky.app/profile/dominationchron.bsky.social
   - type: mastodon
     name: Mastodon
-    href: https://mastodon.social/
+    href: https://mastodon.social/@DominationChronicles
   - type: instagram
     name: Instagram
-    href: https://instagram.com/
+    href: https://www.instagram.com/dominationchronicles/
+
 
 # Feeds footer
 feeds:
   getting_started:
-    title: Getting Started
+    title: Substack
     desc: Subscribe to Steven Newcomb's Substack
     url: https://stevennewcomb.substack.com/feed
     label: RSS Feed
   science:
-    title: Science
+    title: Youtube
     desc: Watch Domination Chronicles on YouTube
     url: https://www.youtube.com/@DominationChronicles
     label: YouTube
   technology:
-    title: Technology
+    title: Podcast
     desc: Latest episodes from Domination Chronicles
     url: https://dominationchronicles.com/feed/feed.xml
     label: RSS Feed

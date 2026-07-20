@@ -5,7 +5,8 @@ custom_excerpt: "By Steven Newcomb (Shawnee/Lenape) The Apache Stronghold case, 
 feature_image: "/assets/images/Apache-Puberty-Ceremony.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["doctrine of discovery","featured","federal Indian law","History","Legal","News","Politics","Religion"]
 tags: ["doctrine of discovery", "featured", "federal-indian-law", "History", "Legal", "News", "politics", "Religion", "Oak Flat"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

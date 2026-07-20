@@ -27,37 +27,42 @@
 <link rel="alternate" type="application/rss+xml" title="{{ metadata.title }} (RSS)" href="/feed/feed.rss">
 <link rel="alternate" type="application/feed+json" title="{{ metadata.title }} (JSON)" href="/feed/feed.json">
 
-{#- Structured data (JSON-LD), autofilled from metadata via _data/schema.js:
-    WebSite on every page, Blog on the homepage, BlogPosting + Zotero-harvestable
-    citation metadata on posts. -#}
-<script type="application/ld+json">{{ schema.website | dump | safe }}</script>
-{%- if page.url == '/' %}
-<script type="application/ld+json">{{ schema.blog | dump | safe }}</script>
-{%- endif %}
+{#- Linked Organization, WebSite, and Blog nodes on every page. -#}
+<script type="application/ld+json">{{ schema.siteGraph | dump | safe }}</script>
 {%- if layout == 'layouts/post.njk' %}
 {%- set ldAuthors = authors | resolveAuthors(authors) %}
 {%- set imageAbs = "" %}
 {%- if feature_image %}{% set imageAbs = feature_image if feature_image.startsWith('http') else metadata.url + feature_image %}{% endif %}
-{%- set postLd = { title: title, description: pageDesc, url: metadata.url + page.url, date: (page.date | htmlDateString), lang: schema.language, image: imageAbs, authors: ldAuthors, siteUrl: metadata.url, siteName: metadata.title, publisher: schema.publisher } | postingLd %}
+{%- set postLd = { title: title, description: pageDesc, url: metadata.url + page.url, date: (page.date | htmlDateString), lang: schema.language, image: imageAbs, authors: ldAuthors, siteUrl: metadata.url, siteName: metadata.title, blogId: schema.blogId, publisher: schema.publisher } | postingLd %}
 <script type="application/ld+json">{{ postLd | dump | safe }}</script>
 {#- Zotero: Highwire (citation_*) + Dublin Core metadata for harvestability. -#}
 <link rel="type" href="https://schema.org/BlogPosting">
-<meta name="citation_title" content="{{ title }}">
+<meta name="citation_title" content="{{ title | escape }}">
 {%- for a in ldAuthors %}
-<meta name="citation_author" content="{{ a.name }}">
+<meta name="citation_author" content="{{ a.name | escape }}">
 {%- endfor %}
+<meta name="citation_date" content="{{ page.date | htmlDateString }}">
 <meta name="citation_publication_date" content="{{ page.date | htmlDateString }}">
+<meta name="citation_abstract" content="{{ pageDesc | escape }}">
 <meta name="citation_fulltext_html_url" content="{{ metadata.url }}{{ page.url }}">
 <meta name="citation_public_url" content="{{ metadata.url }}{{ page.url }}">
-<meta name="citation_journal_title" content="{{ metadata.title }}">
+<meta name="citation_publisher" content="{{ metadata.organization.name | escape }}">
 <meta name="citation_language" content="{{ schema.language }}">
-<meta name="DC.title" content="{{ title }}">
+{%- for tag in tags | publicTags %}
+<meta name="citation_keywords" content="{{ tag | escape }}">
+{%- endfor %}
 {%- for a in ldAuthors %}
-<meta name="DC.creator" content="{{ a.name }}">
+<meta name="author" content="{{ a.name | escape }}">
+{%- endfor %}
+<meta name="DC.title" content="{{ title | escape }}">
+{%- for a in ldAuthors %}
+<meta name="DC.creator" content="{{ a.name | escape }}">
 {%- endfor %}
 <meta name="DC.date" content="{{ page.date | htmlDateString }}">
 <meta name="DC.language" content="{{ schema.language }}">
-<meta name="DC.publisher" content="{{ metadata.title }}">
+<meta name="DC.publisher" content="{{ metadata.organization.name | escape }}">
+<meta name="DC.type" content="Text">
+<meta name="DC.source" content="{{ metadata.title }}">
 {%- endif %}
 
 {#- No-flash: set the colour scheme before first paint. -#}

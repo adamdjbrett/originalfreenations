@@ -5,7 +5,8 @@ custom_excerpt: "Our original nation ancestors understood mountains and other ge
 feature_image: "/assets/images/SanFranciscoPeaks-JG.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["doctrine of discovery","featured","federal Indian law","History"]
 tags: ["doctrine of discovery", "featured", "federal-indian-law", "History", "Christian Europeans", "federal-indian-law", "Original Free Nations", "Original Nations", "Steven Newcomb", "Supreme Court", "Western Christendom"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

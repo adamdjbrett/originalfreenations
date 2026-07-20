@@ -6,7 +6,8 @@ feature_image: "/assets/images/Apache-Ceremony-2.jpg"
 feature_image_alt: "Changing Woman' Sunrise Dance Ceremony at Chi'Chil Bildagoteel"
 feature_image_caption: "Traditional Apache Religious &#8216;Changing Woman&#8217; Sunrise Dance Ceremony at Chi&#8217;Chil Bildagoteel (&#8220;Oak Flat&#8221;)
 (Photograph with family permission. (c) Robin Silver Photography)."
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Oak Flat", "Supreme Court", "United States", "Western Christendom"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

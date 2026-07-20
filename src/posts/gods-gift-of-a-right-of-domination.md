@@ -5,7 +5,8 @@ custom_excerpt: "In the Old Testament of the Bible, we find the story of a god w
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Old Testament"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

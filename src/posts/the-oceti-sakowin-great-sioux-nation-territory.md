@@ -5,7 +5,8 @@ custom_excerpt: "What &#8220;#LandBack&#8221; Leaves Out of Focus “A return to
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Black Hills", "Oceti Sakowin Nation", "Organic Act", "United States"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

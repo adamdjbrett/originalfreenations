@@ -5,7 +5,8 @@ custom_excerpt: "A former professor of mine, C. A. Bowers (1935-2017), was a bri
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Steven Newcomb"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

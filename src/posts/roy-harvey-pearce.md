@@ -5,7 +5,8 @@ custom_excerpt: "In The Savages of America (1959) Roy Harvey Pearce wrote: The p
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: []
 tags: ["Roy Harvey Pearce"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

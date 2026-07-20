@@ -5,7 +5,8 @@ custom_excerpt: "Warâ€”or the act or state of exerting violence against anotherâ
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Andrea Smith", "Domination Code", "Rescue Group", "Roy Harvey Pearce"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

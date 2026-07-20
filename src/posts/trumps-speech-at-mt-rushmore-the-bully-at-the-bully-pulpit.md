@@ -5,7 +5,8 @@ custom_excerpt: "President Donald J. Trump delivered a speech on July 3, 2020 at
 feature_image: "/assets/images/Mt.-Rushmore.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "President Trump"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

@@ -5,7 +5,8 @@ custom_excerpt: "In his splendid book The Lawless Law of Nations (1925), Sterlin
 feature_image: "/assets/images/2048px-James_Madison.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "United States"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

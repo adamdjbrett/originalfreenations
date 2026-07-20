@@ -5,7 +5,8 @@ custom_excerpt: "Prior to Columbus’s invasive arrival to our part of Mother Ea
 feature_image: "/assets/images/IMG_1754.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["Biblical","Politics","Religion"]
 tags: ["Biblical", "politics", "Religion", "Christian Europeans", "Mother Earth", "Spain", "Western Christendom"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

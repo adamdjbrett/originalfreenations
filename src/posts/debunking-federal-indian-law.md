@@ -5,7 +5,8 @@ custom_excerpt: "To debunk means &#8220;to expose the sham or falseness of; to s
 feature_image: "/assets/images/Marshalls-laptop-1.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Original Free Nations"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

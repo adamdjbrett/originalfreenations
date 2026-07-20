@@ -5,7 +5,8 @@ custom_excerpt: "In 2013, Dr. Debra Harry (Paiute Nation), Sharon Venne (Cree Na
 feature_image: "/assets/images/S-Newcomb-SevilleFinal-2.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["Biblical","doctrine of discovery","News"]
 tags: ["Biblical", "doctrine of discovery", "News", "Spain"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

@@ -5,7 +5,7 @@ custom_excerpt: "More than 400 residents turned out for the annual spring cleanu
 feature_image: /assets/images/1500534314209-a25ddb2bd429.jpg
 feature_image_alt: A calm lake shoreline at dawn with mist over the water
 feature_image_caption: The western shoreline at dawn, hours before volunteers arrived.
-authors: [adam-brett, jamie-rivera]
+authors: [adam-brett, steven-newcomb]
 tags: [environment]
 template: wide-feature-image
 bodyClass: "post-template has-wide-image"

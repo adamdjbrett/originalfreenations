@@ -5,7 +5,8 @@ custom_excerpt: "The desire of Christian nations to dominate infidel nations and
 feature_image: "/assets/images/cross-and-bell2.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "William Blackstone"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

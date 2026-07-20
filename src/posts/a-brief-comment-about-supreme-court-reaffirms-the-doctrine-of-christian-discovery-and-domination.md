@@ -5,7 +5,8 @@ custom_excerpt: "In what is being described as a &#8220;landmark&#8221; 5-4 deci
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Creek Nation", "Supreme Court", "United States"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

@@ -5,7 +5,7 @@ custom_excerpt: "Four years after opening in a converted garage, the bakery know
 feature_image: /assets/images/1509440159596-0249088772ff.jpg
 feature_image_alt: Fresh loaves of sourdough bread stacked on a wooden bakery counter
 feature_image_caption: The signature sourdough, which sells out most Saturdays by 10 a.m.
-authors: [jamie-rivera]
+authors: [steven-newcomb]
 tags: [business]
 template: post
 ---

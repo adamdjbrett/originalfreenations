@@ -5,7 +5,8 @@ custom_excerpt: "Featured Epic Events &amp; Life-Changing Courses with Shawna Bl
 feature_image: "/assets/images/Doctrine-of-Discovery-Domination-Film-Screening-Jan-2024-257x300.png"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["News"]
 tags: ["News", "Domination Code", "event", "FILM"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

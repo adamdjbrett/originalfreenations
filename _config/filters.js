@@ -137,7 +137,9 @@ export default function (eleventyConfig) {
 			datePublished: o.date,
 			dateModified: o.date,
 			inLanguage: o.lang,
-			isPartOf: { "@type": "Blog", name: o.siteName, url: o.siteUrl + "/" },
+			isPartOf: o.blogId
+				? { "@id": o.blogId }
+				: { "@type": "Blog", name: o.siteName, url: o.siteUrl + "/" },
 			publisher: o.publisher,
 		};
 		if (o.image) ld.image = [o.image];

@@ -5,7 +5,8 @@ custom_excerpt: "Below we see yet another example of the background pattern that
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Asia", "Domination Translator", "Portugal", "Reinhard Bendix"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

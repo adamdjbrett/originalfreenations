@@ -5,7 +5,8 @@ custom_excerpt: "On October 17, 2020, the Archbishop of San Francisco, Salvatore
 feature_image: "/assets/images/Serra-Stamp.jpg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Inter Caetera", "Kumeyaay Nation", "Perhaps Archbishop Cordileone", "Spanish Catholic Empire"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

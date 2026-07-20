@@ -5,7 +5,8 @@ custom_excerpt: "On May 4, 1493 Pope Alexander VI issued the Inter Caetera pap
 feature_image: "/assets/images/pope_and_steve_newcomb_at_the_vatican.jpeg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["Culture","Religion"]
 tags: ["culture", "Religion", "Given Pope Francis", "Inter Caetera", "Original Nations", "Rome"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

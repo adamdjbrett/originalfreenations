@@ -5,7 +5,8 @@ custom_excerpt: "Steven Newcomb (Shawnee, Lenape) It’s not necessary to have a
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: []
 tags: ["Circuit Court", "federal-indian-law", "Kumeyaay Nation", "Supreme Court"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

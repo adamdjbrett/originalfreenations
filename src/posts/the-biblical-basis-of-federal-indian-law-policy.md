@@ -5,7 +5,8 @@ custom_excerpt: "I have often wondered why federal-indian-law attorneys dare not
 feature_image: "https://originalfreenations.com/wp-content/uploads/2018/02/swordbible2-e1519670963886.png"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["Biblical","Legal","Religion"]
 tags: ["Biblical", "Legal", "Religion", "Independence Hall", "Old Testament", "United States", "Western Shoshone"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

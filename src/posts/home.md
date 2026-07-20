@@ -5,7 +5,8 @@ custom_excerpt: "Steven T. Newcomb, (Shawneee/Lenape) overlooking Kumeyaay Nati
 feature_image: "/assets/images/stv-pic-new.png"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: []
 tags: ["Australia", "Original Free Nations", "Original Nations"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

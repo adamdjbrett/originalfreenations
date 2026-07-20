@@ -20,16 +20,17 @@
             {% if large or not isHome %}
                 {% set cardExcerpt = post.data.custom_excerpt or (post.content | excerpt(40)) %}
                 {% if cardExcerpt %}
-                    <div class="gh-card-excerpt">{{ cardExcerpt }}</div>
+                    <div class="gh-card-excerpt p-summary">{{ cardExcerpt }}</div>
                 {% endif %}
             {% endif %}
 
             <footer class="gh-card-footer">
+              {% if post.data.categories %}
+                <span class="gh-card-categories">{{ post.data.categories | join(", ") }}</span>
+              {% endif %}
               <span class="gh-card-tags">
-    {% for tag in post.data.tags %}
-        {% if tag != "posts" %}
-            {{ tag }}{% if not loop.last %}, {% endif %}
-        {% endif %}
+    {% for tag in post.data.tags | publicTags %}
+        {{ tag }}{% if not loop.last %}, {% endif %}
     {% endfor %}
 </span>
 

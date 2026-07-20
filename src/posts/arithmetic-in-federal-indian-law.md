@@ -5,7 +5,8 @@ custom_excerpt: "To follow this article you won’t even need a calculator. All 
 feature_image: "/assets/images/School-Days.jpeg"
 feature_image_alt: ""
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["federal Indian law"]
 tags: ["federal-indian-law", "Circuit Court", "federal-indian-law", "Kumeyaay Nation", "Supreme Court"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"

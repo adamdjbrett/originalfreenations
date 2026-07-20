@@ -5,7 +5,8 @@ custom_excerpt: "The context begins with the free existence of our Native nation
 feature_image: "/assets/images/vatican-steve-newcomb-med.jpg"
 feature_image_alt: "Photograph of the St. Peter's Cathedral at the Vatican. Taken by Steven Newcomb, 2016"
 feature_image_caption: ""
-authors: ["anonymous"]
+authors: ["steven-newcomb"]
+categories: ["featured","federal Indian law"]
 tags: ["featured", "federal-indian-law", "Inter Caetera", "Portugal", "Spain", "United States"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"
