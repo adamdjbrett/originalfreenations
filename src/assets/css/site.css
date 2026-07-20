@@ -172,14 +172,14 @@ h1,h2,h3,h4,h5,h6{min-width:0;overflow-wrap:anywhere}
 
 .gh-feed-title {
     font-family: 'Lora', serif;
-    font-size: 1.2rem;
+    font-size: 22px;
     font-weight: 600;
     margin: 0 0 6px 0;
     color: var(--color-primary-text);
 }
 
 .gh-feed-desc {
-    font-size: 0.9rem;
+    font-size: 16px;
     color: var(--color-secondary-text);
     margin: 0 0 16px 0;
 }
@@ -188,7 +188,7 @@ h1,h2,h3,h4,h5,h6{min-width:0;overflow-wrap:anywhere}
     display: inline-block;
     padding: 8px 24px;
     border-radius: 100px;
-    font-size: 0.85rem;
+    font-size: 14px;
     font-weight: 500;
     text-decoration: none;
     color: var(--color-accent-red);
