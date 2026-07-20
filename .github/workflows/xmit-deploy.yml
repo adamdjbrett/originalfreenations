@@ -1,0 +1,87 @@
+name: Deploy Eleventy to XMIT
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      site:
+        description: "XMIT site/domain override (e.g. example.com)"
+        required: false
+        type: string
+
+concurrency:
+  group: deploy-xmit-${{ github.ref }}
+  # Never cancel a deploy mid-upload; let the in-flight bundle finish.
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      XMIT_SITE: ${{ inputs.site || vars.XMIT_SITE || 'originalfreenations.xmit.dev' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Eleventy site
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          if [ ! -d _site ]; then
+            echo "::error::_site directory missing after build"
+            exit 1
+          fi
+          ls -1 _site | head -n 20
+
+      - name: Deploy to XMIT (CLI)
+        env:
+          XMIT_KEY: ${{ secrets.XMIT_KEY }}
+        run: |
+          if [ -z "$XMIT_KEY" ]; then
+            echo "::error::XMIT_KEY secret is not set"
+            exit 1
+          fi
+          if [ -z "$XMIT_SITE" ]; then
+            echo "::error::XMIT site/domain not provided. Set repo variable XMIT_SITE or pass the workflow_dispatch site input."
+            exit 1
+          fi
+          # `xmit DOMAIN [DIR]` uploads. The DOMAIN@ID form is download-only.
+          case "$XMIT_SITE" in
+            *@*)
+              echo "::error::XMIT_SITE must be a bare domain, got '$XMIT_SITE'. The DOMAIN@ID form is only valid for 'xmit download'."
+              exit 1
+              ;;
+          esac
+
+          echo "Deploying _site to $XMIT_SITE via XMIT CLI"
+          # Chunk uploads can fail on transient TLS errors; retry before giving up.
+          for attempt in 1 2 3; do
+            if npx -y @xmit.co/xmit "$XMIT_SITE" _site; then
+              echo "Deploy succeeded on attempt $attempt"
+              exit 0
+            fi
+            echo "::warning::XMIT deploy attempt $attempt failed"
+            sleep $((attempt * 15))
+          done
+          echo "::error::XMIT deploy failed after 3 attempts"
+          exit 1
+
+      - name: Post-deploy summary
+        run: |
+          echo "Deployed $XMIT_SITE" >> "$GITHUB_STEP_SUMMARY"
+          echo "Visit: https://$XMIT_SITE" >> "$GITHUB_STEP_SUMMARY"
