@@ -43,6 +43,7 @@
     "pagefind": "^1.4.0"
   },
   "dependencies": {
+    "@royalfig/share-button": "2.1.1",
     "@uncenter/eleventy-plugin-toc": "^2.1.2",
     "markdown-it": "^14.3.0",
     "markdown-it-anchor": "^9.2.1",

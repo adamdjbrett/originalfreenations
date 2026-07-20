@@ -17,9 +17,13 @@ primary:
 secondary:
   - label: About
     url: /about/
+  - label: Domination Code
+    url: https://vimeo.com/ondemand/dominationcode
   - label: Contact
     url: /contact/
   - label: Support Our Work
     url: /support-our-work/
   - label: RSS
     url: /feed.xml
+  - label: Contribute →
+    url: /support-our-work/

@@ -29,6 +29,10 @@ export default async function (eleventyConfig) {
 	// ---------------------------------------------------------------------------
 	eleventyConfig.addPassthroughCopy({ "./src/assets": "/assets" });
 	eleventyConfig.addPassthroughCopy({ "./src/public": "/" });
+	eleventyConfig.addPassthroughCopy({
+		"./node_modules/@royalfig/share-button/dist/share-button.es.js":
+			"/assets/vendor/share-button.es.js",
+	});
 
 	eleventyConfig.addWatchTarget("src/assets/css/**/*.css");
 	eleventyConfig.addWatchTarget("src/assets/js/**/*.js");

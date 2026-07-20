@@ -10,7 +10,7 @@ locale: en_US
 # no UTC drift/off-by-one.
 timezone: America/Los_Angeles
 # Logo image (leave blank to render the title as text)
-logo: "/assets/images/original-free-nations-site-icon-1.png"
+#logo: "/assets/images/original-free-nations-site-icon-1.png"
 icon: "/assets/images/ofn.png"
 cover_image: ""
 organization:
@@ -28,10 +28,14 @@ organization:
 # URL, a page like /subscribe/, or an on-page anchor like #subscribe.
 subscribe:
   text: Subscribe
+  footer_text: Subscribe now
   url: "https://stevennewcomb.substack.com/"
 podcast: 
   text: Podcast
   url: "https://dominationchronicles.com/episodes/"
+footer:
+  copyright_holder: Steven T. Newcomb, Original Free Nations
+  rights: All Rights Reserved.
 # Social accounts rendered in the footer. `type` must match an icon partial
 # in _includes/partials/icons/ (x, facebook, instagram, linkedin, bluesky,
 # mastodon, threads, tiktok, youtube, website, email).
@@ -39,13 +43,27 @@ social_accounts:
   - type: bluesky
     name: Bluesky
     href: https://bsky.app/profile/dominationchron.bsky.social
+  - type: x
+    name: X
+    href: https://x.com/dominationchron
   - type: mastodon
     name: Mastodon
     href: https://mastodon.social/@DominationChronicles
   - type: instagram
     name: Instagram
     href: https://www.instagram.com/dominationchronicles/
-
+  - type: facebook
+    name: Facebook
+    href: https://www.facebook.com/steventnewcomb
+  - type: youtube
+    name: YouTube
+    href: https://www.youtube.com/@DominationChronicles
+  - type: substack
+    name: Substack
+    href: https://stevennewcomb.substack.com/
+  - type: podcast
+    name: Domination Chronicles podcast
+    href: https://dominationchronicles.com/episodes/
 
 # Feeds footer
 feeds:

@@ -33,6 +33,15 @@
         </div>
     </div>
 
-    <a href="#/share" class="gh-button-share">{{ "Share" | t }}</a>
+    <share-button
+        class="gh-button-share"
+        networks="bluesky, facebook, linkedin, email, whatsapp, copy"
+        icon="4"
+        color-button-bg="var(--color-action-background)"
+        color-button-text="var(--color-accent-ink)"
+        color-popover-bg="var(--color-surface)"
+        color-popover-bg-accent="var(--color-lighter-gray)"
+        color-popover-text="var(--color-primary-text)"
+    >{{ "Share" | t }}</share-button>
 
 </aside>

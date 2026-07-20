@@ -53,7 +53,7 @@
 				</div>
 				<div class="gh-head-actions-right">
 					<a class="gh-subscribe-btn gh-btn" href="{{ metadata.subscribe.url }}" target="_blank" rel="noopener">{{ metadata.subscribe.text }}</a>
-					<a style="margin-left: 10px;" class="gh-subscribe-outline-btn btn gh-btn" href="{{ metadata.podcast.url }}" target="_blank" rel="noopener">{{ metadata.podcast.text }}</a>
+					<a class="gh-subscribe-outline-btn btn gh-btn" href="{{ metadata.podcast.url }}" target="_blank" rel="noopener">{{ metadata.podcast.text }}</a>
 				</div>
 			</div>
 		</div>
@@ -67,6 +67,14 @@
 
 	<footer class="gh-foot gh-outer">
 		<div class="gh-foot-inner gh-inner">
+			<section class="gh-subscribe">
+				<h2 class="gh-subscribe-title">Subscribe to {{ metadata.title }}</h2>
+				<div class="gh-subscribe-description">{{ theme.email_signup_text }}</div>
+				<a class="gh-subscribe-btn gh-btn" href="{{ metadata.subscribe.url }}" target="_blank" rel="noopener">
+					{% include "partials/icons/email.njk" %} {{ metadata.subscribe.footer_text }}
+				</a>
+			</section>
+
 			<nav class="gh-foot-menu">
 				<ul class="nav">
 					{%- for item in navigation.secondary %}
@@ -84,11 +92,8 @@
 			</div>
 
 			<div class="gh-copyright">
-				{%- if theme.footer_text %}
-					{{ theme.footer_text }}
-				{%- else %}
-					{{ metadata.title }} &copy; {{ '' | year }}
-				{%- endif %}
+				&copy; {{ metadata.footer.copyright_holder }}. {{ metadata.footer.rights }} {{ '' | year }}.<br>
+				Powered by <a href="https://11ty.dev/" target="_blank" rel="noopener">11ty</a>.
 			</div>
 		</div>
 	</footer>
@@ -104,6 +109,10 @@
 
 <script src="/assets/built/main.min.js" defer></script>
 <script src="/assets/js/theme-toggle.js" defer></script>
+{%- if bodyClass and 'post-template' in bodyClass %}
+<script type="importmap">{"imports":{"@royalfig/share-button":"/assets/vendor/share-button.es.js"}}</script>
+<script type="module" src="/assets/js/share-button.js"></script>
+{%- endif %}
 {%- if page.url != '/search/' %}
 <script src="/assets/js/pagefind-loader.js" defer></script>
 {%- endif %}

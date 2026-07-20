@@ -43,22 +43,16 @@ bodyClass: home-template
 			{% endfor %}
 		{% endif %}
 
-		{#- Secondary topic list: configured tags, else topics 4-6 -#}
-		{% if theme.secondary_section_tags and theme.secondary_section_tags.length %}
+		{#- List the three tags used by the most posts. collections.topics is count-sorted. -#}
+		{% if collections.posts.length > 1 %}
+			{% set secondaryTopics = collections.topics | head(3) %}
+			{% if secondaryTopics.length %}
 			<div class="gh-topic-list">
-				{% for topic in collections.topics | pickTopics(theme.secondary_section_tags) %}
+				{% for t in secondaryTopics %}
+					{% set topic = t %}
 					{% include "partials/topic-minimal.njk" %}
 				{% endfor %}
 			</div>
-		{% elif collections.posts.length > 1 %}
-			{% set secondaryTopics = collections.topics | skip(3) | head(3) %}
-			{% if secondaryTopics.length %}
-				<div class="gh-topic-list">
-					{% for t in secondaryTopics %}
-						{% set topic = t %}
-						{% include "partials/topic-minimal.njk" %}
-					{% endfor %}
-				</div>
 			{% endif %}
 		{% endif %}
 	</div>
