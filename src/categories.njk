@@ -2,22 +2,22 @@
 layout: layouts/default.njk
 bodyClass: tag-template
 pagination:
-  data: collections.topics
+  data: collections.categories
   size: 1
-  alias: topic
-permalink: "/tag/{{ topic.slug }}/"
+  alias: category
+permalink: "/category/{{ category.slug }}/"
 eleventyComputed:
-  title: "{{ topic.name }}"
+  title: "{{ category.name }}"
 ---
 <main class="gh-main gh-outer">
 	<div class="gh-inner">
 		<section class="gh-pagehead">
-			<h1 class="gh-pagehead-title">{{ topic.name }}</h1>
+			<h1 class="gh-pagehead-title">{{ category.name }}</h1>
 		</section>
 
 		<div class="gh-topic gh-topic-grid">
 			<div class="gh-topic-content gh-feed">
-				{% for post in topic.posts %}
+				{% for post in category.posts %}
 					{% include "partials/loop-grid.njk" %}
 				{% endfor %}
 			</div>

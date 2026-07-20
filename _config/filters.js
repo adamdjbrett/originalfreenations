@@ -2,7 +2,6 @@ import { DateTime } from "luxon";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import yaml from "js-yaml";
-import { statsSync } from "@11ty/eleventy-img";
 
 // Load the English locale strings once. Ghost's Headline theme ships value-less
 // entries (the key IS the English string), so `t` falls back to the key.
@@ -84,46 +83,6 @@ export default function (eleventyConfig) {
 		return parts.length > words ? parts.slice(0, words).join(" ") + "…" : text;
 	});
 
-	// --- LCP hero preload -----------------------------------------------------
-	// Build a <link rel=preload as=image imagesrcset> for a self-hosted hero
-	// image, using eleventy-img's SYNC stats so the URLs/hashes match exactly
-	// what the eleventyImageTransformPlugin emits (same widths/formats/quality).
-	// Starting the LCP image early (in <head>) shaves ~1s off LCP and stabilizes
-	// it. Kept in sync with the plugin options in eleventy.config.js.
-	// MUST mirror the eleventyImageTransformPlugin options exactly — the image
-	// hash is computed over the full options set, so any difference yields a
-	// different filename than the one the plugin actually writes.
-	const PRELOAD_OPTS = {
-		formats: ["avif", "webp", "auto"],
-		widths: ["auto", 300, 600, 960, 1200, 2000],
-		urlPath: "/assets/images/optimized/",
-		outputDir: "./_site/assets/images/optimized/",
-		sharpOptions: { animated: false },
-		sharpAvifOptions: { quality: 55 },
-		sharpWebpOptions: { quality: 66 },
-		sharpJpegOptions: { quality: 72, mozjpeg: true },
-	};
-	const preloadCache = new Map();
-	eleventyConfig.addFilter("heroPreload", (src, sizes = "100vw") => {
-		if (!src || String(src).startsWith("http")) return "";
-		const key = src + "|" + sizes;
-		if (preloadCache.has(key)) return preloadCache.get(key);
-		let out = "";
-		try {
-			const input = fileURLToPath(new URL("../src" + src, import.meta.url));
-			const stats = statsSync(input, PRELOAD_OPTS);
-			const avif = (stats && stats.avif) || [];
-			if (avif.length) {
-				const srcset = avif.map((e) => `${e.url} ${e.width}w`).join(", ");
-				out = `<link rel="preload" as="image" type="image/avif" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high">`;
-			}
-		} catch {
-			out = "";
-		}
-		preloadCache.set(key, out);
-		return out;
-	});
-
 	// --- Small array helpers used by the templates ----------------------------
 	eleventyConfig.addFilter("limit", (arr, n) => (Array.isArray(arr) ? arr.slice(0, n) : arr));
 	eleventyConfig.addFilter("head", (arr, n) => (Array.isArray(arr) ? arr.slice(0, n) : arr));
@@ -138,10 +97,10 @@ export default function (eleventyConfig) {
 			.filter(Boolean);
 	});
 
-	// Posts that carry a given tag.
-	eleventyConfig.addFilter("byTag", (posts, tag) =>
-		(posts || []).filter((p) => (p.data.tags || []).includes(tag)),
-	);
+	eleventyConfig.addFilter("pickTopics", (topics, names) => {
+		const byName = new Map((topics || []).map((term) => [term.name.toLowerCase(), term]));
+		return (names || []).map((name) => byName.get(String(name).toLowerCase())).filter(Boolean);
+	});
 
 	// Up to `n` other posts that share a public tag with the current post.
 	const internalTags = new Set(["posts", "all", "featured", "page"]);

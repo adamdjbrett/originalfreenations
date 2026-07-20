@@ -1,13 +1,12 @@
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import yaml from "js-yaml";
-import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import pluginFilters from "./_config/filters.js";
 import markdownIt from "markdown-it";
-import markdownItAttrs from 'markdown-it-attrs';
 import markdownItAnchor from 'markdown-it-anchor';
 import markdownItFootnote from "markdown-it-footnote";
-import slugify from "slugify";
 import pluginTOC from '@uncenter/eleventy-plugin-toc';
+
+const INTERNAL_TERMS = new Set(["posts", "all", "featured", "page"]);
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
@@ -39,41 +38,11 @@ export default async function (eleventyConfig) {
 	// ---------------------------------------------------------------------------
 	eleventyConfig.addPlugin(pluginFilters);
 
-	// ---------------------------------------------------------------------------
-	// Images — optimize every local <img> in the built HTML to AVIF/WebP with
-	// a responsive srcset + explicit width/height (kills CLS and "properly
-	// size images" / "next-gen formats" Lighthouse failures). Feature images
-	// are self-hosted under /assets/images/ so builds are network-free and
-	// reproducible. Per-image loading/fetchpriority/sizes come from the tags.
-	// ---------------------------------------------------------------------------
-	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-		extensions: "html",
-		formats: ["avif", "webp", "auto"],
-		widths: ["auto", 300, 600, 960, 1200, 2000],
-		sharpOptions: { animated: false },
-		sharpAvifOptions: { quality: 55 },
-		sharpWebpOptions: { quality: 66 },
-		sharpJpegOptions: { quality: 72, mozjpeg: true },
-		defaultAttributes: {
-			loading: "lazy",
-			decoding: "async",
-			sizes: "(max-width: 1200px) 100vw, 1200px",
-		},
-		urlPath: "/assets/images/optimized/",
-		outputDir: "./_site/assets/images/optimized/",
-	});
-
 	eleventyConfig.addPlugin(pluginTOC, {
         tags: ['h2', 'h3', 'h4'],
         wrapper: function(toc) {
             return `<nav class="toc">${toc}</nav>`;
         }
-    });
-
-	 eleventyConfig.addFilter("slug", function(str, options = {}) {
-        if (!str) return "";
-        options.lower ??= true;
-        return slugify("" + str, options);
     });
 
 eleventyConfig.setLibrary("md", markdownIt({
@@ -97,39 +66,39 @@ eleventyConfig.setLibrary("md", markdownIt({
 	// ---------------------------------------------------------------------------
 	// Collections
 	// ---------------------------------------------------------------------------
-	// All published posts, newest first.
-	eleventyConfig.addCollection("posts", (api) =>
-		api.getFilteredByTag("posts").sort((a, b) => b.date - a.date),
-	);
-
-	// Unique post tags (excluding internal tags) with their post counts,
-	// ordered by count desc — used for the homepage topic sections.
-	eleventyConfig.addCollection("topics", (api) => {
-		const excluded = new Set(["posts", "all", "featured", "page"]);
-		const counts = new Map();
-		for (const item of api.getFilteredByTag("posts")) {
-			for (const tag of item.data.tags || []) {
-				if (excluded.has(tag)) continue;
-				counts.set(tag, (counts.get(tag) || 0) + 1);
+	let taxonomyCache;
+	const taxonomies = (api) => {
+		if (taxonomyCache) return taxonomyCache;
+		const posts = api.getFilteredByTag("posts").sort((a, b) => b.date - a.date);
+		const buildTerms = (field) => {
+			const terms = new Map();
+			for (const post of posts) {
+				for (const name of post.data[field] || []) {
+					if (INTERNAL_TERMS.has(name)) continue;
+					const key = String(name).toLowerCase();
+					if (!terms.has(key)) {
+						terms.set(key, {
+							name,
+							slug: eleventyConfig.getFilter("slugify")(String(name)),
+							posts: [],
+						});
+					}
+					terms.get(key).posts.push(post);
+				}
 			}
-		}
-		return [...counts.entries()]
-			.map(([name, count]) => ({ name, count }))
-			.sort((a, b) => b.count - a.count);
-	});
+			return [...terms.values()]
+				.map((term) => ({ ...term, count: term.posts.length }))
+				.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+		};
+		taxonomyCache = { posts, tags: buildTerms("tags"), categories: buildTerms("categories") };
+		return taxonomyCache;
+	};
 
-	eleventyConfig.addFilter("findTopicByName", function(topics, name) {
-	if (!topics || !name) return null;
-	return topics.find(t => t.name.toLowerCase() === name.toLowerCase());
-});
-	
-	  eleventyConfig.addFilter("byTag", function(posts, tagName) {
-    if (!posts || !tagName) return [];
-    return posts.filter(post => {
-      const tags = post.data.tags || [];
-      return tags.some(tag => tag.toLowerCase() === tagName.toLowerCase());
-    });
-  });
+	eleventyConfig.on("eleventy.before", () => { taxonomyCache = undefined; });
+	eleventyConfig.addCollection("posts", (api) => taxonomies(api).posts);
+	eleventyConfig.addCollection("tags", (api) => taxonomies(api).tags);
+	eleventyConfig.addCollection("topics", (api) => taxonomies(api).tags);
+	eleventyConfig.addCollection("categories", (api) => taxonomies(api).categories);
 
   
 
@@ -141,7 +110,7 @@ eleventyConfig.setLibrary("md", markdownIt({
 	eleventyConfig.on("eleventy.after", ({ dir }) => {
 		if (process.env.ELEVENTY_RUN_MODE === "build") {
 			try {
-				execSync(`npx -y pagefind --site "${dir.output}" --glob "**/*.html"`, {
+				execFileSync("./node_modules/.bin/pagefind", ["--site", dir.output, "--glob", "**/*.html"], {
 					encoding: "utf-8",
 					stdio: "inherit",
 				});

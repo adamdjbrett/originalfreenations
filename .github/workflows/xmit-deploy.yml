@@ -71,7 +71,7 @@ jobs:
           echo "Deploying _site to $XMIT_SITE via XMIT CLI"
           # Chunk uploads can fail on transient TLS errors; retry before giving up.
           for attempt in 1 2 3; do
-            if npx -y @xmit.co/xmit "$XMIT_SITE" _site; then
+            if ./node_modules/.bin/xmit "$XMIT_SITE" _site; then
               echo "Deploy succeeded on attempt $attempt"
               exit 0
             fi

@@ -33,13 +33,12 @@ bodyClass: home-template
 
 		{#- Primary topic sections: configured tags, else top 3 topics -#}
 		{% if theme.primary_section_tags and theme.primary_section_tags.length %}
-			{% for tagName in theme.primary_section_tags %}
-				{% set topic = { name: tagName } %}
+			{% for topic in collections.topics | pickTopics(theme.primary_section_tags) %}
 				{% include "partials/topic-grid.njk" %}
 			{% endfor %}
 		{% elif collections.posts.length > 1 %}
 			{% for t in collections.topics | head(3) %}
-				{% set topic = { name: t.name, count: t.count } %}
+				{% set topic = t %}
 				{% include "partials/topic-grid.njk" %}
 			{% endfor %}
 		{% endif %}
@@ -47,8 +46,7 @@ bodyClass: home-template
 		{#- Secondary topic list: configured tags, else topics 4-6 -#}
 		{% if theme.secondary_section_tags and theme.secondary_section_tags.length %}
 			<div class="gh-topic-list">
-				{% for tagName in theme.secondary_section_tags %}
-					{% set topic = { name: tagName } %}
+				{% for topic in collections.topics | pickTopics(theme.secondary_section_tags) %}
 					{% include "partials/topic-minimal.njk" %}
 				{% endfor %}
 			</div>
@@ -57,7 +55,7 @@ bodyClass: home-template
 			{% if secondaryTopics.length %}
 				<div class="gh-topic-list">
 					{% for t in secondaryTopics %}
-						{% set topic = { name: t.name, count: t.count } %}
+						{% set topic = t %}
 						{% include "partials/topic-minimal.njk" %}
 					{% endfor %}
 				</div>
