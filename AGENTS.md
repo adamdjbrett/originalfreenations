@@ -152,21 +152,17 @@ conversion step. What is on disk is what ships.
 
 ## Markdown pipeline
 
-Configured in **`_config/markdown.js`**, registered as a plugin from
-`eleventy.config.js`. It uses **`amendLibrary("md", …)`**, not `setLibrary` — so
-Eleventy's own markdown-it instance and *all its defaults* (notably `html: true`,
-which the migrated WordPress content relies on) are preserved. The file only adds
-to them. Three plugins, in this order:
+Configured in **`eleventy.config.js`** with `setLibrary("md", …)`. Three plugins
+participate in Markdown rendering and TOC generation:
 
 | plugin | what it does |
 | --- | --- |
 | `markdown-it-footnote` | `[^1]` refs → numbered `<sup>`; `[^1]: …` defs → `<section class="footnotes">` at the end of the post, with `↩︎` back-links |
 | `markdown-it-anchor` | ids on `h2`/`h3` — **default markdown-it emits none**, so without this the TOC would have nothing to link to |
-| `markdown-it-table-of-contents` | renders the TOC where a `[[toc]]` marker appears |
+| `@uncenter/eleventy-plugin-toc` | builds a nested TOC from rendered `h2`/`h3`/`h4` elements |
 
-`_config/markdown.js` also defines **one** `slugify()` and hands the *same*
-function to markdown-it-anchor and markdown-it-table-of-contents. If those two
-ever disagree, every TOC link silently 404s inside the page.
+`markdown-it-anchor` uses Eleventy's built-in `slugify` filter, so heading IDs
+are deterministic, readable, and page-local.
 
 ### Footnotes
 
@@ -185,22 +181,16 @@ anchors that do not exist. All of them were converted. Four posts carry footnote
 ```yaml
 ---
 title: "…"
-toc: true      # ← renders a <div class="post-toc"> of the post's h2/h3
+toc: true      # ← renders a generated TOC of the post's h2/h3/h4 headings
 ---
 ```
 
-markdown-it-table-of-contents keys off a `[[toc]]` marker in the markdown and
-cannot see the data cascade. An Eleventy **preprocessor** (`toc`, in
-`_config/markdown.js`) bridges the gap: preprocessors run on the file body after
-front matter is parsed and **before** any template or markdown rendering, so it
-injects `[[toc]]` immediately before the post's **first `## ` heading** when
-`toc: true`. Consequences:
+The post layout applies the TOC filter only when `toc: true`, then adds an
+accessible `↑` return link to each included section heading. Consequences:
 
-- **Never hand-write `[[toc]]` into a `.md` file** — the front-matter flag is the
-  switch, and no layout change is needed (the marker is injected, not templated).
-- A post with **no `## ` heading gets no TOC and no stray marker** (the
-  preprocessor bails out).
-- Only `h2`/`h3` are listed. `h1` is the post title, rendered by the layout.
+- **Never hand-write a Contents list or `[[toc]]` marker** — the front-matter
+  flag is the only switch.
+- Only `h2`/`h3`/`h4` are listed. `h1` is the post title, rendered by the layout.
 - The long essays' section titles used to be **bold paragraphs** (`[↑](#ToC)
   **Title**`) with a hand-written "Contents" list of dead `#S1`…`#Sn` links. They
   are now real `##` headings and the manual list is gone.

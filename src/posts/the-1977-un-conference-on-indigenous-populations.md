@@ -10,16 +10,17 @@ categories: ["federal Indian law"]
 tags: ["federal-indian-law", "IITC", "Max Weber", "UN"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"
+toc: true
 ---
 
-## **The International Indian Treaty Council’s Intervention**
+## The International Indian Treaty Council’s Intervention
 
 -   ![Image](/assets/images/UN-Conference-1977.jpg)
     
 
 In September of 1977, representatives of Indigenous nations and peoples from around the world traveled to the Palace of Nations in Geneva, Switzerland. They went there to attend the International NGO \[Non-Governmental Organization\] Conference on Discrimination Against Indigenous Populations held at the UN Palais des Nations, in Geneva, Switzerland. Now, forty-three years later, it is fascinating to read the document that the International Indian Treaty Council (IITC) prepared for and delivered to that conference.
 
-**Introduction**
+## Introduction
 
 Back in the mid-1970’s, those with the skill to write such a document for circulation in the international arena had a particular worldview. They saw the planet as being divided into different “States,” a word typically spelled with a capital ‘S’ as a honorary device used to denote a “higher level status.” In his essay “politics as a Vocation” (1919), German sociologist Max Weber explained the nature of “the State.” He called the state “a relation of men dominating men.” “In order for the state to exist,” he said, “the dominated must submit themselves to the authority claimed by the powers that be.” As a result of that domination-oriented worldview of “the State,” the International NGO Conference held in Geneva in 1977 was centered on “Indigenous _populations_” rather than “_peoples_.”
 
@@ -31,7 +32,7 @@ The UN experts who wrote about “indigenous populations” in the mid 1970s wan
 
 The 1977 IITC document provides an early example of the kind of wording that was being used back then to advocate on behalf of those people around the world who were categorized as “indigenous.” Now, more than four decades later, we are able to read the IITC document with a critical eye, and identify the patterns of domination and dehumanization found in the essay. We are able to reach the conclusion that the word “indigenous” means “dominated” or “those who are forced or compelled to live under a system of domination.”
 
-**Using the Framework of Domination and Dehumanization**
+## Using the Framework of Domination and Dehumanization
 
 When we search the IITC document for patterns of domination and dehumanization, we find some fascinating examples. The document opens with a quote from an 1837 report of the Select Committee on Aboriginal Tribes to the British House of Commons:
 
@@ -53,7 +54,7 @@ As we shall see, the prepositions “in” and “within” are connected to the
 
 Populations called “indigenous” are framed as “existing” _in_ or _within_ the claimed domain of a “State,” which is called “a country.” That part of the opening quote which reads, “they become a burden upon the States” lets us know that “States” (or an individual “State” of domination) is the context for the discussion of “populations” termed “indigenous” or “Indigenous.”
 
-**The “Significant Problem” of “Populations” Termed “Indigenous”**
+## The “Significant Problem” of “Populations” Termed “Indigenous”
 
 After mentioning the “significant problem” that the existence of indigenous populations pose for “States,” the IITC document continues as follows:
 
@@ -125,7 +126,7 @@ The IITC report goes on to clarify that:
 
 Notice the number of times that the theme of domination is mentioned in those four points. Those said to be “indigenous” were originally living a free existence. Then, an invading outside culture or empire imposed a system of domination on them. They now live in a “non-dominant” or _subordinate_ position within that overall framework of the domination of “the State.” They seek to live in conformity with their own customs and institutions rather than in conformity with the invaders’ imposed system of domination.
 
-**Further Analysis of the IITC’s Intervention at the UN in 1977**
+## Further Analysis of the IITC’s Intervention at the UN in 1977
 
 At the opening of page 3 of the IITC document we find:
 

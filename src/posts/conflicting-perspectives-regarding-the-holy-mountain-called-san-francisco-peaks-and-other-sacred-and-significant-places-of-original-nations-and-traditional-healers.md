@@ -10,6 +10,7 @@ categories: ["doctrine of discovery","featured","federal Indian law","History"]
 tags: ["doctrine of discovery", "featured", "federal-indian-law", "History", "Christian Europeans", "federal-indian-law", "Original Free Nations", "Original Nations", "Steven Newcomb", "Supreme Court", "Western Christendom"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"
+toc: true
 ---
 
 **Conflicting Perspectives Regarding the Holy Mountain Called “San Francisco Peaks,” and Other Sacred and Significant Places of Original Nations and Traditional Healers**
@@ -18,38 +19,7 @@ Steven Newcomb (Shawnee/Lenape)
 
 *Our original nation ancestors understood mountains and other geographical areas as living beings imbued with spiritual energy. Our spiritual people knew and still know how to spiritually attune and align themselves with that energy in a ceremonial manner, by means of our languages and ceremonial ways. This has always been the central purpose of our Spiritual Way of Life.*
 
-**Contents**
-
-- [Prefatory Note: The Free Existence of Original Nations](#S1)
-- [On Redundancy and the Domination Translator](#S2)
-- [Some Clarification on Terminology](#S3)
-- [The Biblical Framework and Context of Federal Anti-Indian Law](#S4)
-- [The Intention to Establish Domination Where It Did Not Already Exist](#S5)
-- [Mental Competition between the Traditional Ceremonial People of Original Nations and U.S. Government Officials who Use the United States' Claim of a Right of Domination](#S6)
-- [The Benefit of Traditional Ceremonies](#S7)
-- [Identifying the Linguistic Patterns of Domination](#S8)
-- [Traditional Native People](#S9)
-- [Henry Wheaton's Elements of International Law and the Doctrine of Infidel Nonexistence](#S10)
-- [B. A. Hinsdale](#S11)
-- [Proof of the Christian (Biblical) Basis for 'the Right' to Sail to and Identify Non-Christian Lands](#S12)
-- [More From Wheaton's *Elements of International Law*](#S13)
-- [It's Time to Identify the U.S. Government's Claim of a Right of Domination](#S14)
-- [The Biblical Connection](#S15)
-- [American Indian Religious Freedom Legal Cases and the U.S. Claim of Property Over the Traditional Lands of Our Original Nations](#S16)
-- [The U.S. Government's Reasoning Process Regarding Our Sacred and Ceremonial Places](#S17)
-- [That Was Then, and Its Still Operational Now](#S18)
-- [McGirt v. Oklahoma (2020)](#S19)
-- [A View-from-the-Ship Parsing of Johnson v. McIntosh](#S20)
-- [The Accompanying Principle: An Indian Title of Occupancy](#S21)
-- [The Supreme Court's Use of the Doctrine of Christian Domination in Lyng](#S22)
-- [Justice Brennan's Dissenting Opinion in *Lyng* v. *Northwest Cemetery Protective Association*](#S23)
-- [The U.S. Government's Free Exercise of Domination on the Basis of the Bible](#S24)
-- [Why Religious Freedom Arguments Are Not Designed to Defeat The U.S. Government's Claim Of A Right of Domination Against Original Nations and Peoples](#S25)
-- [A Three-Pronged Counter Argument to the U.S. Claim of a Right of Domination Against Our Original Nations and Peoples](#S26)
-- [Conclusion](#S27)
-- [Notes](#S28)
-
-[↑](#ToC) **Prefatory Note: The Free Existence of Original Nations**
+## Prefatory Note: The Free Existence of Original Nations
 
 Mentally picture the free and independent existence of all the Original Nations and Peoples on this continent, extending back to the beginning of time through their oral histories and oral traditions, before the Christian Europeans had invasively arrived. Throughout that timespan, our ancestors lived free from the words and mental world of Western Europe. Our ancestors lived entirely free from the clever Euro-American metaphors, ideas, and arguments now used on a daily basis by the United States government against our nations and peoples.
 
@@ -63,11 +33,11 @@ The invading peoples assumed that their "God" had given them the right to use *t
 
 The difference between our original-free-existence perspective, and the claim-of-a-right-of-domination perspective of the dominating society, invariably produces conflict. That difference gives rise to competition between those who carry these two distinctive perspectives over questions of power and decision-making. Given the existence of these two opposing perspectives, both of which are competing to make final decisions regarding the use of a particular geographical area, the question becomes: which perspective will end up in the final decision-making position? Now apply this question to a dispute between the United States government and traditional ceremonial Native people regarding a Sacred and Significant Place of original nations — so-called [San Francisco Peaks](https://sacredland.org/san-francisco-peaks-united-states/), a place for which our original nations have our own name in our own respective languages.
 
-[↑](#ToC) **On Redundancy and the Domination Translator**
+## On Redundancy and the Domination Translator
 
 A cardinal rule of writing is don't repeat yourself. Clearly state what you have to say and move on. Once you've stated something, there's no need to say it again. This essay intentionally violates this rule. To write about a system of domination it becomes necessary to use the word domination in what appears to be an obsessively repetitious manner. Additionally, we use what we call "The Domination Translator." It's a simple technique: place the word domination inside brackets after a synonym for domination. An example is: "property [domination]."
 
-[↑](#ToC) **Some Clarification on Terminology**
+## Some Clarification on Terminology
 
 This essay is being written for the orientation of an English-speaking audience that lives in the *mental world* and thus the *reality system* of the dominating society of the United States. For this reason, we need to make some preliminary comments concerning the terminology used herein.
 
@@ -87,7 +57,7 @@ Three hundred and thirty-three years later, in 1823, the members of the United S
 
 It appears that most people of our current generation have failed to realize that Chief Justice John Marshall wrote the *Johnson* ruling, *on* behalf of a unanimous Court, by following Christendom's ancient tradition of distinguishing between Christians and non-Christians. This is demonstrated by Marshall's repeated use of the phrase "[Christian people](https://ratical.org/many_worlds/StevenNewcomb/index.html#JvM576)," which he distinguished from "[natives, who were heathens](https://ratical.org/many_worlds/StevenNewcomb/index.html#JvM577)" . And it is demonstrated by Marshall's documentation of the Christian claim of a right of domination over non-Christians, which is now a permanent feature of U.S. federal-indian-law, otherwise known as [federal anti-Indian law](https://ictnews.org/archive/u-s-anti-indian-law-a-question-of-legitimacy).
 
-[↑](#ToC) **The Biblical Framework and Context of Federal Anti-Indian Law**
+## The Biblical Framework and Context of Federal Anti-Indian Law
 
 Marshall included the phrase "Christian people" in the *Johnson* ruling in specific imitation of that phrase being expressed in a number of royal charters of England, such as [the John Cabot Charter of 1496](https://doctrineofdiscovery.org/patent-cabot-henry-vii/), which King Henry VII issued in imitation of the Alexandrian papal bulls of 1493. *[The Oxford English Dictionary explains that "heathen" is a word "of Christian origin](https://ratical.org/many_worlds/StevenNewcomb/ChristianNationalismInFAIL.html#en4)*," [^9] which means "heathen" is a linguistic carrier of the context of the Bible, the source of Christianity. It is a part that stands for the whole.
 
@@ -101,13 +71,13 @@ Religious Freedom arguments made on behalf of Native spiritual practitioners hav
 
 As a result of our investigation of ancient documents from Western Christendom and the overall historical record, we know that the invading colonizers sailed their ships to this continent with *a specific* *intention*. It was their intention to *identify the geographical location of* lands which until then had remained unknown to the Christian world. The word "discovery" is a shorthand way of referring to this new form of geographical knowledge.
 
-[↑](#ToC) **The Intention to Establish Domination Where It Did Not Already Exist**
+## The Intention to Establish Domination Where It Did Not Already Exist
 
 It was Christendom's intention to identify non-Christian lands across the ocean so that a right of Christian domination ("*dominio*" and "*dominium*" ) could be claimed in relation to those newly located lands, and in relation to the original nations and peoples living there. A key example is wording found in the *Prerogatives* that the monarchs of Spain issued to Columbus: Columbus (Cristobal Colón, "Christ-bearing Colonizer" ) was authorized to "discover and conquer" and "discover and subdue" whatever lands he was able to locate across the ocean that had not been previously identified and dominated. The words "conquer" and "subdue" are two synonyms for domination.
 
 Centuries later, as a result of its international treaties with different countries from Europe—such as, for example, England, France, and Spain—the U.S. government became the political successor to *the Christian world's claim of a right of domination* that had been initially made by those monarchies of the Christian European world. By means of the *Johnson* v. *McIntosh* ruling, the United States have consistently claimed and continue to claim a right of Christian domination over the lands and territories of our original nations, including over our Sacred and Significant Places, such as "San Francisco Peaks," on the basis of a biblical distinction between "Christian people" and "heathens."
 
-[↑](#ToC) **Mental Competition between the Traditional Ceremonial People of Original Nations and U.S. Government Officials who Use the United States' Claim of a Right of Domination**
+## Mental Competition between the Traditional Ceremonial People of Original Nations and U.S. Government Officials who Use the United States' Claim of a Right of Domination
 
 Let us return now to the context for this discussion. Our Native ancestors stood on the belief of the Sacredness of All Life. Our ancestors had no knowledge of the language spoken by the invading colonizers, and, conversely, the invading colonizers had no knowledge and no idea of our worldview that all Creation is Sacred. It was not possible for them to comprehend what the foreigners were saying. Nor did our ancestors have the ability to read the documents of the foreigners, such as Vatican papal decrees or royal charters.
 
@@ -117,13 +87,13 @@ Now, centuries after the invading colonizers first arrived here to this continen
 
 Some of us have dedicated decades to acquiring the necessary skills to do such interpretive work.[^11] And this work has involved a certain amount of risk. For there was always the possibility that this intellectual activity would result in our minds becoming so absorbed, so to speak, into the dominating society's consciousness that we would be left with only the ability to accept rather than reject the Christian European claim of a right of domination over our nations and peoples, and over our Sacred and Significant Places. Fortunately, this has not happened.
 
-[↑](#ToC) **The Benefit of Traditional Ceremonies**
+## The Benefit of Traditional Ceremonies
 
 Some of us who have been fortunate enough to participate in the liberating experience of ceremonial life, especially in our Sacred and Significant Places, have thereby gained a heightened appreciation of the original and spiritually grounded free existence of our nations and peoples. We have how now learned to think, speak, and write with a view-from-the-shore perspective, envisioning the invading ships sailing toward our ancestors on shore.
 
 That view-from-the-shore perspective enables us to unequivocally oppose the claim of a right of domination over our nations and peoples, over our women and children, over our traditional territories, including our Sacred Places, and over Life itself. By contrast, U.S. government officials operate on the basis of a well-accepted but unstated assumption that the U.S. federal government has the right, consistent with the ancient language patterns and mentality of Christendom, to claim, on behalf of the United States, a right of domination over our original nations and peoples.
 
-[↑](#ToC) **Identifying the Linguistic Patterns of Domination**
+## Identifying the Linguistic Patterns of Domination
 
 A view-from-the-ship-of-state perspective results in the use of euphemistic vocabulary that draws attention away from the system of domination. We as Native people need to learn to identify the linguistic carriers of the domination system. An excellent example of that system is the Tennessee Supreme Court ruling *[State v. Foreman](https://cite.case.law/tenn/16/256/)*.[^12] In his ruling, Judge John Catron provides an excellent example of the kind of language that has been used by the United States officials in relation to our original nations and peoples and our Sacred and Significant Places:
 
@@ -135,7 +105,7 @@ This tells us that when the representatives of a Christian monarch reached a reg
 
 In keeping with the previously mentioned papal and royal documents, "discovery" meant sailing by ship across the ocean with the *intention* of identifying any geographical location where non-Christians were living, and to create a Christian system of domination where such a system had never been previously established. And this intention was fulfilled by coercing the original nations into obedience to the reign of the dominators. This reveals the linguistic and behavioral basis for the claim of a right of domination that the U.S. government is now claiming in relation to San Francisco Peaks and other Sacred and Significant Places of Original Nations, such as Oak Flat and the Black Hills, as well as over our sacred holdings such as Eagle Feathers.
 
-[↑](#ToC) **Traditional Native People**
+## Traditional Native People
 
 Traditional Native people, especially Elders who are fluent in their own non-English language, despite the effort to kill our languages, have tended to avoid the specialized knowledge of the dominating society. They have focused instead on learning from their Elders the highly specialized knowledge, sacred language, and ceremonial ways, which the U.S. government has worked so diligently to destroy. There is a need for a collaboration between those traditional Native people who still wholeheartedly maintain and uphold the ceremonial practices of their people, and those Native scholars who have studied the documents, ideas, and arguments of the dominating society.
 
@@ -143,7 +113,7 @@ Strengthened by the knowledge we have accumulated, we as scholars need to advoca
 
 Let us now examine more specifically some of the ideas and arguments that have been used against our original nations and peoples with regard to our traditional territories and our Sacred and Significant places. In the next section we discuss the writings of [Henry Wheaton (1785-1848)](https://archive.org/search?query=%28%28subject%3A%22Wheaton%2C+Henry%22+OR+subject%3A%22Henry+Wheaton%22+OR+creator%3A%22Wheaton%2C+Henry%22+OR+creator%3A%22Henry+Wheaton%22+OR+creator%3A%22Wheaton%2C+H.%22+OR+title%3A%22Henry+Wheaton%22+OR+description%3A%22Wheaton%2C+Henry%22+OR+description%3A%22Henry+Wheaton%22%29+OR+%28%221785-1848%22+AND+Wheaton%29%29+AND+%28-mediatype%3Asoftware%29) and [Burke Aaron Hinsdale (1837-1900)](https://onlinebooks.library.upenn.edu/webbin/book/lookupname?key=Hinsdale,+B.+A.+(Burke+Aaron),+1837-1900). Wheaton was a reporter for the U.S. Supreme Court, and Hinsdale was an eminent nineteenth century educator author who studied what he called "The Right of Discovery" that has been applied by the U.S. government to our Sacred and Significant places, such as the San Francisco Peaks.
 
-[↑](#ToC) **Henry Wheaton's Elements of International Law and the Doctrine of Infidel Nonexistence**
+## Henry Wheaton's Elements of International Law and the Doctrine of Infidel Nonexistence
 
 [Henry Wheaton](https://archive.org/details/dictionaryofamer20amer/page/38/mode/2up?view=theater) was a U.S. lawyer, jurist, and diplomat. He was the third reporter of decisions issued by the U.S. Supreme Court. He held that position when the Court issued the 1823 *Johnson* v. *McIntosh* ruling. In 1836, thirteen years after the *Johnson* decision, Wheaton published his *[Elements of International Law](https://ratical.org/many_worlds/StevenNewcomb/index.html#RefsHW)*[^14] in which he explained that, "The law of nations, or international law, as understood among civilized, Christian nations, may be defined as consisting of those rules of conduct which reason deduces, as consonant to justice, from the nature of the society existing among independent nations; with such definitions and modifications as may be established by general consent [of the civilized, Christian nations]." [^15]
 
@@ -153,7 +123,7 @@ Given the importance of Wheaton's *Elements*, and his explanation of what we cal
 
 If the Christian nations of Europe had been required to apply to our nations this principle of long "uninterrupted possession of territory," specifically, that our nations' long uninterrupted possession of our territories excludes the claim of every invading nation, then our nations would have been able to invoke that principle to exclude the invasive claims made by the monarchs of Christendom to this continent. The Christian monarchs, however, had agreed among themselves that only Christian nations could invoke the principle of long uninterrupted possession of territory by colonizing powers.  The Christian world refused to apply that principle to peoples they deemed to be "barbarous" "heathens," and "infidels."
 
-[↑](#ToC) **B. A. Hinsdale**
+## B. A. Hinsdale
 
 Burke Aaron Hinsdale, in his 1888 essay "[Right of Discovery](https://babel.hathitrust.org/cgi/pt?id=mdp.39015069750555&view=1up&seq=5)," [^18] writes," "To the mind of Christian Europe in the fifteenth century the distinction between Christian and Infidel was ineffaceable [irremovable]." In other words, within the mental world of Christendom, the hatred Christians had toward non-Christians was considered permanent. Hinsdale continues: "Mr. Wheaton states the case thus: 'According to the European ideas of that age, the heathen nations of the other quarters of the globe were the lawful spoil and prey of their civilized conquerors.'" [^19] This language exemplifies the claim of a right of domination.
 
@@ -163,7 +133,7 @@ Hinsdale explains the trick of the mind that European scholars performed during 
 
 This suggests that the intellectuals of Western Europe created the *pretension* that our Native ancestors were *nonexistent* and thus not to be included in the allocation of rights of domination ("property" ), meaning "a right of domination rightfully obtained over some object," such as the lands of the continent. Hinsdale notes that "the Roman law furnished a full legal justification for the appropriation of the New World by the Christian nations." [^23] "They had but to hold the savages their enemies and to treat them accordingly…. They chose another path," a path that was "more in accordance with the theological temper of the times." [^24]
 
-[↑](#ToC) **Proof of the Christian (Biblical) Basis for 'the Right' to Sail to and Identify Non-Christian Lands**
+## Proof of the Christian (Biblical) Basis for 'the Right' to Sail to and Identify Non-Christian Lands
 
 "Perhaps the strongest proof of the correctness of the view advanced," said Hindsdale, "is furnished by the commissions, charters, and patents granted to explorers by the Kings of England." [^25] He continues:
 
@@ -183,7 +153,7 @@ The original nations upon whom the categories "heathens," "pagans," and "infidel
 
 This points out a specific pattern of reasoning applied to the Sacred and Significant Places of our original nations such as San Francisco Peaks, a pattern which is premised upon a Doctrine of Infidel Negation with regard to Christian claimed rights of domination over the lands of "heathen" and "Infidel" nations and peoples.
 
-[↑](#ToC) **More From Wheaton's *Elements of International Law***
+## More From Wheaton's *Elements of International Law*
 
 Wheaton says the following with regard to Christendom's agreed upon principle, mentioned above, that long uninterrupted possession of territory by one invading ("civilized invaders" ) Christian European nation excludes the claim of every other:
 
@@ -205,7 +175,7 @@ How then could the original nations be said to "fall" "within" boundaries imagin
 
 However, there is another possible interpretation. A "fall" indicates a "descent" from a high level to a lower level, or "to fall in battle," which usually indicates a soldier who has died. Once Christian European "boundaries" had been created on maps, the result was to depict vast areas of Native lands as being "under or subject to the domination of" the colonizing invaders. The corollary of this is, of course, a depiction of the Native peoples as being subject to the invaders. This explains how the Native peoples ended up being depicted as existing "within" those mentally created Christian European boundaries. This is the result of highly skilled and inventive metaphorical framing.
 
-[↑](#ToC) **It's Time to Identify the U.S. Government's Claim of a Right of Domination**
+## It's Time to Identify the U.S. Government's Claim of a Right of Domination
 
 The fact that the U.S. federal government has been claiming *a right of domination* over the lands of original nations has been seldom spoken of or written about. The people who work on behalf of the United States have had no reason to identify such a claim because to do so would reflect negatively on the United States. Federal government officials use synonyms for domination such as "federal property."
 
@@ -215,7 +185,7 @@ Regarding the Sacred and Significant Places of our original nations, and the arg
 
 Everyone educated in the United States has been taught to believe there is a separation between church and state in American society. It is surprising to discover that it is on the basis of the Bible, and the related concept of "property" [domination], that the U.S. government claims a Free Exercise of Domination over our original nations, and over our lands, including our Sacred and Significant Places.
 
-[↑](#ToC) **The Biblical Connection**
+## The Biblical Connection
 
 Are we able to identify a biblical connection to the claim that our traditional lands are "federal property?" William Blackstone, the eminent British jurist and commentator on English Common Law, explained that the "right of property," in general, is defined as "that sole despotic dominion which one man claims and exercises over the external things of the world, in total exclusion of the right of any other individual in the universe." [^32] As we shall explain below, Blackstone pointed to [Genesis 1:28](https://www.kingjamesbibleonline.org/Genesis-Chapter-1/#28) as the basis for that definition.
 
@@ -229,7 +199,7 @@ What this means is that the U.S. government has been tacitly using the Old Testa
 
 In order for U.S. government officials to escape the implications of this framework of analysis, they must explain on what non-biblical and constitutional basis they, on behalf of their government, are claiming a right of "property" and domination over Native nations and peoples. Or, alternatively, those officials would need to demonstrate that the U.S. government has not previously claimed, and is not now claiming, a right of domination over Native nations, over their traditional lands, and over their Sacred and Significant Places, such as San Francisco Peaks.
 
-[↑](#ToC) **American Indian Religious Freedom Legal Cases and the U.S. Claim of Property Over the Traditional Lands of Our Original Nations**
+## American Indian Religious Freedom Legal Cases and the U.S. Claim of Property Over the Traditional Lands of Our Original Nations
 
 Political activism in Indian Country in the late 1960s and early 1970s resulted in the U.S. Congress passing the 1978 American Indian Religious Freedom Act (AIRFA), as a joint resolution of Congress.[^35] To grasp the historical and mental context for Congress's passage of the AIRFA legislation, which the Supreme Court stated in Lyng "has no teeth," [^36] we need to trace Christendom's Christian-heathen distinction forward to nineteenth century U.S. Indian policy.
 
@@ -243,7 +213,7 @@ Christian preachers and missionaries helped to define the "Indian Offenses," by 
 
 Despite this clear record of Christian bigotry toward original nation spirituality, to my knowledge legal briefs involving what are called American Indian Religious Freedom cases have never quoted Secretary Teller's language or cited the American society's record of hatred for, and destructive behavior toward, non-Christian Native ceremonial ways. Nor have attorneys for Native people in religious freedom cases focused on the U.S. government's claim of *a right of domination* against our original nations and peoples.
 
-[↑](#ToC) **The U.S. Government's Reasoning Process Regarding Our Sacred and Ceremonial Places**
+## The U.S. Government's Reasoning Process Regarding Our Sacred and Ceremonial Places
 
 Let us now combine the above pieces of information and see what sort of holistic picture is revealed with regard to our Sacred and Significant places. The claim by "Christian people" that they have an exclusive right of domination (otherwise known as "property" ), based on Genesis 1:28 in the Bible, as acknowledged by William Blackstone, has resulted in a specific form of argumentation used by the United States government against our original nations and peoples, and against our Sacred and significant places. On that biblical basis, Christian European intellectuals regarded our non-Christian Native ancestors as "nullus" (non-existent) with regard to allocation of rights of property, as explained by Wheaton, Hinsdale, Lieber, and Story.
 
@@ -255,7 +225,7 @@ The most immediate conclusion for us to reach is that Christendom considered the
 
 In keeping with the Latin wording of *Dudum siquidem*, however, there is a less pleasant way of translating "not under the temporal rule of any Christian powers," which in the original Latin refers to "insulas" (islands) and "terra firmas" (firm lands) "*que sub actuali dominio temporali aliqurorum dominorum Christianorum constitute non essen*t," or, in English: islands and firm lands "that are not under the actual temporal domination ("dominio" ) of any Christian dominators" ("dominorum Christianorum" ).[^42] No right of Christian domination ("property" ) had ever been claimed over and in relation to that non-Christian place where "barbarous" peoples were living. This is the reasoning process that the United States government is now applying to San Francisco Peaks, and other Sacred and Significant Places.
 
-[↑](#ToC) **That Was Then, and Its Still Operational Now**
+## That Was Then, and Its Still Operational Now
 
 There are those who might respond "Well, that was then this is now," as if to say that the claim of a right of domination is no longer being used by the United States against our original nations. In addition to the fact that the claim of domination in the *Johnson* v. *McIntosh* ruling is still regarded as "good law" by the United States, we are also able to point to decisions such as *City of Sherrill* v. *Oneida Indian Nation*[^43] from 2005. In that decision, Justice Ruth Bader Ginsberg[^44] placed "the doctrine of discovery" in the first footnote of her ruling against the Oneida Nation.[^45] In that footnote, Ginsberg quotes from *Oneida Indian Nation of N.Y.* v. *County of Oneida* 414: U.S. 661, 667 (1974): "It very early became accepted doctrine in this Court that, although fee title to the lands occupied by Indians when the colonists arrived became vested in the sovereign — first the discovering European nation and later the original States and the United States — a right of occupancy in the Indian tribes was nevertheless recognized. That right, sometimes called Indian title and good against all but the sovereign, could be terminated only by sovereign act." [^46]
 
@@ -265,7 +235,7 @@ Later in that 1974 ruling, Justice White for a unanimous Court cited to *United 
 
 Use of the word "whites" is a reference to *individuals* termed "white," which means that the so-called right of occupancy is deemed by the Court to be "as sacred as" *but not the same as* the fee simple property right of individual "white people."
 
-[↑](#ToC) **McGirt v. Oklahoma (2020)**
+## McGirt v. Oklahoma (2020)
 
 Additionally, in *[McGirt v. Oklahoma](https://scholar.google.com/scholar_case?case=11242803550106492257&q=McGirt+v.+Oklahoma&hl=en&as_sdt=40000006)*, Justice Neil Gorsuch references a property law treatise from the 1860's in the decision he wrote just three years ago. In the 5-4 decision, Justice Gorsuch states: "The federal government issued its own land patents to many [non-Native] homesteaders throughout the West. These [federal] patents transferred legal title and are the basis for much of the private land ownership in a number of States today. But no one thinks any of this diminished the Unites States's claim to sovereignty over any land. To accomplish that would require an act of cession, the transfer of a sovereign claim from one nation to another." Here he references "E. Washburn, *American Law of Real Property* *521-*524." Legal scholar Peter d'Errico found the Washburn treatise cited by Gorsuch, and the cited [wording reads as follows](https://ratical.org/many_worlds/StevenNewcomb/AmLawOfRealProperty-Washburn1876.pdf#page=188):
 
@@ -273,7 +243,7 @@ Additionally, in *[McGirt v. Oklahoma](https://scholar.google.com/scholar_case?c
 
 And d'Errico observes: "Washburn footnoted this sentence with a citation of *Johnson* v. *McIntosh*." [^50] What is the significance of the most pro-Indigenous Justice on the U.S. Supreme Court harkening back to the "right of discovery" and to the patterns of domination expressed in the *Johnson* ruling? Rather than being up front and candid about the claim of a right of domination by the Christian nations of Europe, Gorsuch used a footnote to hide the fact that he was reaffirming the claim of a right of Christian domination which is at the root of the anti-Indian ideas and arguments called "federal-indian-law."
 
-[↑](#ToC) **A View-from-the-Ship Parsing of Johnson v. McIntosh**
+## A View-from-the-Ship Parsing of Johnson v. McIntosh
 
 Let's now take a closer look at what Justice Gorsuch, on behalf of a majority of the Court, reaffirmed just three years ago by citing a passage from a mid-nineteenth century property law treatise which cites to the *Johnson* ruling. Because the view-from-the-ship-perspective treated the "Indians" as null and void ("nullus" ) with regard to "property" (the claim of a right of domination), the Christian Europeans would not allow the Native peoples to be, as Justice Joseph Story put it, deemed (judged) as possessing "the prerogatives belonging to absolute, sovereign, and independent nations." This wording was an effort on his part to explain away the original free existence of our nations and peoples.
 
@@ -287,7 +257,7 @@ Marshall expressed as follows the new rule of the United States: "[However extra
 
 In other words, the United States government would *pretend* to "convert" the Christian "discovery" of the geographical location of a country already inhabited by non-Christians, into a position of domination ("conquest" ) toward that country, and toward the non-Christian nations and peoples living there. On the basis of the Supreme Court's "new and different" rule of "*pretended conquest*," a rule arrived at by applying to the case principles other than "abstract justice," the "Indians" would be regarded by the U.S. government as subject to U.S. domination ("ultimate dominion" ). Once this way of thinking was fully adopted by the United States government, it was treated as "the law of the land," and as a U.S. domination/Native subordination reasoning process, fully accepted by the US government which Marshall claimed "cannot be questioned." That reasoning process is still being deployed today by the U.S. government against the Native nations.
 
-[↑](#ToC) **The Accompanying Principle: An Indian Title of Occupancy**
+## The Accompanying Principle: An Indian Title of Occupancy
 
 Marshall went on to say in the *Johnson* ruling, "So, too, with respect to the concomitant principle *that the Indian inhabitants are to be considered [thought of] merely as occupants*, to be protected, indeed, while in peace, in the possession of their lands, but to be deemed [judged] incapable of transferring the absolute title to others." [^59] (emphasis added) That which is concomitant is something that "naturally accompanies or follows something else." Defining the Indians as being mere "occupants" of the land naturally followed from the Supreme Court's "extravagant pretension," or pretense, of *mentally* treating the idea of "discovery" *as if* it were literally the same as a physical "conquest."
 
@@ -301,7 +271,7 @@ This principle is cited in Felix Cohen's *[Handbook of federal-indian-law](https
 
 That is the fictional premise that U.S. officials, such as Justice Gorsuch and the rest of the U.S. Supreme Court use as the starting point for an extended argument about "the concomitant principle" Marshall mentioned, meaning, the *mentally fabricated* idea of an "Indian title of occupancy," contrasted with the U.S. government's presumed right of Christian domination ("property" ). This framing has been accepted as an unquestionable given by practitioners of federal anti-Indian law. And this unquestioned acceptance has prevented these mental fabrications from being fundamentally challenged by pointing out the fact that they are merely *mental and metaphorical constructions created by intellectuals* in the employ of the political experiment called the United States of America.
 
-[↑](#ToC) **The Supreme Court's Use of the Doctrine of Christian Domination in Lyng**
+## The Supreme Court's Use of the Doctrine of Christian Domination in Lyng
 
 In *[Lyng v. Northwest Indian Cemetery Protective Association](https://scholar.google.com/scholar_case?case=4142231306686197&q=Sherbert+v.+Verner+485+U.S.+439+&hl=en&as_sdt=40000006)*,[^63] for example, we may assume that the attorneys for the Native plaintiffs never mentioned the U.S. government's *claim of a right of domination* over the Sacred and Significant Area of the Native peoples. But a close reading of Justice Sandra Day O'Conner's 1988 decision in *Lyng* shows how the Supreme Court relied on the U.S. government's claim of a right of domination (termed "property" ) over the traditional territory of the Native people, a location called the Chimney Rock area of a place now designated the Six Rivers National Forest, adjacent to the Hoopa Valley Indian Reservation.
 
@@ -321,7 +291,7 @@ In *Lyng*, Justice O'Conner acknowledged for the majority what it saw as a speci
 
 A view-from-the-shore assessment of the above language reveals that the majority would not decide in favor of the original nations of that Northern California region because a win for the original peoples might effectively challenge the federal government's *presumed right of domination* over the traditional lands of the nations and peoples of that part of the continent. Behind these concerns was the covert and ancient assumption, examined above, that the U.S. government has a right of domination over the lands of Native nations on the basis of Christendom's ancient distinction between Christians and non-Christian "heathens," "pagans," and "infidels," which, by means of the *Johnson* precedent, the Supreme Court relies upon as a basis for U.S. property law.
 
-[↑](#ToC) **Justice Brennan's Dissenting Opinion in *Lyng* v. *Northwest Cemetery Protective Association***
+## Justice Brennan's Dissenting Opinion in *Lyng* v. *Northwest Cemetery Protective Association*
 
 In his dissent in *Lyng*, Justice Brennan (joined by Marshall and Blackmun), says that the Court majority "embraces the Government's contention that its prerogative as *landowner* should always take precedence over a claim that a particular use of federal *property* infringes religious practices." [^70] (emphasis added) Brennan further notes that, "as the lower courts found, the proposed logging and construction activities" would "virtually destroy respondents' religion, and will therefore necessarily force them into abandoning those practices altogether." [^71]
 
@@ -337,7 +307,7 @@ When we reword the above sentence with a view-from-the-shore perspective, we see
 > 
 > Today, the Court holds that a federal land use decision that promises to destroy an entire religion does not burden the practice of that faith in a manner recognized by the Free Exercise Clause. . . I find it difficult, however, to imagine conduct more insensitive to religious needs than the Government's determination to build a marginally useful road in the face of uncontradicted evidence that the road will render the practice of respondents' religion impossible. Nor do I believe that respondents will derive any solace from the knowledge that, although the practice of their religion will become "more difficult" as a result of the Government's actions, *they remain free to maintain their religious beliefs*. *Given today's ruling, that freedom amounts to nothing more than the right to believe that their religion will be destroyed*. The safeguarding of such a hollow freedom not only makes a mockery of the "policy of the United States to protect and preserve for American Indians their inherent right of freedom to believe, express, and exercise the[ir] traditional religions," *ante* at  [485 U. S. 454](https://supreme.justia.com/cases/federal/us/485/439/#454) (quoting AIRFA), it fails utterly to accord with the dictates of the First Amendment. I dissent.[^74] [emphasis added]
 
-[↑](#ToC) **The U.S. Government's Free Exercise of Domination on the Basis of the Bible**
+## The U.S. Government's Free Exercise of Domination on the Basis of the Bible
 
 An 1830 U.S. congressional report explains that "Christian and civilized nations" had laid the "foundations of the States which constitute this confederacy." [^75] The report said that the nations from Western Europe "were instructed or misled as to the nature of their duties by the precepts and examples contained in the volume [the Bible] which they acknowledged as the basis of their religious rites and creeds." [^76] Specifically, to "go forth, to subdue and replenish the earth, were received as divine commands or relied on as plausible pretexts to cover mercenary enterprises by the Governments which gave the authority and the adventurers who first discovered and took possession of the New World." [^77]
 
@@ -353,7 +323,7 @@ The complete phrase "*the Government's* *own property*" (emphasis added), demons
 
 The claim of "property" that the United States government is presently asserting is traced back to Christendom's claim of a right of domination against all non-Christians. This explains why some framework such as the American Indian Religious Freedom Act was needed in the first place, to address the fact that a Christian/non-Christian bigotry had been applied to our original nations and peoples for generations. It is this Christian religious framework of domination that is still being used by the United States government at San Francisco Peaks against non-Christian spiritual and ceremonial practitioners in the name of the "property" (domination) rights of the United States.
 
-[↑](#ToC) **Why Religious Freedom Arguments Are Not Designed to Defeat The U.S. Government's Claim Of A Right of Domination Against Original Nations and Peoples**
+## Why Religious Freedom Arguments Are Not Designed to Defeat The U.S. Government's Claim Of A Right of Domination Against Original Nations and Peoples
 
 We need to make clear and unambiguous our steadfast opposition to the U.S. government's claim of a right of domination over our lives as Native peoples. Our *original free existence* is and always will be the default position for our nations and peoples. We have the fundamental *right* to live free from domination. And, we now have the ability to clearly identify the system of domination being used against us.
 
@@ -363,7 +333,7 @@ When we do not openly name and oppose the domination system of the United States
 
 The argument that the First Amendment of the U.S. Constitution accords traditional healers and spiritual leaders the right to pray and to conduct ceremonies is not an effective means of opposing the U.S. government's claim of a right of domination ("property" ). Imagine a scenario in which federal government officials have stated to traditional spiritual people: "The federal government of the United States has the right to use its system of domination ("property" ) against you." Meekly responding "Well, we have the right to pray and conduct our ceremonies" based on the First Amendment of the U.S. Constitution does not in any way challenge the U.S. government's claimed right of domination over our lands and our lives as original nations.
 
-[↑](#ToC) **A Three-Pronged Counter Argument to the U.S. Claim of a Right of Domination Against Our Original Nations and Peoples**
+## A Three-Pronged Counter Argument to the U.S. Claim of a Right of Domination Against Our Original Nations and Peoples
 
 There is, however, a way of responding that has yet to be advanced: 1) Our original nations are first in time, and therefore first in right.  This is a response to the "first invaders in time, first invaders in right" argument; 2) Void when initiated, you cannot grant what you don't possess. This means the Vatican papal bulls and royal charters of England were null and void from the moment they were issued.
 
@@ -373,7 +343,7 @@ Christian popes and other monarchs certainly had no rightful jurisdiction thousa
 
 And, lastly, 3) "Anything wrong from the beginning can never be made right, because it was wrong, and thus invalid, from its inception," as expressed by Western Shoshone Elder Glenn Wasson. Their claim of a right of domination will never become valid, because their claim was invalid from the outset. Threat, duress, and coercion do not give rise to or create any *valid* authority over those who have been wrongfully subjected to the claim of a right of domination.
 
-[↑](#ToC) **Conclusion**
+## Conclusion
 
 These days, it is typical to hear the United States of America being portrayed as a "democracy" even though they (the "States" ) have operated for more than two centuries as a federal system of domination in relation to the original nations and peoples of this continent. This is especially true when it comes to our Sacred and Significant Places. Federal employees of the U.S. government, and even tribal government officials, are not likely to have known before now the information about domination found in this essay. No one, however, who ends up reading this essay, will be able to feign ignorance about the U.S. claim of a right of domination.
 
@@ -383,7 +353,7 @@ Anyone who might wish to make a counterargument to oppose what we have presented
 
 Our responsibility is to have dialogue with U.S. government officials, including, when possible, members of the U.S. Supreme Court,[^80] and hold them accountable to end their nefarious claim of a right of Christian domination over our spiritual people, over our Sacred and Significant Places, and over our Original Nations and Peoples and our Homelands. We need to transition to decision-making based on the Natural Laws of Creation that sustain all Life, which are the basis for our ceremonies. Those Laws of Creation guided our Ancestors and Spiritual Ways of Life before and after the invasive arrival of the ships of Christendom.
 
-[↑](#ToC) **Notes**
+## Notes
 
 [^1]: Steven T. Newcomb, [*Pagans in the Promised Land*](https://originalfreenations.com/pagans-in-the-promised-land-book-by-steven-t-newcomb/), Chapter 4, "Colonizing the Promised Land," pp. 37-50. For example, [Genesis 17:2-8](https://www.kingjamesbibleonline.org/Genesis-Chapter-17/): The "God" of the Bible said: "[And I will give unto thee](https://www.kingjamesbibleonline.org/Genesis-Chapter-17/#8), and to thy seed [sperm] after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession."
 

@@ -25,7 +25,7 @@ is the thing to check against. Do not delete it.
 How to use toc :
 on your post please add this
 ```
-shot_toc: true
+toc: true
 ```
 
 ## ELEMENTS NEEDED

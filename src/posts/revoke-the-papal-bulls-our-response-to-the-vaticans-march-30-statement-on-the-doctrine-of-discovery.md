@@ -10,6 +10,7 @@ categories: ["featured","federal Indian law"]
 tags: ["featured", "federal-indian-law", "Inter Caetera", "Portugal", "Spain", "United States"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"
+toc: true
 ---
 
 In response to the Papal Bulls issued
@@ -26,7 +27,7 @@ In response to the Papal Bulls issued
 
 **by Steven Newcomb (Shawnee/Lenape)**
 
-**The Context**
+## The Context
 
 Let us set the context for this discussion. The context begins with the free existence of our Native nations and peoples, extending back to the beginning of our time through our oral histories and traditions, _contrasted_ with the system of domination that was carried by ship across the ocean and imposed on everyone and everything. From that starting point we end up with a non-Christian view-from-the-shore with our Ancestors looking out at the invading ships sailing from Western Christendom, and a view-from-the-ship perspective, with the colonizers moving toward our Ancestors with the intention of establishing the Christian empire’s system of domination where it did not yet exist. Below we discuss the recent Vatican Statement on the Doctrine of Discovery with a view-from-the-shore perspective, while realizing that the Vatican officials wrote their statement with a view-from-the-ship (church) perspective.
 
@@ -38,7 +39,7 @@ Guided by our deep appreciation of Birgil’s wisdom and mentorship, [we continu
 
 After [thirty years](https://indigenouslawinstitute.com//newstudy.html) of [effort](https://indigenouslawinstitute.com//ictarticl.html) and momentum, the Vatican Dicastery for culture and Education, and the Dicastery for Promoting Integral Human Development, [issued a “Joint Statement” on the “Doctrine of Discovery.”](https://press.vatican.va/content/salastampa/en/bollettino/pubblico/2023/03/30/230330b.html) The Vatican stopped short of a revocation of the May 4th papal bull, issuing instead a “repudiation of the doctrine of discovery.” The following analysis is intended to take a closer look at the Vatican statement, while explaining some usually overlooked connections between the Bible and what we prefer to call the Doctrine of Christian Discovery and Domination.
 
-**Matthew 28:18-20 in the Bible Expresses a Mandate to Baptize All Nations. That, and the Mandate of Genesis 1:28, are Traced to a Number of Papal Bulls Issued During the Fifteenth Century**
+## Matthew 28:18-20 in the Bible Expresses a Mandate to Baptize All Nations. That, and the Mandate of Genesis 1:28, are Traced to a Number of Papal Bulls Issued During the Fifteenth Century
 
 The opening sentence of the Vatican’s March 30th statement refers to a “mandate received from Christ.” That mandate is sometimes known as “the faith-sharing mandate” and “The Great Commission.” In that biblical passage from the [Vulgate Bible](https://vulgate.org/) ([Matthew 28](https://vulgate.org/nt/gospel/matthew_28.htm):18-20), Jesus is quoted as saying, “All authority \[_potestas_, in Latin\] in heaven and on earth has been given to me \[Jesus Christ\]. _Go_ therefore and _make_ disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.” (emphasis added) In other words, baptize them and make them followers of Christ. This has been described as “the Lord’s world-wide commission.” ([_A New Commentary on Holy Scripture_](https://archive.org/details/newcommentaryonh0000gore_b9q6/page/n5/mode/2up), Ed., Gore, Goudge, and Guillaume, 1928, p. 204)
 
@@ -48,7 +49,7 @@ In the context of a world-wide mandate, the phrase “Go therefore” is accurat
 
 No Pope was going to set sail on a voyage of “discovery.” However, certain popes did issue documents purporting to give or grant Christian monarchs _the divine right_ to “discover and conquer” the distant lands of infidels. This pattern demonstrates how the Catholic Church’s Great Commission, based on Jesus Christ’s directive to make disciples of, and baptize all nations, logically resulted in a papally authorized effort to “discover,” “conquer,” and establish domination over distant non-Christian nations and their lands.
 
-**Pope Francis’s Environmental Encyclical, _Laudato Si_**
+## Pope Francis’s Environmental Encyclical, _Laudato Si_
 
 In 2015, Pope Francis issued his [Encyclical _Laudato Si_](https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html), which is regarded as the most comprehensive papal statement on the environment. Although we only have space to reference it in passing, we do want to acknowledge the Encyclical as being applicable to this discussion. _Laudato Si_ begins:
 
@@ -59,7 +60,7 @@ While the above style of writing sounds positive, it appropriates without attrib
 
 What seems odd about the above use of language by Pope Francis, however, is that it fails to acknowledge the worldviews and perspectives of Indigenous peoples, and the fact that they do not consider themselves to be “lords and masters” of the Earth, or consider themselves entitled to “plunder” the Earth at will. These are Christian European conceptions that include the Vatican papal bulls of the fifteenth century (three of which we quote below), and the doctrine of Christian discovery and domination.
 
-**The Book of Genesis in _Laudato Si_**
+## The Book of Genesis in _Laudato Si_
 
 Chapter Two of _Laudato Si_, is titled “[The Gospel of Creation](https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html#_ftnref35).” There we find the subheading: “[II. The Wisdom of the Biblical Accounts](https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html#_ftnref36).” At [paragraph 66](https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html#_ftnref39), Pope Francis states:
 
@@ -78,7 +79,7 @@ was what “distorted our mandate \[from God\] to ‘have dominion’ over the e
 
 However, the Latin words for mandate (_imperatum_, _iussum_, and _mandatum_) _definitely_ convey a sense of _domination_ and _conflict_, as do the words “_subicite_” and “_dominamini_” from Genesis 1:28 in the Latin Vulgate Bible. It thus makes no sense to conceive of a God-given mandate to subdue and dominate the Earth (and “all living things which are moving above ground”) as creating a harmonious relationship between humans and nature. Given God’s command to subdue and dominate the Earth (“nature”), in that context the biblical story of creation portrays humanity as being in_conflict_ with the Earth, and by extension in conflict with the Indigenous peoples of the Earth. We see this manifested in the history of Christendom invading war against non-Christian nations and peoples and waging war against them.
 
-**The Collective Punishment and Domination of Women in the Bible**
+## The Collective Punishment and Domination of Women in the Bible
 
 In Chapter Two, _Laudato Si_ [cites Genesis 3:17-19](https://www.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.html#_ftnref39), thereby conveniently avoiding [Genesis 3:16,](https://vulgate.org/ot/genesis_3.htm) according to which “a loving God” condemns Eve, and, by extension, all women after her, to an everlasting collective punishment: “To the woman also he \[God\] said: I will multiply thy sorrows, and thy conceptions; in sorrow shall thou bring forth children, and, thou shalt be under thy husband’s power \[“_potestate_” in Latin\], and he shall have dominion \[_dominabitur_, in Latin (i.e., domination)\] over thee.”
 
@@ -94,7 +95,7 @@ Genesis 3:16 quoted above, and [3:17-19](https://vulgate.org/ot/genesis_3.htm) q
 
 “Nowadays” is the key word. This is evidently an updated way of understanding the Bible. However, it is not the interpretation of the Bible that was used as the basis of the papal decrees from the fifteenth century, which are traced to the story of the Chosen People and the Promised Land.
 
-**The Chosen People Promised Land Narrative Used Against Indigenous Nations and Peoples**
+## The Chosen People Promised Land Narrative Used Against Indigenous Nations and Peoples
 
 At Genesis 15:7 we find “the Lord” \[_Dominus_, “he who has dominated” in Latin\] telling Abram “I am the Lord who brought thee out from Ur of the Chaldees, to gibe thee this land, and that thou mightest possess it.” The deity does not merely give _the land_ to Abram; he is also giving _the Indigenous peoples_ who were already living in the “promised land” of Canaan. Thus the Old Testament deity [says to Abram](https://vulgate.org/ot/genesis_15.htm) (who becomes Abraham):
 
@@ -116,7 +117,7 @@ Attitudes from the Old Testament covenant tradition have had a tremendous abilit
 
 > This is the Land of Promise, possessed by idolator, the Amorite, Amulekite, Moabit, Canaanite. This is the land promised by the Eternal Father to the Faithful, since we are commanded by God in the Holy Scripture to take it from them, being idolators, and, by reason of their idolatry and sin, to put them all to the knife, leaving no living thing save maidens and children, their cities robbed and sacked, their walls and houses leveled to the earth.
 
-**The Right of Discovery**
+## The Right of Discovery
 
 In his 1888 article, “[Right of Discovery](https://babel.hathitrust.org/cgi/pt?id=mdp.39015069750555&view=1up&seq=5),” B. A. Hinsdale elaborated on this Catholic way of thinking that considered it acceptable to genocidally _nullify_ or _negate_ the original nations and peoples of the continent. He explains the emergence of the category “_nullus_,” which, he says, Francis Lieber traced to the Catholic Church. [As Hinsdale explains](https://ratical.org/many_worlds/StevenNewcomb/Hinsdale-RightOfDiscovery-pp16-17.pdf):
 
@@ -144,13 +145,13 @@ This Christian “logic” of treating non-Christians as enemies provides a rati
 
 Anghie sums up by saying: “These conclusions stand in curious juxtaposition to other parts of Vitoria’s work, where he emphasizes the humanity of the Indians.” And, “it is the Indian who acts as the object against which the powers of sovereignty \[domination\] may be exercised in the most extreme ways.” This mentality can be traced into U.S. federal-indian-law and policy, such as the doctrine of the plenary power of Congress.
 
-**A Hypothetical Scenario**
+## A Hypothetical Scenario
 
 In a spirit of historical truth-telling, Pope Francis could have stated the following in _Laudato Si_: “A number of my predecessors, during the fifteenth century, supported Christian monarchs to view themselves as ‘lords and masters’, whom we believe, were entitled, with the support of the Divine Majesty, our Lord Jesus Christ, and the Holy See, to plunder the Earth, and the Indigenous peoples of the Earth.”
 
 Pope Francis would have exhibited tremendous courageous if he had stated: “In the papal bull [_Romanus Pontifex_ of 1455](https://ratical.org/many_worlds/StevenNewcomb/#RP1455), for example, we find the Holy See’s support for the belief in a divine entitlement to plunder the Earth, and establish domination over the Indigenous peoples of the Earth.”
 
-**Some Text from _Romanus Pontifex_**
+## Some Text from _Romanus Pontifex_
 
 The connection between _Romanus Pontifex_, _Genesis 1:28_, _Genesis 15:7_, _Matthew 28:18-20_,_2:8_, _Psalms:2:8_ and other biblical passages contradicts Point 6 of [the Vatican’s March 30th statement](https://press.vatican.va/content/salastampa/en/bollettino/pubblico/2023/03/30/230330b.html), “The ‘doctrine of discovery’ is not part of the teaching of the Catholic Church.” Given that _Matthew_ 28:18-20 is one of the _central_ teachings of the Catholic Church, and given that a fulfillment of _Matthew_ 28:18-20 logically _requires_ that the location of all distant non-Christian nations be identified, it is nonsensical and farcical for the Vatican to assert that the claimed right of discovery is not part of the teachings Catholic Church.
 
@@ -162,7 +163,7 @@ After all, Jesus Christ’s mandate to “Go therefore and make disciples of all
 
 The phrase “all the nations” in the bull _Romanus Pontifex_ matches the phrase “all nations” in _Matthew_ 28. In order to make disciples of “all nations” and to baptize them, it is first necessary to identify (“discover”) the geographical location of those nations, so that a right of Christian domination can be asserted over and against them.
 
-**More Evidence of the Connection Between Matthew 28:18-20, the Papal Bull _Romanus Pontifex,_ and the Theology of Domination**
+## More Evidence of the Connection Between Matthew 28:18-20, the Papal Bull _Romanus Pontifex,_ and the Theology of Domination
 
 _Romanus Pontifex_ continues: The Roman pontiff “wholesomely ordains and disposes \[gives,\] . . . \[after\] careful deliberation \[upon\] those things which he \[the pontiff\] sees will be agreeable to the Divine Majesty \[i.e., God\] and by \[means of\] which he \[the pontiff\] may bring the \[infidel\] sheep entrusted to him by God into the single divine fold, and may acquire for them the reward of eternal felicity \[joy\], and obtain pardon for their souls.” \[_European Treaties_, p. 21\]
 
@@ -178,7 +179,7 @@ Lyle N. McAlister, in [_Spain and Portugal in the New World_](https://ratical.or
 
 The language from _Romanus Pontifex_ illustrates the connection between “the doctrine of Christian discovery” and the Theology of Domination. “Discover” refers to the sailing expeditions to identify what Pope Nicholas V called those “remote parts of the world” where non-Christian peoples (“infidels”) were living and where Christian domination had not yet been imposed. The pope’s language expresses _an intention_ to “subject” the infidels to the temporal domination (“dominio” [in the Latin text](https://archive.org/details/eurotreatiesus00daverich/page/13/mode/1up)) of the Portuguese monarchy. The language of _Romanus Pontifex_ provides strong evidence that the Holy See at that time believed that the doctrine of Christian discovery and domination was _intrinsic_ to “the teaching of the Catholic Church.”
 
-**Additional Content from the Vatican’s March 30th Statement on the Doctrine of Discovery**
+## Additional Content from the Vatican’s March 30th Statement on the Doctrine of Discovery
 
 The Vatican’s March 30th statement claims that the “mandate received from Christ” causes the Catholic Church to strive to promote “universal fraternity and respect for the dignity of every human being.” Again, no historical context for the statement is provided. The statement says “the Popes” have worked to uphold that mandate by condemning “acts of violence, oppression, social injustice and slavery, including those committed against indigenous peoples.”
 
@@ -230,7 +231,7 @@ In the book _Red Man’s Land, White Man_’_s Law_ (1971), Wilcomb Washburn quo
 
 Washburn then states: “[It was a noble try](https://www.google.com/books/edition/Red_Man_s_Land_white_Man_s_Law/V_RAfccL3qsC?hl=en&gbpv=1&bsq=It%20was%20a%20noble%20try%20but%20to%20little%20avail) but to little avail. Emperor Charles ordered confiscated and returned to the Council of the Indies all copies of the bull that might have found their way to the New World. At the same time he \[the Emperor\] prevailed upon the Pope, ten days later, to revoke the bull. Minaya, \[the Dominican priest who appealed to Pope Paul III to issue a papal bull favorable to the Indians\], was imprisoned for failing to go through proper channels, was thrown in prison by the general of the Dominican order.” (p. 13) The pope removed all ecclesiastical penalties associated with _Sublimis Deus_, such as excommunication and interdict.
 
-**Papal Bulls Invoked in 1680 by the Spanish Crown in the Compilation of the Laws of the Indies**
+## Papal Bulls Invoked in 1680 by the Spanish Crown in the Compilation of the Laws of the Indies
 
 The papal bull _Sublimis Deus_ did not revoke the earlier papal bulls from the fifteenth century, which were made by Pope Alexander VI, for example, “_en perpetua_” (eternally or forever). In [_A Violent Evangelism_](https://archive.org/details/violentevangelis0000rive) (1992), Dr. Luis Rivera-Pagán points to the 1680 Compilation of the _Leyes de Indias_ \[Laws of the Indies\], produced one hundred forty-three years after the papal bull of 1537. Rivera-Pagán states: “In the juridical area, the Alexandrine bulls maintained their authorized character, as shown by **the first sentence in the first law of the first chapter of the third book** of ‘the Compilation of the _Leyes de Indias_’ (1680), which recognizes them \[the papal bulls of 1493\] as the first foundation for the possession in perpetuity of the Americas by the Crown of Castilla.” (emphasis added) If those bulls had been abrogated or revoked by the papal bull of 1537, there would be no basis upon which the Spanish crown could continue to invoke them:
 
@@ -240,7 +241,7 @@ The papal bull _Sublimis Deus_ did not revoke the earlier papal bulls from the f
 
 **Point 9 of the statement reads**: “More recently, the Church’s solidarity with indigenous peoples has given rise to the Holy See’s strong support for the principles contained in the United Nations Declaration on the Rights of Indigenous People. The implementation of those principles would improve their living conditions and help protect the rights of indigenous peoples as well as facilitate their development in a way that respects their identity, language, and culture.” Unfortunately, the UN Declaration on the Rights of Indigenous Peoples itself [does not explicitly and thoroughly address the system of domination](https://ratical.org/many_worlds/StevenNewcomb/Intervention-UNPFII-WCIP-2013.html) that is [being used against Indigenous nations and peoples.](https://ratical.org/many_worlds/StevenNewcomb/UNDRIP+ParadigmOfDomination2011.pdf)
 
-**Conclusion**
+## Conclusion
 
 Today Indigenous nations and peoples live with the psychological and other forms of wreckage brought about by the fifteenth-century Vatican documents issued by various popes. How many nations and peoples are no longer existing as a result of those documents? How many languages, evolved over thousands and thousands of years by the ancestors of original nations and peoples, are no longer existing as a result of those destructive documents? How many acres and hectares of land of the original (Indigenous) nations and peoples are now under the claim of a right of domination as a result of those papal bulls? The number of potential questions regarding all of the torment and abuse and suffering caused by the legacy of those documents is staggering. 
 

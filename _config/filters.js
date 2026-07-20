@@ -83,6 +83,14 @@ export default function (eleventyConfig) {
 		return parts.length > words ? parts.slice(0, words).join(" ") + "…" : text;
 	});
 
+	// Add a compact return link to each section in posts that opt into a TOC.
+	eleventyConfig.addFilter("tocBacklinks", (content) =>
+		String(content || "").replace(
+			/<h([2-4])([^>]*)>/g,
+			'<h$1$2><a class="toc-back" href="#toc" aria-label="Back to contents">↑</a>',
+		),
+	);
+
 	// --- Small array helpers used by the templates ----------------------------
 	eleventyConfig.addFilter("limit", (arr, n) => (Array.isArray(arr) ? arr.slice(0, n) : arr));
 	eleventyConfig.addFilter("head", (arr, n) => (Array.isArray(arr) ? arr.slice(0, n) : arr));

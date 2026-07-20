@@ -39,11 +39,10 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPlugin(pluginFilters);
 
 	eleventyConfig.addPlugin(pluginTOC, {
-        tags: ['h2', 'h3', 'h4'],
-        wrapper: function(toc) {
-            return `<nav class="toc">${toc}</nav>`;
-        }
-    });
+		tags: ["h2", "h3", "h4"],
+		wrapper: (items) =>
+			`<nav id="toc" class="post-toc" aria-labelledby="toc-title"><h2 id="toc-title">Contents</h2>${items}</nav>`,
+	});
 
 eleventyConfig.setLibrary("md", markdownIt({
     html: true,
@@ -53,13 +52,7 @@ eleventyConfig.setLibrary("md", markdownIt({
 .use(markdownItFootnote)
 .use(markdownItAnchor, {
     level: [2, 3, 4],
-    slugify: function(str) {
-        if (typeof this._headingCounter === 'undefined') {
-            this._headingCounter = 0;
-        }
-        this._headingCounter++;
-        return `S${this._headingCounter}`;
-    }
+	slugify: (str) => eleventyConfig.getFilter("slugify")(str),
 }));
 
 

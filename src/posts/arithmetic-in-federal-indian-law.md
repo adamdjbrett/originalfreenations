@@ -51,9 +51,9 @@ That wording is taken from _Tee-Hit-Ton Indians_ v. _United States_. It was writ
 
 While the entire section that Justice Reed cited from chapter five in Wheaton’s _Elements of International Law_ is quite lengthy, a couple of pertinent passages provide insight into the basis for the “legal theory” mentioned by the Supreme Court in the _Tee-Hit-Ton_ decision:
 
-According to the European ideas of that age \[of discovery\], the heathen nations of the other quarters of the globe were the lawful spoil and prey of their civilized conquerors, and as between the Christian powers themselves, the Sovereign Pontiff \[the pope\] was the supreme arbiter of conflicting claims.[\[1\]](#_ftn1)
+According to the European ideas of that age \[of discovery\], the heathen nations of the other quarters of the globe were the lawful spoil and prey of their civilized conquerors, and as between the Christian powers themselves, the Sovereign Pontiff \[the pope\] was the supreme arbiter of conflicting claims.[^1]
 
-Thus, the bull of Pope Alexander VI. reserved from the grant to Spain all lands which had been previously occupied by any other _Christian_ nation; and the patent granted by Henry VII. of England to John Cabot and his sons, authorized them “to seek out and discover all islands, regions, and provinces whatsoever, that may belong to heathens and infidels;” and “to subdue, occupy, and possess these territories, as his vassals and lieutenants.”. . . It thus became a maxim of policy and of law, that the right of the native Indians was subordinate to that of the first Christian discoverer…”[\[2\]](#_ftn2) (Wheaton’s emphasis on “Christian”)
+Thus, the bull of Pope Alexander VI. reserved from the grant to Spain all lands which had been previously occupied by any other _Christian_ nation; and the patent granted by Henry VII. of England to John Cabot and his sons, authorized them “to seek out and discover all islands, regions, and provinces whatsoever, that may belong to heathens and infidels;” and “to subdue, occupy, and possess these territories, as his vassals and lieutenants.”. . . It thus became a maxim of policy and of law, that the right of the native Indians was subordinate to that of the first Christian discoverer…”[^2] (Wheaton’s emphasis on “Christian”)
 
 The 9th Circuit Court citation to both _Tee-Hit-Ton Indians_ and _Johnson v. M’Intosh_ is highly important. Not only did Justice Stanley Reed write the 1955 _Tee-Hit-Ton_ opinion, he also wrote a dissenting opinion in the 1946 case Alcea Band of Tillamooks. In his dissent in _Alcea Band_ of Tillamooks Reed said the theory expressed in _Johnson_ ruling was that “discovery by Christian nations gave them sovereignty over and title to the lands discovered.” That sentiment was also expressed in 1836 by Henry Wheaton: “The Indians were deemed to be subordinate to the first Christian discoverer.” The process of subtraction results in a “subordinate” position and status of “occupancy” means, the original existence of the Native nations _minus_ “propriety and dominion.” As Justice Story said:
 
@@ -65,8 +65,8 @@ Footnote number 2 of _White_ v. _University of California_ is a twenty-first cen
 
 * * *
 
-[\[1\]](#_ftnref1) Wheaton’s _Elements of International Law_: With a Sketch of the History of the Science (Philadelphia, 1836), 139-40.
+[^1]: Wheaton’s _Elements of International Law_: With a Sketch of the History of the Science (Philadelphia, 1836), 139-40.
 
-[\[2\]](#_ftnref2) Ibid. Wheaton’s emphasis on “Christian” matches italics on “Christian people” found in Johnson v. M’Intosh, and italics on “Christian people” found in Joseph Story’s Commentaries on the Constitution of the United States.
+[^2]: Ibid. Wheaton’s emphasis on “Christian” matches italics on “Christian people” found in Johnson v. M’Intosh, and italics on “Christian people” found in Joseph Story’s Commentaries on the Constitution of the United States.
 
 Copyright Steven T. Newcomb, June 13, 2019

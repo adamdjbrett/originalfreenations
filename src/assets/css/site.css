@@ -282,3 +282,36 @@ h1,h2,h3,h4,h5,h6{min-width:0;overflow-wrap:anywhere}
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.post-toc {
+    padding: 24px;
+    margin-bottom: 48px;
+    background: var(--color-lighter-gray);
+    border-block: 1px solid var(--color-light-gray);
+}
+
+.post-toc ol {
+    margin-bottom: 0;
+}
+
+.post-toc a {
+    color: var(--color-accent-red);
+}
+
+.toc-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+    color: var(--color-accent-violet);
+    font-family: var(--font-sans);
+    font-size: 1.6rem;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.toc-back:hover {
+    color: var(--color-accent-violet-hover);
+}

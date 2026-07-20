@@ -63,8 +63,8 @@ bodyClass: post-template
 		</header>
 
 		<section class="gh-content gh-canvas e-content" itemprop="articleBody">
-			{% if show_toc %}<p>Contents</p>{{ content | toc | safe }}{% endif %}
-			{{ content | safe }}
+			{% if toc %}{{ content | toc | safe }}{% endif %}
+			{{ ((content | tocBacklinks) if toc else content) | safe }}
 		</section>
 	</article>
 
@@ -98,8 +98,8 @@ bodyClass: post-template
 		</header>
 
 		<section class="gh-content gh-canvas e-content" itemprop="articleBody">
-			{% if show_toc %}<p>Contents</p>{{ content | toc | safe }}{% endif %}
-			{{ content | safe }}
+			{% if toc %}{{ content | toc | safe }}{% endif %}
+			{{ ((content | tocBacklinks) if toc else content) | safe }}
 		</section>
 
 	</article>

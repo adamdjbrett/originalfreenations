@@ -63,6 +63,7 @@ content:
       - { name: feature_image_alt, label: Cover image alt text, type: string }
       - { name: feature_image_caption, label: Cover image caption, type: string }
       - { name: authors, label: Authors, type: string, list: true }
+      - { name: toc, label: Table of contents, type: boolean, default: false }
       - name: template
         label: Post layout
         type: select
@@ -100,6 +101,7 @@ content:
       - { name: feature_image_alt, label: Cover image alt text, type: string }
       - { name: feature_image_caption, label: Cover image caption, type: string }
       - { name: authors, label: Authors, type: string, list: true }
+      - { name: toc, label: Table of contents, type: boolean, default: false }
       - name: template
         label: Post layout
         type: select
