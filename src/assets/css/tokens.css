@@ -19,6 +19,8 @@
 	--color-action-text: var(--color-white);
 	--color-accent-ink: var(--color-action-text);
 	--color-focus: oklch(54% 0.23 294);
+	--color-highlight: oklch(88% 0.17 95);
+	--color-highlight-text: oklch(14.5% 0.008 264);
 	--color-hover-wash: oklch(55% 0.016 264 / 0.14);
 	--color-card-shadow: oklch(14.5% 0.008 264 / 0.08);
 	--ghost-accent-color: var(--color-accent-red);
@@ -47,6 +49,8 @@
 	--color-action-text: oklch(100% 0 0);
 	--color-accent-ink: var(--color-action-text);
 	--color-focus: oklch(75% 0.16 294);
+	--color-highlight: oklch(88% 0.17 95);
+	--color-highlight-text: oklch(14.5% 0.008 264);
 	--color-hover-wash: oklch(87% 0.01 264 / 0.14);
 	--color-card-shadow: oklch(0% 0 0 / 0.28);
 	--ghost-accent-color: var(--color-action-background);
