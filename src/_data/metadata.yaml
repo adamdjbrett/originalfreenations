@@ -74,11 +74,11 @@ feeds:
     label: RSS Feed
   science:
     title: Youtube
-    desc: Watch Domination Chronicles on YouTube
+    desc: Watch The Domination Chronicles Podcast on YouTube
     url: https://www.youtube.com/@DominationChronicles
     label: YouTube
   technology:
     title: Podcast
-    desc: Latest episodes from Domination Chronicles
+    desc: Listen to the latest episodes from the Domination Chronicles
     url: https://dominationchronicles.com/feed/feed.xml
     label: RSS Feed
