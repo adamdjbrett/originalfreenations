@@ -15,11 +15,11 @@ export default async function (eleventyConfig) {
 	// ---------------------------------------------------------------------------
 	eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
-	// Drafts: a post is a draft when `published: false` (or it lives in
-	// src/_drafts/, whose directory data defaults published to false). Drafts
-	// are excluded from production builds but render in --serve for preview.
+	// Production never publishes files in src/_drafts/ or content explicitly
+	// marked `published: false`. Drafts still render in --serve for preview.
 	eleventyConfig.addPreprocessor("drafts", "*", (data) => {
-		if (data.published === false && process.env.ELEVENTY_RUN_MODE === "build") {
+		const inDrafts = data.page?.inputPath?.includes("/src/_drafts/");
+		if (process.env.ELEVENTY_RUN_MODE === "build" && (inDrafts || data.published === false)) {
 			return false;
 		}
 	});

@@ -21,9 +21,6 @@ bodyClass: post-template
 		template: template
 	}
 } %}
-{% set primaryTag = (tags | publicTags)[0] %}
-{% set primaryCategory = categories[0] %}
-
 {% if template == "full-feature-image" %}
 {#- custom-full-feature-image.hbs: full-bleed cover, then article -#}
 {% if feature_image %}
@@ -39,12 +36,6 @@ bodyClass: post-template
 		>
 
 		<div class="gh-cover-content">
-			{% if primaryCategory %}
-				<a class="gh-article-tag" href="/category/{{ primaryCategory | slug }}/">{{ primaryCategory }}</a>
-			{% elif primaryTag %}
-				<a class="gh-article-tag" href="/tag/{{ primaryTag | slug }}/">{{ primaryTag }}</a>
-			{% endif %}
-
 			<h1 class="gh-cover-title p-name" itemprop="headline name">{{ title }}</h1>
 		</div>
 	</section>
@@ -68,6 +59,8 @@ bodyClass: post-template
 		</section>
 	</article>
 
+	{% include "partials/post-taxonomy.njk" %}
+
 	{% include "partials/related-posts.njk" %}
 
 	{% include "partials/comments.njk" %}
@@ -80,12 +73,6 @@ bodyClass: post-template
 		<a class="u-url" href="{{ page.url }}" hidden aria-hidden="true"></a>
 
 		<header class="gh-article-header gh-canvas">
-			{% if primaryCategory %}
-				<a class="gh-article-tag" href="/category/{{ primaryCategory | slug }}/">{{ primaryCategory }}</a>
-			{% elif primaryTag %}
-				<a class="gh-article-tag" href="/tag/{{ primaryTag | slug }}/">{{ primaryTag }}</a>
-			{% endif %}
-
 			<h1 class="gh-article-title p-name" itemprop="headline name">{{ title }}</h1>
 
 			{% if custom_excerpt %}
@@ -103,6 +90,8 @@ bodyClass: post-template
 		</section>
 
 	</article>
+
+	{% include "partials/post-taxonomy.njk" %}
 
 	{% include "partials/related-posts.njk" %}
 

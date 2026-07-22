@@ -1,16 +1,18 @@
 ---
 title: "Original Nations Anthem"
 date: 2016-12-04
-custom_excerpt: "Greetings Everyone, This “Original Free Nations Anthem” is dedicated to Standing Rock and their supporters, as well as our ancestors and “All Our Relations.” Ou"
+custom_excerpt: "Greetings Everyone, This “Original Free Nations Anthem” is dedicated to Standing Rock and their supporters, as well as our ancestors and “All Our Relations.”"
 feature_image: ""
 feature_image_alt: ""
 feature_image_caption: ""
+feature_video: https://youtu.be/NMjkyNCWyZs?si=76p4iMq0V9EMjDev
 authors: ["steven-newcomb"]
 categories: []
 tags: ["Sheldon Wolfchild", "Standing Rock", "Steve Banegas", "Wiley Elliott"]
 template: "wide-feature-image"
 bodyClass: "post-template has-wide-image"
 ---
+<iframe class="gh-video" src="https://www.youtube-nocookie.com/embed/NMjkyNCWyZs" title="Original Nations Anthem" width="560" height="315" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 Greetings Everyone,
 

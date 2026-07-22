@@ -9,6 +9,7 @@ authors: [adam-brett]
 tags: [environment, politics]
 template: full-feature-image
 bodyClass: "post-template has-full-image"
+published: false
 ---
 Twenty-two years after the first mile of riverfront trail was paved, the loop is finally closed. City and county officials cut the ribbon Wednesday morning on the 3.4-mile southern extension, and roughly 300 cyclists immediately set off to ride the full 22-mile circuit for the first time.
 

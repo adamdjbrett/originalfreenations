@@ -1,5 +1,4 @@
 ---
-title: "The Principle of Prescription"
 date: 2020-05-06
 custom_excerpt: "In his book Elements of International Law, first published in 1836, Henry Wheaton pointed out that “the general consent of mankind has established the principle"
 feature_image: "/assets/images/H-Wheaton-3.jpg"

@@ -18,7 +18,11 @@
 </head>
 
 <body class="{{ bodyClass or 'home-template' }} {{ navClass }}{{ fontClass }}{{ headStyle }}">
-<div class="gh-site">
+	<div class="gh-skip-links">
+		{% if show_header != false %}<a class="gh-skip-link" href="#primary-navigation">Skip to navigation</a>{% endif %}
+		<a class="gh-skip-link" href="#main-content">Skip to body</a>
+	</div>
+	<div class="gh-site">
 
 	{% if show_header != false %}
 	<header id="gh-head" class="gh-head gh-outer h-card">
@@ -36,7 +40,7 @@
 				<button class="gh-burger" type="button" aria-label="{{ 'Toggle menu' | t }}"></button>
 			</div>
 
-			<nav class="gh-head-menu">
+			<nav id="primary-navigation" class="gh-head-menu" tabindex="-1" aria-label="Primary navigation">
 				<ul class="nav">
 					{%- for item in navigation.primary %}
 					<li class="nav-item{% if (page.url or '/') == item.url %} nav-current{% endif %}">
@@ -52,15 +56,15 @@
 					{% include "partials/search.njk" %}
 				</div>
 				<div class="gh-head-actions-right">
-					<a class="gh-subscribe-btn gh-btn" href="{{ metadata.subscribe.url }}" target="_blank" rel="noopener">{{ metadata.subscribe.text }}</a>
 					<a class="gh-subscribe-outline-btn btn gh-btn" href="{{ metadata.podcast.url }}" target="_blank" rel="noopener">{{ metadata.podcast.text }}</a>
+					<a class="gh-subscribe-btn gh-btn" href="{{ metadata.subscribe.url }}" target="_blank" rel="noopener">{{ metadata.subscribe.text }}</a>
 				</div>
 			</div>
 		</div>
 	</header>
 	{% endif %}
 
-	{{ content | safe }}
+		<div id="main-content" tabindex="-1">{{ content | safe }}</div>
 
 
 {% include "partials/feed.njk" %}

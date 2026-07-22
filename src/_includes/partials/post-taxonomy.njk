@@ -1,0 +1,10 @@
+{%- set postCategories = categories or [] -%}
+{%- set postTags = tags | publicTags -%}
+<div class="gh-post-taxonomy gh-canvas" aria-label="Post categories and tags">
+	<p><strong>{{ "Category" if postCategories.length == 1 else "Categories" }}:</strong>
+		{%- if postCategories.length %}{% for category in postCategories %} <a href="/category/{{ category | slug }}/">{{ category }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% else %} None{% endif %}
+	</p>
+	<p><strong>{{ "Tag" if postTags.length == 1 else "Tags" }}:</strong>
+		{%- if postTags.length %}{% for tag in postTags %} <a href="/tag/{{ tag | slug }}/">#{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% else %} None{% endif %}
+	</p>
+</div>
