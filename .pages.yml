@@ -1,185 +1,211 @@
-# Pages CMS configuration — https://pagescms.org/docs/configuration/
-# Edit content in a browser at https://app.pagescms.org (commits back to GitHub,
-# which triggers a rebuild). Field paths below match this Eleventy project.
-#
-# CONTENT MODEL — PAGE BUNDLES (differs from the stock 11ty-Headline theme):
-#   posts   src/content/posts/<slug>/index.md   (+ optional <slug>/images/)
-#   pages   src/content/pages/<slug>/index.md
-#   drafts  src/_drafts/<slug>/index.md
-# Every entry is a DIRECTORY containing index.md, not a flat <slug>.md file.
-#
-# !! PAGES CMS LIMITATION — directory bundles !!
-# Pages CMS collections are file-oriented: `filename` names a file inside `path`.
-# A `<slug>/index.md` filename template is not an officially documented feature,
-# so `filename: '{fields.title}/index.md'` below is a best-effort expression of
-# the bundle layout. If Pages CMS refuses the "/" (or writes the post to
-# `src/content/posts/<Title>.md` instead of `src/content/posts/<slug>/index.md`),
-# then NEW posts created in the CMS must be moved into their own directory by
-# hand (or via a commit) after creation. EDITING existing bundles works either
-# way: `subfolders: true` lets the CMS browse into <slug>/ and open index.md.
+# Pages CMS configuration: https://pagescms.org/docs/configuration/
+# Open this repository at https://app.pagescms.org to edit and commit content.
 
 media:
-  - name: assets
-    label: Images & Media
+  - name: images
+    label: Images
     input: src/assets/images
     output: /assets/images
     categories: [image]
 
 content:
-  # --- Posts -----------------------------------------------------------------
-  # src/content/posts/<slug>/index.md
   - name: posts
     label: Posts
     type: collection
-    path: src/content/posts
-    subfolders: true
-    filename: '{fields.title}/index.md'   # see the bundle limitation note above
+    path: src/posts
+    subfolders: false
+    exclude: [posts.11tydata.js]
+    filename:
+      template: "{primary}.md"
+      field: create
     view:
-      fields: [title, date, tags]
+      fields: [title, date, published]
       primary: title
       sort: [date, title]
-      default:
-        sort: date
-        order: desc
+      search: [title, tags, categories]
+      default: { sort: date, order: desc }
     fields:
       - { name: title, label: Title, type: string, required: true }
       - { name: date, label: Publish date, type: date, options: { format: yyyy-MM-dd }, required: true }
-      - { name: tags, label: Tags, type: string, list: true }
-      - { name: categories, label: Categories, type: string, list: true }
-      - { name: description, label: Meta description (optional), type: text }
-      # !! PAGES CMS LIMITATION — image !!
-      # `image` is a BARE FILENAME (e.g. "Tecumseh02.webp") naming a file in
-      # src/assets/images/. posts.11tydata.js maps it to
-      # feature_image: /assets/images/<image>.
-      # It is therefore a `string`, not an `image`: the media library above is
-      # rooted at src/assets/images and would write a rooted "/assets/images/…"
-      # path, which the computed value would double-prefix.
-      - { name: image, label: Cover image (file name only, from src/assets/images/), type: string }
-      # --- Optional Headline theme fields ---------------------------------
-      # Not present in the migrated WordPress content, but the theme templates
-      # still read them (post.njk, page.njk, feature-image.njk, loop-grid.njk),
-      # so they stay editable.
-      - { name: custom_excerpt, label: Excerpt (optional — otherwise auto), type: text }
-      - { name: feature_image_alt, label: Cover image alt text, type: string }
-      - { name: feature_image_caption, label: Cover image caption, type: string }
+      - { name: description, label: Meta description, type: text }
+      - { name: custom_excerpt, label: Excerpt, type: text }
+      - { name: feature_image, label: Feature image, type: image, options: { media: images } }
+      - { name: feature_image_alt, label: Feature image alt text, type: string }
+      - { name: feature_image_caption, label: Feature image caption, type: string }
+      - { name: feature_video, label: Feature video URL, type: string }
       - { name: authors, label: Authors, type: string, list: true }
+      - { name: categories, label: Categories, type: string, list: true }
+      - { name: tags, label: Tags, type: string, list: true }
       - { name: toc, label: Table of contents, type: boolean, default: false }
       - name: template
         label: Post layout
         type: select
-        options:
-          values: [post, wide-feature-image, full-feature-image]
+        options: { values: [post, wide-feature-image, full-feature-image] }
         default: post
-      - { name: published, label: Published (uncheck = draft), type: boolean, default: true }
+      - { name: bodyClass, label: Body classes, type: string }
+      - { name: published, label: Published, type: boolean, default: true }
       - { name: body, label: Body, type: rich-text }
 
-  # --- Drafts (src/_drafts/<slug>/index.md, excluded from production builds) ---
   - name: drafts
     label: Drafts
     type: collection
     path: src/_drafts
-    subfolders: true
-    filename: '{fields.title}/index.md'   # same bundle limitation as Posts
+    subfolders: false
     exclude: [_drafts.11tydata.js]
+    filename:
+      template: "{primary}.md"
+      field: create
     view:
-      fields: [title, date, tags]
+      fields: [title, date]
       primary: title
       sort: [date, title]
-      default:
-        sort: date
-        order: desc
+      search: [title, tags, categories]
+      default: { sort: date, order: desc }
     fields:
       - { name: title, label: Title, type: string, required: true }
       - { name: date, label: Publish date, type: date, options: { format: yyyy-MM-dd } }
-      - { name: tags, label: Tags, type: string, list: true }
-      - { name: categories, label: Categories, type: string, list: true }
-      - { name: description, label: Meta description (optional), type: text }
-      # Bare filename from src/assets/images/ — see the note on the Posts
-      # collection's `image` field.
-      - { name: image, label: Cover image (file name only, from src/assets/images/), type: string }
-      - { name: custom_excerpt, label: Excerpt (optional — otherwise auto), type: text }
-      - { name: feature_image_alt, label: Cover image alt text, type: string }
-      - { name: feature_image_caption, label: Cover image caption, type: string }
+      - { name: description, label: Meta description, type: text }
+      - { name: custom_excerpt, label: Excerpt, type: text }
+      - { name: feature_image, label: Feature image, type: image, options: { media: images } }
+      - { name: feature_image_alt, label: Feature image alt text, type: string }
+      - { name: feature_image_caption, label: Feature image caption, type: string }
+      - { name: feature_video, label: Feature video URL, type: string }
       - { name: authors, label: Authors, type: string, list: true }
+      - { name: categories, label: Categories, type: string, list: true }
+      - { name: tags, label: Tags, type: string, list: true }
       - { name: toc, label: Table of contents, type: boolean, default: false }
       - name: template
         label: Post layout
         type: select
-        options:
-          values: [post, wide-feature-image, full-feature-image]
+        options: { values: [post, wide-feature-image, full-feature-image] }
         default: post
-      - { name: published, label: Publish now (moves out of drafts on build), type: boolean, default: false }
+      - { name: bodyClass, label: Body classes, type: string }
+      - { name: published, label: Published, type: boolean, default: false, readonly: true, description: "Files in src/_drafts are never published; move the file to src/posts to publish it." }
       - { name: body, label: Body, type: rich-text }
 
-  # --- Pages ------------------------------------------------------------------
-  # src/content/pages/<slug>/index.md
   - name: pages
     label: Pages
     type: collection
-    path: src/content/pages
-    subfolders: true
-    filename: '{fields.title}/index.md'   # same bundle limitation as Posts
-    exclude: [credits.txt.njk]
+    path: src/pages
+    subfolders: false
+    exclude: [pages.11tydata.js, credits.txt.njk]
+    filename:
+      template: "{primary}.md"
+      field: create
     view:
-      fields: [title, date]
+      fields: [title]
       primary: title
+      sort: [title]
+      search: [title, description]
     fields:
       - { name: title, label: Title, type: string, required: true }
       - { name: date, label: Date, type: date, options: { format: yyyy-MM-dd } }
-      - { name: description, label: Meta description (optional), type: text }
-      # Bare filename from src/assets/images/ — see the note on the Posts
-      # collection's `image` field.
-      - { name: image, label: Cover image (file name only, from src/assets/images/), type: string }
+      - { name: description, label: Meta description, type: text }
       - { name: custom_excerpt, label: Excerpt, type: text }
-      - { name: show_title_and_feature_image, label: Show title & cover image, type: boolean, default: true }
-      - { name: eleventyNavigation, label: Nav (advanced), type: object, fields: [ { name: key, type: string }, { name: order, type: number } ] }
+      - { name: image, label: Feature image filename, type: string, description: "Bare filename from src/assets/images" }
+      - { name: feature_image_alt, label: Feature image alt text, type: string }
+      - { name: show_title_and_feature_image, label: Show title and feature image, type: boolean, default: true }
+      - name: eleventyNavigation
+        label: Navigation
+        type: object
+        fields:
+          - { name: key, label: Key, type: string }
+          - { name: order, label: Order, type: number }
+      - { name: published, label: Published, type: boolean, default: true }
       - { name: body, label: Body, type: rich-text }
 
-  # --- Authors ----------------------------------------------------------------
-  - name: siteAuthors
+  - name: authors
     label: Authors
     type: file
-    path: src/_data/siteAuthors.yaml
+    path: src/_data/authors.yaml
     list: true
     fields:
-      - { name: key, label: Key (URL slug), type: string, required: true }
+      - { name: key, label: Key, type: string, required: true }
       - { name: name, label: Name, type: string, required: true }
-      - { name: bio, label: Bio, type: text }
+      - { name: slug, label: Slug, type: string, required: true }
+      - { name: bio, label: Biography, type: text }
       - { name: location, label: Location, type: string }
-      - { name: profile_image, label: Profile image, type: image }
+      - { name: profile_image, label: Profile image, type: image, options: { media: images } }
       - { name: website, label: Website, type: string }
       - { name: bluesky, label: Bluesky URL, type: string }
-      - { name: x, label: X/Twitter URL, type: string }
+      - { name: x, label: X URL, type: string }
       - { name: mastodon, label: Mastodon URL, type: string }
+      - { name: podcast, label: Podcast URL, type: string }
+      - { name: substack, label: Substack URL, type: string }
+      - { name: personal_website, label: Personal website, type: string }
+      - { name: organization, label: Organization URL, type: string }
 
-  # --- Site settings ----------------------------------------------------------
   - name: metadata
-    label: Site Settings
+    label: Site settings
     type: file
     path: src/_data/metadata.yaml
     fields:
       - { name: title, label: Site title, type: string, required: true }
       - { name: description, label: Description, type: text }
-      - { name: url, label: Site URL, type: string }
-      - { name: subscribe_url, label: Subscribe button URL, type: string }
-      - { name: language, label: Language code, type: string }
+      - { name: url, label: Site URL, type: string, required: true }
+      - { name: language, label: Language, type: string }
       - { name: locale, label: Locale, type: string }
-      - { name: timezone, label: Timezone (IANA, e.g. America/New_York), type: string }
-      - { name: logo, label: Logo, type: image }
-      - { name: icon, label: Icon / favicon, type: image }
-      - { name: cover_image, label: Default cover image, type: image }
+      - { name: timezone, label: Timezone, type: string }
+      - { name: logo, label: Logo, type: image, options: { media: images } }
+      - { name: icon, label: Icon, type: image, options: { media: images } }
+      - { name: cover_image, label: Default cover image, type: image, options: { media: images } }
+      - name: organization
+        label: Organization
+        type: object
+        fields:
+          - { name: name, type: string }
+          - { name: url, type: string }
+          - { name: email, type: string }
+          - { name: telephone, type: string }
+          - name: address
+            type: object
+            fields:
+              - { name: street, type: string }
+              - { name: locality, type: string }
+              - { name: region, type: string }
+              - { name: postal_code, type: string }
+              - { name: country, type: string }
+      - name: subscribe
+        label: Subscribe button
+        type: object
+        fields:
+          - { name: text, type: string }
+          - { name: footer_text, type: string }
+          - { name: url, type: string }
+      - name: podcast
+        label: Podcast button
+        type: object
+        fields:
+          - { name: text, type: string }
+          - { name: url, type: string }
+      - name: footer
+        label: Footer
+        type: object
+        fields:
+          - { name: copyright_holder, type: string }
+          - { name: rights, type: string }
       - name: social_accounts
         label: Social accounts
         type: object
         list: true
         fields:
-          - name: type
-            label: Platform
-            type: select
-            options:
-              values: [x, facebook, instagram, linkedin, bluesky, mastodon, threads, tiktok, youtube, website, email]
-          - { name: name, label: Label, type: string }
-          - { name: href, label: URL, type: string }
+          - { name: type, type: string, required: true }
+          - { name: name, type: string, required: true }
+          - { name: href, type: string, required: true }
+      - name: feeds
+        label: Footer feeds
+        type: object
+        fields:
+          - name: getting_started
+            label: First feed
+            type: object
+            fields: &feed_fields
+              - { name: title, type: string }
+              - { name: desc, type: text }
+              - { name: url, type: string }
+              - { name: label, type: string }
+          - { name: science, label: Second feed, type: object, fields: *feed_fields }
+          - { name: technology, label: Third feed, type: object, fields: *feed_fields }
 
   - name: navigation
     label: Navigation
@@ -190,31 +216,24 @@ content:
         label: Primary menu
         type: object
         list: true
-        fields:
-          - { name: label, label: Label, type: string, required: true }
-          - { name: url, label: URL, type: string, required: true }
-      - name: secondary
-        label: Secondary (footer) menu
-        type: object
-        list: true
-        fields:
-          - { name: label, label: Label, type: string, required: true }
-          - { name: url, label: URL, type: string, required: true }
+        fields: &nav_fields
+          - { name: label, type: string, required: true }
+          - { name: url, type: string, required: true }
+      - { name: secondary, label: Footer menu, type: object, list: true, fields: *nav_fields }
 
   - name: theme
-    label: Theme Options
+    label: Theme options
     type: file
     path: src/_data/theme.yaml
     fields:
       - { name: navigation_layout, label: Navigation layout, type: select, options: { values: [Stacked, "Logo on the left", "Logo in the middle"] } }
-      - { name: header_style, label: Header style, type: select, options: { values: [Light, Accent color, Dark] } }
-      - { name: title_font, label: Title font, type: select, options: { values: [Modern sans-serif, Elegant serif] } }
-      - { name: body_font, label: Body font, type: select, options: { values: [Modern sans-serif, Elegant serif] } }
-      - { name: default_color_scheme, label: Default colour scheme, type: select, options: { values: [light, dark] } }
+      - { name: header_style, label: Header style, type: select, options: { values: [Light, "Accent color", Dark] } }
+      - { name: title_font, label: Title font, type: select, options: { values: ["Modern sans-serif", "Elegant serif"] } }
+      - { name: body_font, label: Body font, type: select, options: { values: ["Modern sans-serif", "Elegant serif"] } }
       - { name: email_signup_text, label: Email signup text, type: text }
       - { name: footer_text, label: Footer text, type: string }
-      - { name: primary_section_tags, label: Primary homepage topic tags, type: string, list: true }
-      - { name: secondary_section_tags, label: Secondary homepage topic tags, type: string, list: true }
+      - { name: primary_section_tags, label: Homepage topics, type: string, list: true }
+      - { name: default_color_scheme, label: Default color scheme, type: select, options: { values: [light, dark] } }
 
 settings:
   content:
